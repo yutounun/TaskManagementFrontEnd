@@ -1,0 +1,13 @@
+name: pull request workflow
+# PRが作成された際に実行
+
+on:
+  pull_request:
+    paths:
+      - ./**
+
+jobs:
+  style_check:
+    uses: ./.github/workflows/frontend_style_check.yml
+  generate_check:
+    uses: ./.github/workflows/frontend_build_check.yml

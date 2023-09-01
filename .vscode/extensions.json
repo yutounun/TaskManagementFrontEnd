@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "EditorConfig.EditorConfig",
+    "csstools.postcss",
+    "bradlc.vscode-tailwindcss",
+    "austenc.tailwind-docs",
+    "dsznajder.es7-react-js-snippets"
+  ]
+}

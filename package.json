@@ -1,0 +1,44 @@
+{
+  "name": "man-hour-app-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "@types/node": "20.4.5",
+    "@types/react": "18.2.18",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.14",
+    "emailjs-com": "^3.2.0",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.12",
+    "framer-motion": "^10.15.0",
+    "json-server": "^0.17.3",
+    "next": "13.4.12",
+    "postcss": "8.4.27",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "react-intersection-observer": "^9.5.2",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.1.6"
+  },
+  "volta": {
+    "node": "18.17.0"
+  },
+  "devDependencies": {
+    "@types/react-scroll": "^1.8.7",
+    "daisyui": "^3.5.0",
+    "react-scroll": "^1.8.9"
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,13 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.renderWhitespace": "all",
+  "terminal.integrated.scrollback": 10000,
+  "eslint.options": {
+    "extensions": [".js", ".vue"]
+  },
+  "eslint.validate": ["javascript", "vue"],
+  "extensions.ignoreRecommendations": false
+}
