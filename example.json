@@ -1,0 +1,55 @@
+{
+  "taskList": {
+    "totalHours": 8,
+    "projects": [
+      {
+        "id": 1,
+        "name": "COMTEC",
+        "tasks": [
+          {
+            "id": 1,
+            "name": "API Development",
+            "status": "inProgress",
+            "manhour": 5
+          },
+          {
+            "id": 2,
+            "name": "API Design",
+            "status": "notStarted",
+            "manhour": 4
+          },
+          {
+            "id": 3,
+            "name": "API Development",
+            "status": "done",
+            "manhour": 4
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "SSAP Office",
+        "tasks": [
+          {
+            "id": 1,
+            "name": "API Development",
+            "status": "done",
+            "manhour": 4
+          },
+          {
+            "id": 2,
+            "name": "API Development",
+            "status": "done",
+            "manhour": 4
+          },
+          {
+            "id": 3,
+            "name": "API Development",
+            "status": "done",
+            "manhour": 4
+          }
+        ]
+      }
+    ]
+  }
+}

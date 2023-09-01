@@ -1,0 +1,15 @@
+name: main branch merge workflow
+# PRが作成された際に実行
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+
+jobs:
+  style_check:
+    uses: ./.github/workflows/frontend_style_check.yml
+  generate_check:
+    uses: ./.github/workflows/frontend_build_check.yml
