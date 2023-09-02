@@ -44,7 +44,7 @@ const Button = ({ ...props }, propTypes) => {
       {props.new && (
         <button
           onClick={props.onClick}
-          className="rounded-xl bg-accent text-white w-40 h-8 flex text-center items-center justify-center gap-3"
+          className="rounded-xl font-bold bg-accent text-white w-40 h-8 flex text-center items-center justify-center gap-3"
         >
           <Plus color="white" /> Add New
         </button>

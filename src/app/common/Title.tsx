@@ -11,7 +11,7 @@ interface propTypes {
 }
 const Title = ({ ...props }: propTypes) => {
   return (
-    <div className="flex items-center gap-4 mx-40">
+    <div className="flex items-center gap-4 mx-20 mt-10">
       {/* Page Title */}
       <h1 className="text-2xl font-bold">{props.title} Board</h1>
 

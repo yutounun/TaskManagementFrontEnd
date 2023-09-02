@@ -1,3 +1,9 @@
+import Title from "@/common/Title";
+
 export default function Tasks() {
-  return <div className="bg-red-800">aa</div>;
+  return (
+    <>
+      <Title title="Projects" newBtn />
+    </>
+  );
 }

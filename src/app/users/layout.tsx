@@ -7,9 +7,9 @@ export default function TasksLayout({
 }) {
   return (
     <>
-      <Navbar active="users" />
       <div className="flex h-full">
-        <main className="w-full">{children}</main>
+        <Navbar active="users" />
+        <div className="w-screen">{children}</div>
       </div>
     </>
   );
