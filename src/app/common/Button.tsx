@@ -30,25 +30,6 @@ const Button = ({ ...props }, propTypes) => {
         >
           {props.text}
         </button>
-        // <div>
-        //   {/* Submit form */}
-        //   {props.text === "Add" ? (
-        //     <input
-        //       type="submit"
-        //       value={props.text}
-        //       onClick={props.onClick}
-        //       className="rounded-md bg-bg-blue text-white w-60 h-12 flex text-center items-center justify-center"
-        //     />
-        //   ) : (
-        //     // Button
-        //     <button
-        //       onClick={props.onClick}
-        //       className="rounded-md bg-bg-blue text-white w-60 h-12 flex text-center items-center justify-center"
-        //     >
-        //       {props.text}
-        //     </button>
-        //   )}
-        // </div>
       )}
 
       {props.cancel && (
@@ -63,7 +44,7 @@ const Button = ({ ...props }, propTypes) => {
       {props.new && (
         <button
           onClick={props.onClick}
-          className="rounded-xl bg-accent text-white w-60 h-8 flex text-center items-center justify-center gap-3"
+          className="rounded-xl bg-accent text-white w-40 h-8 flex text-center items-center justify-center gap-3"
         >
           <Plus color="white" /> Add New
         </button>
