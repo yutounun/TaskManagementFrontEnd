@@ -5,6 +5,7 @@ import Button from "@/common/Button";
 import Tabs from "@/common/Tabs";
 import { useState } from "react";
 import BoldInput from "@/common/BoldInput";
+import InputField from "@/common/InputField";
 
 // This page list all common components
 export default function Tasks() {
@@ -23,6 +24,31 @@ export default function Tasks() {
       <BoldInput title="Password" value={inputValue} setValue={setInputValue} />
       <BoldInput title="Username" value={inputValue} setValue={setInputValue} />
       {inputValue}
+      <InputField
+        title="Title*"
+        value={inputValue}
+        setValue={setInputValue}
+        placeholder="Title"
+        type="text"
+      />
+      <InputField
+        title="Title*"
+        value={inputValue}
+        setValue={setInputValue}
+        type="date"
+      />
+      <InputField
+        title="Title*"
+        value={inputValue}
+        setValue={setInputValue}
+        type="time"
+      />
+      <InputField
+        title="Title*"
+        value={inputValue}
+        setValue={setInputValue}
+        type="fromTo"
+      />
     </>
   );
 }
