@@ -6,12 +6,14 @@ import Tabs from "@/common/Tabs";
 import { useState } from "react";
 import BoldInput from "@/common/BoldInput";
 import InputField from "@/common/InputField";
+import Modal from "@/common/Modal";
 
 // This page list all common components
 export default function Tasks() {
   const { color, setColor } = useThemeContext();
   const [signIn, setSignIn] = useState(true);
   const [inputValue, setInputValue] = useState("");
+  const [open, setOpen] = useState(true);
   return (
     <>
       <div className="bg-red-800">{color}</div>;
@@ -27,28 +29,42 @@ export default function Tasks() {
       <InputField
         title="Title*"
         value={inputValue}
-        setValue={setInputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         placeholder="Title"
         type="text"
       />
       <InputField
         title="Title*"
         value={inputValue}
-        setValue={setInputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         type="date"
       />
       <InputField
         title="Title*"
         value={inputValue}
-        setValue={setInputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         type="time"
       />
       <InputField
         title="Title*"
         value={inputValue}
-        setValue={setInputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         type="fromTo"
       />
+      {open && (
+        <Modal title="Add New Task" page="tasks" setOpen={setOpen} type="add" />
+      )}
+      {open && (
+        <Modal title="Filter User" setOpen={setOpen} type="edit" page="users" />
+      )}
+      {open && (
+        <Modal
+          title="Filter User"
+          setOpen={setOpen}
+          type="filter"
+          page="users"
+        />
+      )}
     </>
   );
 }

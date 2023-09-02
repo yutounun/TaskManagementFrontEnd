@@ -6,31 +6,65 @@ interface propTypes {
   modal: boolean;
   cancel: boolean;
   new: boolean;
+  text?: string;
+  onClick: () => void;
 }
 
 const Button = ({ ...props }, propTypes) => {
   return (
     <>
       {props.continue && (
-        <button className="rounded-md bg-bg-blue text-white w-80 h-12 flex text-center items-center justify-center">
+        <button
+          onClick={props.onClick}
+          className="rounded-md bg-bg-blue text-white w-80 h-12 flex text-center items-center justify-center"
+        >
           Continue
         </button>
       )}
 
       {props.modal && (
-        <button className="rounded-md bg-bg-blue text-white w-60 h-12 flex text-center items-center justify-center">
-          Add
+        <button
+          onClick={props.onClick}
+          className="rounded-md bg-bg-blue text-white w-60 h-12 flex text-center items-center justify-center"
+          type="submit"
+        >
+          {props.text}
         </button>
+        // <div>
+        //   {/* Submit form */}
+        //   {props.text === "Add" ? (
+        //     <input
+        //       type="submit"
+        //       value={props.text}
+        //       onClick={props.onClick}
+        //       className="rounded-md bg-bg-blue text-white w-60 h-12 flex text-center items-center justify-center"
+        //     />
+        //   ) : (
+        //     // Button
+        //     <button
+        //       onClick={props.onClick}
+        //       className="rounded-md bg-bg-blue text-white w-60 h-12 flex text-center items-center justify-center"
+        //     >
+        //       {props.text}
+        //     </button>
+        //   )}
+        // </div>
       )}
 
       {props.cancel && (
-        <button className="rounded-md bg-bg-gray text-inactive w-60 h-12 flex text-center items-center justify-center">
+        <button
+          onClick={props.onClick}
+          className="rounded-md bg-bg-gray text-inactive w-60 h-12 flex text-center items-center justify-center"
+        >
           Cancel
         </button>
       )}
 
       {props.new && (
-        <button className="rounded-xl bg-accent text-white w-60 h-8 flex text-center items-center justify-center gap-3">
+        <button
+          onClick={props.onClick}
+          className="rounded-xl bg-accent text-white w-60 h-8 flex text-center items-center justify-center gap-3"
+        >
           <Plus color="white" /> Add New
         </button>
       )}
