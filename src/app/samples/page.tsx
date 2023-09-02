@@ -22,9 +22,9 @@ export default function Tasks() {
       <Button cancel />
       <Button new />
       <Tabs left={signIn} setLeft={setSignIn} />
-      <BoldInput title="Email" value={inputValue} setValue={setInputValue} />
-      <BoldInput title="Password" value={inputValue} setValue={setInputValue} />
-      <BoldInput title="Username" value={inputValue} setValue={setInputValue} />
+      <BoldInput title="Email" value={inputValue} onChange={setInputValue} />
+      <BoldInput title="Password" value={inputValue} onChange={setInputValue} />
+      <BoldInput title="Username" value={inputValue} onChange={setInputValue} />
       {inputValue}
       <InputField
         title="Title*"

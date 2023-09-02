@@ -7,13 +7,13 @@ import User2 from "./icons/User2";
 interface propTypes {
   title: string;
   value: string;
-  setValue: (value: string) => void;
+  onChange: (value: string) => void;
 }
 const BoldInput = ({ ...props }: propTypes) => {
   const [isEntered, setIsEntered] = useState(false);
   const handleChange = (e) => {
     setIsEntered(true);
-    props.setValue(e.target.value);
+    props.onChange(e.target.value);
   };
 
   return (
@@ -27,7 +27,7 @@ const BoldInput = ({ ...props }: propTypes) => {
         <p className="text-gray-text text-sm">{props.title}</p>
         <input
           className="text-black text-lg font-semibold"
-          onInput={handleChange}
+          onChange={handleChange}
         />
       </div>
       <div className="mr-5">{isEntered && <Check />}</div>
