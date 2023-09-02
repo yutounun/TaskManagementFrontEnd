@@ -1,4 +1,4 @@
-import Navbar from "../common/SideBar";
+import Navbar from "@/common/SideBar";
 
 export default function TasksLayout({
   children,

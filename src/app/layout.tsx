@@ -1,6 +1,6 @@
-import "./globals.css";
+import "@/globals.css";
 import type { Metadata } from "next";
-import { ThemeContextProvider } from "./context/theme";
+import { ThemeContextProvider } from "@/context/theme";
 
 export const metadata: Metadata = {
   title: "Yuto Ichihara",

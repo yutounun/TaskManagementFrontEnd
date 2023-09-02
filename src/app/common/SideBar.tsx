@@ -1,6 +1,6 @@
-import Pen from "./icons/Pen";
-import Tower from "./icons/Tower";
-import User1 from "./icons/User1";
+import Pen from "@/common/icons/Pen";
+import Tower from "@/common/icons/Tower";
+import User1 from "@/common/icons/User1";
 
 interface PropsType {
   active: "tasks" | "projects" | "users";
