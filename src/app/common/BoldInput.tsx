@@ -6,8 +6,8 @@ import User2 from "./icons/User2";
 
 interface propTypes {
   title: string;
-  value: string;
   onChange: (value: string) => void;
+  className?: string;
 }
 const BoldInput = ({ ...props }: propTypes) => {
   const [isEntered, setIsEntered] = useState(false);
@@ -17,7 +17,9 @@ const BoldInput = ({ ...props }: propTypes) => {
   };
 
   return (
-    <div className="rounded-md border-2 border-gray-text text-white w-80 h-14 flex text-center items-center justify-between">
+    <div
+      className={`rounded-md border-2 border-gray-text text-white h-14 flex text-center items-center justify-between ${props.className}`}
+    >
       <div className="px-5 border-r-2 border-gray-text">
         {props.title === "Email" && <Email color="black" />}
         {props.title === "Password" && <Key color="black" />}
