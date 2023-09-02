@@ -15,10 +15,11 @@ module.exports = {
       colors: {
         "bg-base": "#333333",
         inactive: "#737272",
-        accent: "$7BB147",
-        accent2: "$45AE7E",
+        accent: "#7BB147",
+        accent2: "#45AE7E",
         "gray-text": "#CBCBCB",
         "bg-gray": "#ABEEDA",
+        "bg-blue": "#055EF1",
         primary: "#292c32",
         secondary: "#6F7278",
         success: "#ff6d3f",
