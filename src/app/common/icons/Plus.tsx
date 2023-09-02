@@ -6,7 +6,7 @@ const Plus = ({ color }: { color: string }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_6_1233)">
+    <g clipPath="url(#clip0_6_1233)">
       <path
         d="M8.99999 15.5834C12.912 15.5834 16.0833 12.4121 16.0833 8.50008C16.0833 4.58806 12.912 1.41675 8.99999 1.41675C5.08797 1.41675 1.91666 4.58806 1.91666 8.50008C1.91666 12.4121 5.08797 15.5834 8.99999 15.5834Z"
         fill="#7BB147"
@@ -14,9 +14,9 @@ const Plus = ({ color }: { color: string }) => (
       <path
         d="M8.99999 5.66675V11.3334M6.16666 8.50008H11.8333M16.0833 8.50008C16.0833 12.4121 12.912 15.5834 8.99999 15.5834C5.08797 15.5834 1.91666 12.4121 1.91666 8.50008C1.91666 4.58806 5.08797 1.41675 8.99999 1.41675C12.912 1.41675 16.0833 4.58806 16.0833 8.50008Z"
         stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </g>
     <defs>

@@ -13,7 +13,7 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
       },
       colors: {
-        base: "#333333",
+        "bg-base": "#333333",
         inactive: "#737272",
         accent: "$7BB147",
         accent2: "$45AE7E",
@@ -45,8 +45,9 @@ module.exports = {
         sm: "12px",
         md: "14px",
         lg: "16px",
-        xlg: "20px",
-        xxlg: "32px",
+        xl: "18px",
+        xxl: "20px",
+        xxxl: "32px",
       },
       spacing: {
         "input-height": "44px",
