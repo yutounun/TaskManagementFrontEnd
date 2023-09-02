@@ -18,6 +18,7 @@ module.exports = {
         accent: "#7BB147",
         accent2: "#45AE7E",
         "gray-text": "#CBCBCB",
+        "gray-on-gray": "#8C8C8C",
         "bg-gray": "#ABEEDA",
         "bg-blue": "#055EF1",
         primary: "#292c32",
