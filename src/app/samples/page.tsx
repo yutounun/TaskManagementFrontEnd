@@ -7,6 +7,7 @@ import { useState } from "react";
 import BoldInput from "@/common/BoldInput";
 import InputField from "@/common/InputField";
 import Modal from "@/common/Modal";
+import Title from "@/common/Title";
 
 // This page list all common components
 export default function Tasks() {
@@ -16,6 +17,7 @@ export default function Tasks() {
   const [open, setOpen] = useState(true);
   return (
     <>
+      <Title title="Tasks" newBtn />
       <div className="bg-red-800">{color}</div>;
       <Button continue />
       <Button modal />

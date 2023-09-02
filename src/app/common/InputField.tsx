@@ -1,8 +1,8 @@
 import React from "react";
 
 interface propTypes {
-  title: string;
-  value: string;
+  title?: string;
+  value?: string;
   onChange: (e) => void;
   placeholder?: string;
   type: "date" | "fromTo" | "text" | "time";
@@ -12,7 +12,7 @@ interface propTypes {
 const InputField = ({ ...props }: propTypes) => {
   return (
     <label className={`gap-1 flex flex-col ${props.className}`}>
-      <p className="font-bold">{props.title}</p>
+      {props.title && <p className="font-bold">{props.title}</p>}
       {/* Normal */}
       {props.type !== "fromTo" && (
         <input
