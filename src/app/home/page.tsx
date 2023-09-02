@@ -34,7 +34,7 @@ const Home = () => {
                 onChange={(email) => setSignInEmail(email)}
                 className="w-6/12"
               />
-              <Button continue />
+              <Button continue to="/tasks/list" />
             </div>
           ) : (
             // Sign Up
@@ -59,7 +59,7 @@ const Home = () => {
                 onChange={(username) => setSignUpUsername(username)}
                 className="w-6/12"
               />
-              <Button continue />
+              <Button continue to="/tasks/list" />
             </div>
           )}
         </div>

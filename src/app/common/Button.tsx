@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Plus from "./icons/Plus";
 
@@ -8,18 +9,20 @@ interface propTypes {
   new: boolean;
   text?: string;
   onClick: () => void;
+  to?: string;
 }
 
 const Button = ({ ...props }, propTypes) => {
   return (
     <>
       {props.continue && (
-        <button
+        <Link
+          href={props.to}
           onClick={props.onClick}
           className="rounded-md bg-bg-blue text-white w-80 h-12 flex text-center items-center justify-center"
         >
           Continue
-        </button>
+        </Link>
       )}
 
       {props.modal && (
