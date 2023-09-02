@@ -7,7 +7,7 @@ export default function TasksLayout({
 }) {
   return (
     <>
-      <div className="flex h-full">
+      <div className="flex bg-all-bg  h-full">
         <Navbar active="tasks" />
         <div className="mx-20 w-full">{children}</div>
       </div>
