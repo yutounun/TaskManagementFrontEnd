@@ -15,7 +15,7 @@ interface propTypes {
 const Button = ({ ...props }, propTypes) => {
   return (
     <>
-      {props.continue && (
+      {props.continue && props.to && (
         <Link
           href={props.to}
           onClick={props.onClick}

@@ -1,11 +1,11 @@
 import React from "react";
-import { GetTask } from "@/tasks/list/task";
+import { Task } from "@/types/task";
 import Timer from "./Timer";
 import Edit from "@/common/icons/Edit";
 
 type propTypes = {
   className?: string;
-  task: GetTask;
+  task: Task;
 };
 
 const TaskTableRow = ({ ...props }: propTypes) => {
