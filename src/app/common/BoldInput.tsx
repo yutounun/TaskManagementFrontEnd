@@ -8,6 +8,7 @@ interface propTypes {
   title: string;
   onChange: (value: string) => void;
   className?: string;
+  placeholder?: string;
 }
 const BoldInput = ({ ...props }: propTypes) => {
   const [isEntered, setIsEntered] = useState(false);
@@ -30,6 +31,7 @@ const BoldInput = ({ ...props }: propTypes) => {
         <input
           className="text-black text-lg font-semibold"
           onChange={handleChange}
+          placeholder={props.placeholder}
         />
       </div>
       <div className="mr-5">{isEntered && <Check />}</div>

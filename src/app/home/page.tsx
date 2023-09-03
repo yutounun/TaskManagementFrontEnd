@@ -33,31 +33,35 @@ const Home = () => {
                 title="Email"
                 onChange={(email) => setSignInEmail(email)}
                 className="w-6/12"
+                placeholder="Enter your Email"
               />
               <Button continue to="/tasks/list" />
             </div>
           ) : (
             // Sign Up
             <div className="flex flex-col items-center gap-5 w-full">
-              <p className="text-3xl font-bold">Welcome Back</p>
+              <p className="text-3xl font-bold">Welcome</p>
               <p className="text-md text-gray-text">
-                Welcome Back. Please Enter your details.
+                Welcome. Start by filling the form.
               </p>
               <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
               <BoldInput
                 title="Email"
                 onChange={(email) => setSignUpEmail(email)}
                 className="w-6/12"
+                placeholder="Enter your Email"
               />
               <BoldInput
                 title="Password"
                 onChange={(password) => setSignUpPassword(password)}
                 className="w-6/12"
+                placeholder="Enter your Password"
               />
               <BoldInput
                 title="Username"
                 onChange={(username) => setSignUpUsername(username)}
                 className="w-6/12"
+                placeholder="Enter your Username"
               />
               <Button continue to="/tasks/list" />
             </div>
