@@ -1,4 +1,7 @@
-import { type } from "os";
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Button from "./Button";
 import Smile from "./icons/Smile";
@@ -9,15 +12,12 @@ interface propTypes {
   title: string;
   type: "add" | "edit" | "filter";
   page: "tasks" | "projects" | "users";
-  setOpen: (open: boolean) => void;
+  className?: string;
 }
 
 const Modal = ({ ...props }: propTypes) => {
   const [inputValue, setInputValue] = useState("");
-  const positiveClick = () => {
-    props.setOpen(false);
-  };
-
+  const router = useRouter();
   // TODO: どのモーダルかによってformデータは分ける必要がある。多分handleSubmitで親コンポーネントに渡すときに条件分岐すれば良い。
   const [formData, setFormData] = useState({
     title: "",
@@ -43,7 +43,7 @@ const Modal = ({ ...props }: propTypes) => {
     event.preventDefault();
     console.log("formData :", formData);
 
-    // positiveClick();
+    router.back();
   };
 
   /**
@@ -60,15 +60,12 @@ const Modal = ({ ...props }: propTypes) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative px-20 py-5 rounded-lg border-2 w-1/2 border-gray-text flex flex-col items-center gap-10"
+      className={`bg-white relative px-20 py-5 rounded-lg border-2 w-1/2 border-gray-text flex flex-col items-center gap-10 ${props.className}`}
     >
       {/* open Button */}
-      <div
-        className="absolute top-5 right-5"
-        onClick={() => props.setOpen(false)}
-      >
+      <Link className="absolute top-5 right-5" href={`/${props.page}/list`}>
         <X color="black" />
-      </div>
+      </Link>
 
       {/* Title */}
       <div className="flex justify-start w-full items-center gap-5">
@@ -164,14 +161,15 @@ const Modal = ({ ...props }: propTypes) => {
 
       {/* Buttons */}
       <div className="flex gap-4">
-        <Button cancel onClick={() => props.setOpen(false)} />
+        {/* cancel */}
+        <Link href={`/${props.page}/list`}>
+          <Button cancel />
+        </Link>
+
+        {/* submit */}
         {props.type === "add" && <Button text="Add" modal />}
-        {props.type === "edit" && (
-          <Button text="Edit" modal onClick={positiveClick} />
-        )}
-        {props.type === "filter" && (
-          <Button text="Filter" modal onClick={positiveClick} />
-        )}
+        {props.type === "edit" && <Button text="Edit" modal />}
+        {props.type === "filter" && <Button text="Filter" modal />}
       </div>
     </form>
   );

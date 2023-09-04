@@ -2,6 +2,7 @@ import React from "react";
 import { Task } from "@/types/task";
 import Timer from "./Timer";
 import Edit from "@/common/icons/Edit";
+import Link from "next/link";
 
 type propTypes = {
   className?: string;
@@ -20,9 +21,9 @@ const TaskTableRow = ({ ...props }: propTypes) => {
         <Timer />
         {/* <span>{props.task.manHour}</span> */}
       </div>
-      <span className="w-[10%]">
+      <Link href="/tasks/list?editModal=true" className="w-[10%]">
         <Edit color="#333333" />
-      </span>
+      </Link>
     </div>
   );
 };

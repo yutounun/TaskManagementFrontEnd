@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import Button from "./Button";
 import Filter from "./icons/Filter";
@@ -8,6 +9,7 @@ interface propTypes {
   title: string;
   newBtn?: boolean;
   onChange?: () => void;
+  page?: string;
 }
 const Title = ({ ...props }: propTypes) => {
   return (
@@ -26,10 +28,16 @@ const Title = ({ ...props }: propTypes) => {
       <Search color="#333333" />
 
       {/* Filter Icon that opens filter modal */}
-      <Filter color="#333333" />
+      <Link href={`/${props.page}/list?filterModal=true`}>
+        <Filter color="#333333" />
+      </Link>
 
       {/* Add New Task Button that opens add modal */}
-      {props.newBtn && <Button new />}
+      {props.newBtn && (
+        <Link href={`/${props.page}/list?addModal=true`}>
+          <Button new />
+        </Link>
+      )}
     </div>
   );
 };

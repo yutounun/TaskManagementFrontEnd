@@ -6,7 +6,53 @@ import TaskTableRow from "./TaskTableRow";
 const TEST_DATA = [
   {
     id: "2132eds",
-    title: "title",
+    title: "Nomikan",
+    status: "completed",
+    totalManHour: "12",
+    from: "23",
+    to: "13",
+    priority: "high",
+    createdAt: "12",
+    type: "MTG",
+    updatedAt: "12",
+    tasks: [
+      {
+        id: "2132eds",
+        title: "title",
+        status: "completed",
+        manHour: "12",
+        from: "23",
+        to: "13",
+        priority: "high",
+        createdAt: "12",
+        type: "MTG",
+        updatedAt: "12",
+        project: {
+          id: "erf34fc",
+          title: "Toyota",
+        },
+      },
+      {
+        id: "213wedwe2eds",
+        title: "title2",
+        status: "completed",
+        manHour: "12",
+        from: "23",
+        to: "13",
+        priority: "high",
+        createdAt: "12",
+        type: "MTG",
+        updatedAt: "12",
+        project: {
+          id: "erf34fc",
+          title: "Toyota",
+        },
+      },
+    ],
+  },
+  {
+    id: "213322eds",
+    title: "Nomikan2",
     status: "completed",
     totalManHour: "12",
     from: "23",
@@ -52,7 +98,9 @@ const TEST_DATA = [
   },
 ];
 
-const TaskTable = () => {
+type propTypes = {};
+
+const TaskTable = ({ ...props }: propTypes) => {
   const projects = TEST_DATA;
   return (
     <div className="mx-10 mt-10">
