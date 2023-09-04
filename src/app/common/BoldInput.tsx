@@ -26,10 +26,10 @@ const BoldInput = ({ ...props }: propTypes) => {
         {props.title === "Password" && <Key color="black" />}
         {props.title === "Username" && <User2 color="black" />}
       </div>
-      <div className="flex flex-col items-start justify-start">
+      <div className="flex flex-col items-start w-full mx-5 justify-start">
         <p className="text-gray-text text-sm">{props.title}</p>
         <input
-          className="text-black text-lg font-semibold"
+          className="text-black text-lg font-semibold w-full"
           onChange={handleChange}
           placeholder={props.placeholder}
         />
