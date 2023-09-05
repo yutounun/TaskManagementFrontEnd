@@ -3,7 +3,7 @@ import Modal from "@/_common/Modal";
 import Title from "@/_common/Title";
 import TaskTable from "./TaskTable";
 import { getApi } from "@/_utils/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
@@ -14,25 +14,26 @@ export default function Tasks({ searchParams }: propTypes) {
   const showEditModal = searchParams?.editModal;
   const showAddModal = searchParams?.addModal;
   const showFilterModal = searchParams?.filterModal;
+  const [projects, setProjects] = useState([]);
 
   /**
    * Get all projects when the page loads
    */
-  function getProjects() {
-    const res = getApi("projects");
-    console.log("resProjects :", res);
+  async function getProjects() {
+    const res = await getApi("projects");
+    setProjects(res);
   }
 
   useEffect(() => {
     getProjects();
-  });
+  }, []);
 
   return (
     <>
       {!showEditModal && !showAddModal && !showFilterModal && (
         <>
           <Title title="Tasks" newBtn page="tasks" />
-          <TaskTable />
+          <TaskTable projects={projects} />
         </>
       )}
       {showEditModal && (
