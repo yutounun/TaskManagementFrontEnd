@@ -6,7 +6,28 @@ const headers = accessToken
   ? { "Content-Type": "application/json", Authorization: accessToken }
   : { "Content-Type": "application/json" };
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 /////////////////////////////////////////////////////////////
+
+/**
+ * Checks if the response is ok, and throws an error if it is not.
+ *
+ * @param {object} response - The response object from the API request.
+ * @throws {Error} Unauthorized - If the response status is 401.
+ * @throws {Error} HTTP error! status: {status} - If the response status is not 401.
+ */
+function errorCheck(response) {
+  if (!response.ok) {
+    if (response.status === 401) {
+      window.location.href = "/home";
+      throw new Error("Unauthorized");
+    } else {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  }
+}
+
 // Retrieving data from API. Retrieving data from API. Retrieving
 
 type UseGetType = (
@@ -20,20 +41,14 @@ export const getApi: UseGetType = async (url, params) => {
 
     if (params) {
       const query = new URLSearchParams(params);
-      response = await fetch(
-        process.env.NEXT_PUBLIC_API_URL + url + "?" + query.toString()
-      );
+      response = await fetch(API_URL + url + "?" + query.toString());
     } else {
-      response = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
+      response = await fetch(API_URL + url, {
         method: "GET",
         headers: headers,
       });
     }
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
+    errorCheck(response);
     return await response.json();
   } catch (error) {
     console.error("Fetching error:", error);
@@ -54,16 +69,13 @@ type postApiType = (
 
 export const postApi: postApiType = async (url, body) => {
   try {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
+    const response = await fetch(API_URL + url, {
       method: "POST",
       headers: headers,
       body: JSON.stringify(body),
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
+    errorCheck(response);
     return await response.json();
   } catch (error) {
     console.error("Fetching error:", error);
@@ -84,15 +96,13 @@ type UsePutType = (
 
 export const putApi: UsePutType = async (url, body) => {
   try {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
+    const response = await fetch(API_URL + url, {
       method: "PUT",
       headers: headers,
       body: JSON.stringify(body),
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    errorCheck(response);
 
     return await response.json();
   } catch (error) {
@@ -114,14 +124,12 @@ export const deleteApi: UseDeleteType = async (
   headers = { "Content-Type": "application/json", Authorization: accessToken }
 ) => {
   try {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
+    const response = await fetch(API_URL + url, {
       method: "DELETE",
       headers: headers,
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    errorCheck(response);
 
     return await response.json();
   } catch (error) {
