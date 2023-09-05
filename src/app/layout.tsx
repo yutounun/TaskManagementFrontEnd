@@ -1,6 +1,6 @@
 import "@/globals.css";
 import type { Metadata } from "next";
-import { ThemeContextProvider } from "@/context/theme";
+import { ThemeContextProvider } from "@/_context/theme";
 
 export const metadata: Metadata = {
   title: "Task Management",

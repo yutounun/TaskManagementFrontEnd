@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeContext } from "@/context/theme";
+import { useThemeContext } from "@/_context/theme";
 import Button from "@/_common/Button";
 import Tabs from "@/_common/Tabs";
 import { useState } from "react";
