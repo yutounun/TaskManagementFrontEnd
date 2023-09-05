@@ -1,7 +1,7 @@
 "use client";
 
-import Pause from "@/common/icons/Pause";
-import Play from "@/common/icons/Play";
+import Pause from "@/_common/icons/Pause";
+import Play from "@/_common/icons/Play";
 import React from "react";
 import { useStopwatch } from "react-timer-hook";
 

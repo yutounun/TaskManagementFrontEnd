@@ -1,13 +1,13 @@
 "use client";
 
 import { useThemeContext } from "@/context/theme";
-import Button from "@/common/Button";
-import Tabs from "@/common/Tabs";
+import Button from "@/_common/Button";
+import Tabs from "@/_common/Tabs";
 import { useState } from "react";
-import BoldInput from "@/common/BoldInput";
-import Modal from "@/common/Modal";
-import Title from "@/common/Title";
-import InputField from "@/common/InputField";
+import BoldInput from "@/_common/BoldInput";
+import Modal from "@/_common/Modal";
+import Title from "@/_common/Title";
+import InputField from "@/_common/InputField";
 
 // This page list all common components
 export default function Tasks() {

@@ -1,6 +1,6 @@
-import Pen from "@/common/icons/Pen";
-import Tower from "@/common/icons/Tower";
-import User1 from "@/common/icons/User1";
+import Pen from "@/_common/icons/Pen";
+import Tower from "@/_common/icons/Tower";
+import User1 from "@/_common/icons/User1";
 import Link from "next/link";
 
 interface PropsType {

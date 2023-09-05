@@ -1,18 +1,56 @@
 "use client";
 
 import React, { useState } from "react";
-import Logo from "@/common/icons/Logo";
+import Logo from "@/_common/icons/Logo";
 import Image from "next/image";
-import Tabs from "@/common/Tabs";
-import BoldInput from "@/common/BoldInput";
-import Button from "@/common/Button";
+import Tabs from "@/_common/Tabs";
+import BoldInput from "@/_common/BoldInput";
+import Button from "@/_common/Button";
 
 const Home = () => {
   const [signIn, setSignIn] = useState(true);
-  const [signInEmail, setSignInEmail] = useState("");
+  const [signInUsername, setSignInUsername] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
   const [signUpEmail, setSignUpEmail] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
   const [signUpUsername, setSignUpUsername] = useState("");
+
+  /**
+   * Handles the sign-in process.
+   *
+   * @return {void}
+   */
+  async function handleSignIn() {
+    const requestData = {
+      username: signInUsername,
+      password: signInPassword,
+    };
+    const url = `${process.env.NEXT_PUBLIC_API_URL}auth/login`;
+    const options = {
+      method: "POST", // request method
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    };
+    try {
+      const response = await fetch(url, options);
+      const jsonData = await response.json();
+      console.log(jsonData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  /**
+   * Handles the sign up process.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
+  async function handleSignUp() {
+    console.log("data");
+  }
 
   return (
     <div className="flex w-screen h-screen">
@@ -30,12 +68,18 @@ const Home = () => {
               </p>
               <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
               <BoldInput
-                title="Email"
-                onChange={(email) => setSignInEmail(email)}
+                title="Username"
+                onChange={(username) => setSignInUsername(username)}
                 className="w-6/12"
-                placeholder="Enter your Email"
+                placeholder="Enter your Username"
               />
-              <Button continue to="/tasks/list" />
+              <BoldInput
+                title="Password"
+                onChange={(password) => setSignInPassword(password)}
+                className="w-6/12"
+                placeholder="Enter your Password"
+              />
+              <Button continue to="/tasks/list" onClick={handleSignIn} />
             </div>
           ) : (
             // Sign Up
@@ -63,7 +107,7 @@ const Home = () => {
                 className="w-6/12"
                 placeholder="Enter your Username"
               />
-              <Button continue to="/tasks/list" />
+              <Button continue to="/tasks/list" onClick={handleSignUp} />
             </div>
           )}
         </div>

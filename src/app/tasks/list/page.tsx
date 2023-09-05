@@ -1,5 +1,5 @@
-import Modal from "@/common/Modal";
-import Title from "@/common/Title";
+import Modal from "@/_common/Modal";
+import Title from "@/_common/Title";
 import TaskTable from "./TaskTable";
 
 type propTypes = {

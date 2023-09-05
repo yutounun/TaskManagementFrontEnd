@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "@/common/icons/Logo";
+import Logo from "@/_common/icons/Logo";
 
 const Home = () => {
   return (

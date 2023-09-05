@@ -15,14 +15,13 @@ interface propTypes {
 const Button = ({ ...props }, propTypes) => {
   return (
     <>
-      {props.continue && props.to && (
-        <Link
-          href={props.to}
+      {props.continue && (
+        <button
           onClick={props.onClick}
           className="rounded-md bg-bg-blue text-white w-80 h-12 flex text-center items-center justify-center"
         >
           Continue
-        </Link>
+        </button>
       )}
 
       {props.modal && (

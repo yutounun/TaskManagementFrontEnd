@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { ThemeContextProvider } from "@/context/theme";
 
 export const metadata: Metadata = {
-  title: "Yuto Ichihara",
-  description: "Portfolio Page",
+  title: "Task Management",
+  description: "Task Management App",
 };
 
 export default function RootLayout({

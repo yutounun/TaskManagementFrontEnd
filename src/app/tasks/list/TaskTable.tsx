@@ -1,5 +1,5 @@
 import React from "react";
-import { GetProject } from "@/types/task";
+import { GetProject } from "@/_types/task";
 import TaskTableHeader from "./TaskTableHeader";
 import TaskTableRow from "./TaskTableRow";
 

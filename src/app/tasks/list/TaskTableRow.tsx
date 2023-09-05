@@ -1,7 +1,7 @@
 import React from "react";
-import { Task } from "@/types/task";
+import { Task } from "@/_types/task";
 import Timer from "./Timer";
-import Edit from "@/common/icons/Edit";
+import Edit from "@/_common/icons/Edit";
 import Link from "next/link";
 
 type propTypes = {
