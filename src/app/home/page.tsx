@@ -1,11 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Logo from "@/_common/icons/Logo";
 import Image from "next/image";
 import Tabs from "@/_common/Tabs";
 import BoldInput from "@/_common/BoldInput";
 import Button from "@/_common/Button";
+import { postApi } from "@/_utils/api";
+import { useRouter } from "next/navigation";
+
+interface signInResponse {
+  access_token: string;
+  type: string;
+}
 
 const Home = () => {
   const [signIn, setSignIn] = useState(true);
@@ -14,6 +21,7 @@ const Home = () => {
   const [signUpEmail, setSignUpEmail] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
   const [signUpUsername, setSignUpUsername] = useState("");
+  const router = useRouter();
 
   /**
    * Handles the sign-in process.
@@ -25,20 +33,15 @@ const Home = () => {
       username: signInUsername,
       password: signInPassword,
     };
-    const url = `${process.env.NEXT_PUBLIC_API_URL}auth/login`;
-    const options = {
-      method: "POST", // request method
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestData),
-    };
+    const url = "auth/login";
     try {
-      const response = await fetch(url, options);
-      const jsonData = await response.json();
-      console.log(jsonData);
+      const response: signInResponse = await postApi(url, requestData);
+      if (response) {
+        localStorage.setItem("accessToken", response.access_token);
+        router.push("/tasks/list");
+      }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

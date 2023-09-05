@@ -1,4 +1,12 @@
 /////////////////////////////////////////////////////////////
+// Get accessToken from localStorage
+const accessToken = "Bearer " + localStorage.getItem("accessToken");
+
+const headers = accessToken
+  ? { "Content-Type": "application/json", Authorization: accessToken }
+  : { "Content-Type": "application/json" };
+
+/////////////////////////////////////////////////////////////
 // Retrieving data from API. Retrieving data from API. Retrieving
 
 type UseGetType = (
@@ -6,7 +14,7 @@ type UseGetType = (
   params?: Record<string, string>
 ) => Promise<unknown>;
 
-export const useGet: UseGetType = async (url, params) => {
+export const getApi: UseGetType = async (url, params) => {
   try {
     let response;
 
@@ -16,16 +24,17 @@ export const useGet: UseGetType = async (url, params) => {
         process.env.NEXT_PUBLIC_API_URL + url + "?" + query.toString()
       );
     } else {
-      response = await fetch(process.env.NEXT_PUBLIC_API_URL + url);
+      response = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
+        method: "GET",
+        headers: headers,
+      });
     }
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
-
-    return data;
+    return await response.json();
   } catch (error) {
     console.error("Fetching error:", error);
     throw error;
@@ -38,17 +47,12 @@ export const useGet: UseGetType = async (url, params) => {
 /////////////////////////////////////////////////////////////
 // Sending data to API. Sending data to API. Sending data to
 
-type UsePostType = (
+type postApiType = (
   url: string,
-  body?: Record<string, unknown>,
-  headers?: Record<string, string>
+  body?: Record<string, unknown>
 ) => Promise<unknown>;
 
-export const usePost: UsePostType = async (
-  url,
-  body,
-  headers = { "Content-Type": "application/json" }
-) => {
+export const postApi: postApiType = async (url, body) => {
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
       method: "POST",
@@ -60,9 +64,7 @@ export const usePost: UsePostType = async (
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
-
-    return data;
+    return await response.json();
   } catch (error) {
     console.error("Fetching error:", error);
     throw error;
@@ -77,15 +79,10 @@ export const usePost: UsePostType = async (
 
 type UsePutType = (
   url: string,
-  body?: Record<string, unknown>,
-  headers?: Record<string, string>
+  body?: Record<string, unknown>
 ) => Promise<unknown>;
 
-export const usePut: UsePutType = async (
-  url,
-  body,
-  headers = { "Content-Type": "application/json" }
-) => {
+export const putApi: UsePutType = async (url, body) => {
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
       method: "PUT",
@@ -97,9 +94,7 @@ export const usePut: UsePutType = async (
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
-
-    return data;
+    return await response.json();
   } catch (error) {
     console.error("Fetching error:", error);
     throw error;
@@ -112,14 +107,11 @@ export const usePut: UsePutType = async (
 /////////////////////////////////////////////////////////////
 // Deleting data from API. Deleting data from API. Deleting D
 
-type UseDeleteType = (
-  url: string,
-  headers?: Record<string, string>
-) => Promise<unknown>;
+type UseDeleteType = (url: string) => Promise<unknown>;
 
-export const useDelete: UseDeleteType = async (
+export const deleteApi: UseDeleteType = async (
   url,
-  headers = { "Content-Type": "application/json" }
+  headers = { "Content-Type": "application/json", Authorization: accessToken }
 ) => {
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + url, {
@@ -131,9 +123,7 @@ export const useDelete: UseDeleteType = async (
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
-
-    return data;
+    return await response.json();
   } catch (error) {
     console.error("Fetching error:", error);
     throw error;
