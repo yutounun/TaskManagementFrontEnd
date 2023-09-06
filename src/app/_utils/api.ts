@@ -22,7 +22,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 function errorCheck(response) {
   if (!response.ok) {
     if (response.status === 401) {
-      window.location.href = "/home";
+      // window.location.href = "/home";
       throw new Error("Unauthorized");
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -44,7 +44,10 @@ export const getApi: UseGetType = async (url, params) => {
     // params must be an object not query
     if (params) {
       const query = new URLSearchParams(params);
-      response = await fetch(API_URL + url + "?" + query.toString());
+      response = await fetch(API_URL + url + "?" + query.toString(), {
+        method: "GET",
+        headers: headers,
+      });
     } else {
       response = await fetch(API_URL + url, {
         method: "GET",

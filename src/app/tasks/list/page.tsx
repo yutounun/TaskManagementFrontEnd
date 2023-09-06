@@ -19,26 +19,42 @@ export default function Tasks({ searchParams }: propTypes) {
   const showFilterModal = searchParams?.filterModal;
   const [projects, setProjects] = useState([]);
   const router = useRouter();
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   /**
    * Get all projects when the page loads
    */
-  async function getProjects() {
-    const res: GetProject[] = await getApi("projects");
+  async function getProjects(params?: Object) {
+    setIsLoading(true);
+    const res: GetProject[] = await getApi("projects", params);
     setProjects(res);
+    setIsLoading(false);
   }
 
   useEffect(() => {
     getProjects();
   }, [router]);
 
+  function handleSearch() {
+    const params = {
+      title: searchKeyword,
+    };
+    getProjects(params);
+  }
+
   return (
     <>
-      {}
       {!showEditModal && !showAddModal && !showFilterModal && (
         <>
-          <Title title="Tasks" newBtn page="tasks" />
-          <TaskTable projects={projects} />
+          <Title
+            handleSearch={handleSearch}
+            title="Tasks"
+            newBtn
+            page="tasks"
+            setSearchKeyword={setSearchKeyword}
+          />
+          <TaskTable isLoading={isLoading} projects={projects} />
         </>
       )}
       {showEditModal && (

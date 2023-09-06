@@ -8,8 +8,9 @@ import InputField from "./InputField";
 interface propTypes {
   title: string;
   newBtn?: boolean;
-  onChange?: () => void;
   page?: string;
+  handleSearch?: () => void;
+  setSearchKeyword?: (value: string) => void;
 }
 const Title = ({ ...props }: propTypes) => {
   return (
@@ -19,13 +20,13 @@ const Title = ({ ...props }: propTypes) => {
 
       {/* Search Window */}
       <InputField
-        onChange={props.onChange}
+        onChange={(e) => props.setSearchKeyword(e.target.value)}
         placeholder="Enter Title"
         type="text"
       />
 
       {/* Search Run Button */}
-      <Search color="#333333" />
+      <Search color="#333333" onClick={props.handleSearch} />
 
       {/* Filter Icon that opens filter modal */}
       <Link href={`/${props.page}/list?filterModal=true`}>
