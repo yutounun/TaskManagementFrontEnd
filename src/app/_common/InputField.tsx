@@ -4,6 +4,7 @@ interface propTypes {
   title?: string;
   value?: string;
   onChange: (e) => void;
+  onChange2?: (e) => void;
   placeholder?: string;
   type: "date" | "fromTo" | "text" | "time";
   className?: string;
@@ -39,7 +40,7 @@ const InputField = ({ ...props }: propTypes) => {
             type="date"
             placeholder={props.placeholder}
             className={`input w-full input-bordered input-primary border-gray-text`}
-            onChange={props.onChange}
+            onChange={props.onChange2}
           />
         </div>
       )}

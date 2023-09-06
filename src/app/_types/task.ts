@@ -2,12 +2,12 @@ export class Task {
   id: string = "2132eds";
   title: string = "title";
   status: string = "completed";
-  manHour: string = "12";
+  man_hour_min: string = "12";
   from: string = "23";
   to: string = "13";
   priority: string = "high";
-  createdAt: string = "12";
-  updatedAt: string = "12";
+  created_at: string = "12";
+  updated_at: string = "12";
   type: string = "mtg";
 }
 
@@ -15,12 +15,24 @@ export class GetProject {
   id: string = "2132eds";
   title: string = "title";
   status: string = "completed";
-  totalManHour: string = "12";
+  total_man_hour_min: string = "12";
   from: string = "23";
   to: string = "13";
   priority: string = "high";
-  createdAt: string = "12";
-  updatedAt: string = "12";
+  created_at: string = "12";
+  updated_at: string = "12";
   type: string = "mtg";
   tasks: Task[] = [];
+}
+
+export class AddTask {
+  title: string = "title";
+  status: string = "completed";
+  man_hour_min: string = "12";
+  from_date: string = "23";
+  to_date: string = "13";
+  priority: string = "high";
+  type: string = "mtg";
+  project_key = "";
+  user_key = "";
 }

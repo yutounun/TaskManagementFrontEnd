@@ -1,6 +1,8 @@
 /////////////////////////////////////////////////////////////
 // Get accessToken from localStorage
-const accessToken = "Bearer " + localStorage.getItem("accessToken");
+const accessToken =
+  typeof window !== "undefined" &&
+  "Bearer " + window.localStorage.getItem("accessToken");
 
 const headers = accessToken
   ? { "Content-Type": "application/json", Authorization: accessToken }
@@ -39,6 +41,7 @@ export const getApi: UseGetType = async (url, params) => {
   try {
     let response;
 
+    // params must be an object not query
     if (params) {
       const query = new URLSearchParams(params);
       response = await fetch(API_URL + url + "?" + query.toString());
