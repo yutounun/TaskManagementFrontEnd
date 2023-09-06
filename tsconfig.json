@@ -23,6 +23,13 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/app/tasks/list/loading",
+    "src/app/tasks/error.js"
+  ],
   "exclude": ["node_modules"]
 }
