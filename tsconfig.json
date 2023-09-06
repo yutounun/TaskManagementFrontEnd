@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/app/tasks/list/loading",
-    "src/app/tasks/error.js"
+    "src/app/tasks/error.ts"
   ],
   "exclude": ["node_modules"]
 }

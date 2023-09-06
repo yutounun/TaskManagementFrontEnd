@@ -7,6 +7,7 @@ interface propTypes {
   modal: boolean;
   cancel: boolean;
   new: boolean;
+  normal: boolean;
   text?: string;
   onClick: () => void;
   to?: string;
@@ -49,6 +50,16 @@ const Button = ({ ...props }, propTypes) => {
           className="rounded-xl font-bold bg-accent text-white w-40 h-8 flex text-center items-center justify-center gap-3"
         >
           <Plus color="white" /> Add New
+        </button>
+      )}
+
+      {props.normal && (
+        <button
+          onClick={props.onClick}
+          className="rounded-md bg-bg-blue text-white w-40 h-8 flex text-center items-center justify-center"
+          type="submit"
+        >
+          {props.text}
         </button>
       )}
     </>
