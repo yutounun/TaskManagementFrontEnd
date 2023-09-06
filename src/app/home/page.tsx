@@ -34,15 +34,16 @@ const Home = () => {
       password: signInPassword,
     };
     const url = "auth/login";
-    try {
-      const response: signInResponse = await postApi(url, requestData);
-      if (response) {
-        localStorage.setItem("accessToken", response.access_token);
+    await postApi(url, requestData)
+      .then((res: signInResponse) => {
+        localStorage.setItem("accessToken", res.access_token);
+      })
+      .then(() => {
         router.push("/tasks/list");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   /**
