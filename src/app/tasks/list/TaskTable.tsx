@@ -2,18 +2,21 @@ import React from "react";
 import { GetProject } from "@/_types/task";
 import TaskTableHeader from "./TaskTableHeader";
 import TaskTableRow from "./TaskTableRow";
+import Loading from "../loading";
 
 type propTypes = {
   projects: GetProject[];
+  isLoading: boolean;
 };
 
-const TaskTable = ({ projects }: propTypes) => {
+const TaskTable = ({ projects, isLoading }: propTypes) => {
   return (
     <div className="mx-10 mt-10">
+      {isLoading && <Loading />}
       {/* No task added */}
-      {/* {projects?.length === 0 && (
+      {!isLoading && projects?.length === 0 && (
         <h3>Unfortunately there are no tasks. Please add new task.</h3>
-      )} */}
+      )}
 
       {/* Task List */}
       {projects.map(
