@@ -1,13 +1,4 @@
 /////////////////////////////////////////////////////////////
-// Get accessToken from localStorage
-const accessToken =
-  typeof window !== "undefined" &&
-  "Bearer " + window.localStorage.getItem("accessToken");
-
-const headers = accessToken
-  ? { "Content-Type": "application/json", Authorization: accessToken }
-  : { "Content-Type": "application/json" };
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /////////////////////////////////////////////////////////////
@@ -22,7 +13,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 function errorCheck(response) {
   if (!response.ok) {
     if (response.status === 401) {
-      // window.location.href = "/home";
+      window.location.href = "/home";
       throw new Error("Unauthorized");
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,7 +29,14 @@ type UseGetType = (
 ) => Promise<unknown>;
 
 export const getApi: UseGetType = async (url, params) => {
+  const accessToken =
+    typeof window !== "undefined" &&
+    "Bearer " + window.localStorage.getItem("accessToken");
   try {
+    const headers = accessToken
+      ? { "Content-Type": "application/json", Authorization: accessToken }
+      : { "Content-Type": "application/json" };
+
     let response;
 
     // params must be an object not query
@@ -74,7 +72,14 @@ type postApiType = (
 ) => Promise<unknown>;
 
 export const postApi: postApiType = async (url, body) => {
+  const accessToken =
+    typeof window !== "undefined" &&
+    "Bearer " + window.localStorage.getItem("accessToken");
   try {
+    const headers = accessToken
+      ? { "Content-Type": "application/json", Authorization: accessToken }
+      : { "Content-Type": "application/json" };
+
     const response = await fetch(API_URL + url, {
       method: "POST",
       headers: headers,
@@ -101,7 +106,14 @@ type UsePutType = (
 ) => Promise<unknown>;
 
 export const putApi: UsePutType = async (url, body) => {
+  const accessToken =
+    typeof window !== "undefined" &&
+    "Bearer " + window.localStorage.getItem("accessToken");
   try {
+    const headers = accessToken
+      ? { "Content-Type": "application/json", Authorization: accessToken }
+      : { "Content-Type": "application/json" };
+
     const response = await fetch(API_URL + url, {
       method: "PUT",
       headers: headers,
@@ -129,7 +141,14 @@ export const deleteApi: UseDeleteType = async (
   url,
   headers = { "Content-Type": "application/json", Authorization: accessToken }
 ) => {
+  const accessToken =
+    typeof window !== "undefined" &&
+    "Bearer " + window.localStorage.getItem("accessToken");
   try {
+    const headers = accessToken
+      ? { "Content-Type": "application/json", Authorization: accessToken }
+      : { "Content-Type": "application/json" };
+
     const response = await fetch(API_URL + url, {
       method: "DELETE",
       headers: headers,

@@ -42,7 +42,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
    */
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(" :", formData, formData.project_id === "");
 
     // In case project id and user id is default value
     let finalFormData = { ...formData };
