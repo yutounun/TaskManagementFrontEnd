@@ -17,9 +17,11 @@ const SelectBox = ({ ...props }: propTypes) => {
         onChange={props.onChange}
       >
         {props.projects.map((project) => (
-          <option key={project.id} value={project.id}>
-            {project.title}
-          </option>
+          <>
+            <option key={project.id} value={project.id}>
+              {project.title}
+            </option>
+          </>
         ))}
       </select>
     </label>

@@ -29,9 +29,9 @@ const Title = ({ ...props }: propTypes) => {
       <Search color="#333333" onClick={props.handleSearch} />
 
       {/* Filter Icon that opens filter modal */}
-      <Link href={`/${props.page}/list?filterModal=true`}>
+      {/* <Link href={`/${props.page}/list?filterModal=true`}>
         <Filter color="#333333" />
-      </Link>
+      </Link> */}
 
       {/* Add New Task Button that opens add modal */}
       {props.newBtn && (

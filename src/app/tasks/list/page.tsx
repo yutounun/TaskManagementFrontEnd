@@ -7,6 +7,7 @@ import { getApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
 import { GetProject } from "@/_types/task";
 import { useRouter } from "next/navigation";
+import TaskEditModal from "./TaskEditModal";
 
 type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
@@ -59,7 +60,7 @@ export default function Tasks({ searchParams }: propTypes) {
       )}
       {showEditModal && (
         <div className="flex justify-center items-center h-screen">
-          <Modal title="Edit Task" page="tasks" type="edit" />
+          <TaskEditModal title="Edit Task" projects={projects} />
         </div>
       )}
       {showAddModal && (

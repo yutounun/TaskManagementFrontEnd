@@ -3,6 +3,7 @@ import React from "react";
 interface propTypes {
   title?: string;
   value?: string;
+  value2?: string;
   onChange: (e) => void;
   onChange2?: (e) => void;
   placeholder?: string;
@@ -21,6 +22,7 @@ const InputField = ({ ...props }: propTypes) => {
           placeholder={props.placeholder}
           className={`input input-bordered w-full input-primary border-gray-text`}
           onChange={props.onChange}
+          value={props.value}
         />
       )}
 
@@ -29,6 +31,7 @@ const InputField = ({ ...props }: propTypes) => {
         <div className="flex gap-3 items-center w-full">
           <input
             type="date"
+            value={props.value}
             placeholder={props.placeholder}
             className={`input w-full input-bordered input-primary border-gray-text`}
             onChange={props.onChange}
@@ -38,6 +41,7 @@ const InputField = ({ ...props }: propTypes) => {
 
           <input
             type="date"
+            value={props.value2}
             placeholder={props.placeholder}
             className={`input w-full input-bordered input-primary border-gray-text`}
             onChange={props.onChange2}

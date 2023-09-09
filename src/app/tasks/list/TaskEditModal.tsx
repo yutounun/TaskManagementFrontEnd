@@ -1,37 +1,38 @@
 "use client";
 
 import { GetProject } from "@/_types/task";
-import { postApi } from "@/_utils/api";
+import { putApi } from "@/_utils/api";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "@/_common/Button";
 import Smile from "@/_common/icons/Smile";
 import X from "@/_common/icons/X";
 import InputField from "@/_common/InputField";
 import SelectBox from "@/_common/SelectBox";
-import { hourToMinute } from "@/_utils/date";
+import { ThemeContext } from "@/_context/theme";
+import { useRouter } from "next/navigation";
+import { minuteToHour, formatDate, hourToMinute } from "@/_utils/date";
 
 interface propTypes {
   title: string;
   className?: string;
   projects: GetProject[];
+  searchParams?: Record<string, string> | null | undefined;
 }
 
-const TaskAddModal = ({ ...props }: propTypes) => {
-  const [inputValue, setInputValue] = useState("");
+const TaskEditModal = ({ ...props }: propTypes) => {
   const router = useRouter();
+  const { selectedTask } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
-    title: "",
-    status: "",
-    type: "",
-    priority: 0,
-    period: "",
-    man_hour_min: "",
-    from_date: new Date(),
-    to_date: new Date(),
-    project_id: "",
-    user_id: "",
+    title: selectedTask.title,
+    status: selectedTask.status,
+    type: selectedTask.type,
+    priority: selectedTask.priority,
+    man_hour_min: minuteToHour(selectedTask.man_hour_min),
+    from_date: formatDate(selectedTask.from_date),
+    to_date: formatDate(selectedTask.to_date),
+    project_id: selectedTask.project_id,
+    user_id: selectedTask.user_id,
   });
 
   /**
@@ -42,19 +43,12 @@ const TaskAddModal = ({ ...props }: propTypes) => {
    */
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(" :", formData, formData.project_id === "");
-
-    // In case project id and user id is default value
     let finalFormData = { ...formData };
+    finalFormData.man_hour_min = hourToMinute(formData.man_hour_min);
+    finalFormData.from_date = new Date(formData.from_date);
+    finalFormData.to_date = new Date(formData.to_date);
 
-    if (finalFormData.project_id === "") {
-      finalFormData.project_id = props.projects[0]?.id;
-    }
-    if (finalFormData.user_id === "") {
-      finalFormData.user_id = props.projects[0]?.id;
-    }
-
-    postApi("tasks", finalFormData)
+    putApi(`tasks/${selectedTask.id}`, finalFormData)
       .then((res) => {
         console.log(res);
         router.back();
@@ -83,11 +77,13 @@ const TaskAddModal = ({ ...props }: propTypes) => {
    * @return {void} This function does not return anything.
    */
   const handleManHourChange = (e, field) => {
-    const min = hourToMinute(e.target.value);
+    const min = parseInt(
+      e.target.value.split(":")[0] * 60 + e.target.value.split(":")[1]
+    );
     setFormData({ ...formData, [field]: min });
   };
 
-  const formatDate = (e, field) => {
+  const handleDateChange = (e, field) => {
     setFormData({ ...formData, [field]: new Date(e.target.value) });
   };
 
@@ -100,17 +96,16 @@ const TaskAddModal = ({ ...props }: propTypes) => {
       <Link className="absolute top-5 right-5" href={`/tasks/list`}>
         <X color="black" />
       </Link>
-
       {/* Title */}
       <div className="flex justify-start w-full items-center gap-5">
         <Smile color="black" />
         <h1 className="text-2xl font-bold">{props.title}</h1>
       </div>
-
       {/* Input fields */}
       <div className="flex flex-wrap w-full gap-5 justify-center">
         <InputField
           title="Title*"
+          value={formData.title}
           placeholder="Enter Title"
           type="text"
           className="w-full"
@@ -118,6 +113,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
         />
         <InputField
           title="Status*"
+          value={formData.status}
           type="text"
           placeholder="Enter Status"
           className="w-full"
@@ -125,6 +121,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
         />
         <InputField
           title="Type*"
+          value={formData.type}
           type="text"
           placeholder="Enter Type"
           className="w-full"
@@ -132,6 +129,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
         />
         <InputField
           title="Priority*"
+          value={formData.priority}
           type="text"
           placeholder="Enter Priority"
           className="w-full"
@@ -139,14 +137,17 @@ const TaskAddModal = ({ ...props }: propTypes) => {
         />
         <InputField
           title="Period*"
+          value={formData.from_date}
+          value2={formData.to_date}
           type="fromTo"
           className="w-full"
-          onChange={(e) => formatDate(e, "from_date")}
-          onChange2={(e) => formatDate(e, "to_date")}
+          onChange={(e) => handleDateChange(e, "from_date")}
+          onChange2={(e) => handleDateChange(e, "to_date")}
         />
         <InputField
           title="Man Hour"
           type="time"
+          value={formData.man_hour_min}
           className="w-full"
           onChange={(e) => handleManHourChange(e, "man_hour_min")}
         />
@@ -157,13 +158,12 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           onChange={(e) => handleChange(e, "project_id")}
         />
         <SelectBox
-          title="User"
+          title="Project"
           className="w-full"
           projects={props.projects}
           onChange={(e) => handleChange(e, "user_id")}
         />
       </div>
-
       {/* Buttons */}
       <div className="flex gap-4">
         {/* cancel */}
@@ -172,10 +172,10 @@ const TaskAddModal = ({ ...props }: propTypes) => {
         </Link>
 
         {/* submit */}
-        <Button text="Add" modal />
+        <Button text="Edit" modal />
       </div>
     </form>
   );
 };
 
-export default TaskAddModal;
+export default TaskEditModal;
