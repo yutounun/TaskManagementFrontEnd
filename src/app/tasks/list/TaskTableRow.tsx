@@ -18,14 +18,13 @@ const TaskTableRow = ({ ...props }: propTypes) => {
 
   function handleEditModal() {
     setSelectedTask(props.task);
-    // console.log(selectedTask);
     router.push(`/tasks/list?editModal=true`);
   }
   return (
     <div className="flex bg-white py-3 px-2 rounded-lg">
       <span className="w-[20%] font-bold">{props.task.title}</span>
-      <span className="w-[10%]">{props.task.type}</span>
-      <span className="w-[20%]">{displayDate(props.task.to_date)}</span>
+      <span className="w-[15%]">{props.task.type}</span>
+      <span className="w-[15%]">{displayDate(props.task.to_date)}</span>
       <span className="w-[10%]">{props.task.status}</span>
       <span className="w-[10%]">{props.task.priority}</span>
       <div className="w-[20%]">

@@ -53,6 +53,9 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     if (finalFormData.user_id === "") {
       finalFormData.user_id = props.projects[0]?.id;
     }
+    if (finalFormData.man_hour_min === "") {
+      finalFormData.man_hour_min = 0;
+    }
 
     postApi("tasks", finalFormData)
       .then((res) => {

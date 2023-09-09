@@ -6,7 +6,7 @@ import TaskAddModal from "./TaskAddModal";
 import { getApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
 import { GetProject } from "@/_types/task";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import TaskEditModal from "./TaskEditModal";
 
 type propTypes = {
@@ -19,7 +19,7 @@ export default function Tasks({ searchParams }: propTypes) {
   const showAddModal = searchParams?.addModal;
   const showFilterModal = searchParams?.filterModal;
   const [projects, setProjects] = useState([]);
-  const router = useRouter();
+  const searchPathParams = useSearchParams();
   const [searchKeyword, setSearchKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,7 +35,8 @@ export default function Tasks({ searchParams }: propTypes) {
 
   useEffect(() => {
     getProjects();
-  }, [router]);
+    console.log("projects");
+  }, [searchPathParams]);
 
   function handleSearch() {
     const params = {
