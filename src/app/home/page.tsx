@@ -8,6 +8,7 @@ import BoldInput from "@/_common/BoldInput";
 import Button from "@/_common/Button";
 import { postApi } from "@/_utils/api";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 interface signInResponse {
   access_token: string;
@@ -15,12 +16,14 @@ interface signInResponse {
 }
 
 const Home = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   const [signIn, setSignIn] = useState(true);
-  const [signInUsername, setSignInUsername] = useState("");
-  const [signInPassword, setSignInPassword] = useState("");
-  const [signUpEmail, setSignUpEmail] = useState("");
-  const [signUpPassword, setSignUpPassword] = useState("");
-  const [signUpUsername, setSignUpUsername] = useState("");
   const router = useRouter();
 
   /**
@@ -28,11 +31,15 @@ const Home = () => {
    *
    * @return {void}
    */
-  async function handleSignIn() {
+  async function handleSignInSubmit(data) {
     const requestData = {
-      username: signInUsername,
-      password: signInPassword,
+      username: data["signin username"],
+      password: data["signin password"],
     };
+    handleSignIn(requestData);
+  }
+
+  async function handleSignIn(requestData) {
     const url = "auth/login";
     await postApi(url, requestData)
       .then((res: signInResponse) => {
@@ -52,9 +59,30 @@ const Home = () => {
    * @param {type} paramName - description of parameter
    * @return {type} description of return value
    */
-  async function handleSignUp() {
-    console.log("data");
+  async function handleSignUpSubmit(data) {
+    const requestData = {
+      username: data["signup username"],
+      password: data["signup password"],
+      email: data["signup email"],
+    };
+    const signInRequestData = {
+      username: data["signup username"],
+      password: data["signup password"],
+    };
+    const url = "auth";
+    await postApi(url, requestData)
+      .then((res: signInResponse) => {
+        localStorage.setItem("accessToken", res.access_token);
+      })
+      .then(() => {
+        handleSignIn(signInRequestData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
+  console.log(watch("example"));
 
   return (
     <div className="flex w-screen h-screen">
@@ -65,7 +93,10 @@ const Home = () => {
           <Logo color="#7BB147" />
           {/* Sign In */}
           {signIn ? (
-            <div className="flex flex-col items-center gap-5 w-full">
+            <form
+              onSubmit={handleSubmit(handleSignInSubmit)}
+              className="flex flex-col items-center gap-5 w-full"
+            >
               <p className="text-3xl font-bold">Welcome Back</p>
               <p className="text-md text-gray-text">
                 Welcome Back. Please Enter your details.
@@ -73,21 +104,28 @@ const Home = () => {
               <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
               <BoldInput
                 title="Username"
-                onChange={(username) => setSignInUsername(username)}
+                label="signin username"
+                register={register}
                 className="w-6/12"
+                error={errors["signin username"]?.message}
                 placeholder="Enter your Username"
               />
               <BoldInput
                 title="Password"
-                onChange={(password) => setSignInPassword(password)}
+                label="signin password"
+                register={register}
+                error={errors["signin password"]?.message}
                 className="w-6/12"
                 placeholder="Enter your Password"
               />
-              <Button continue to="/tasks/list" onClick={handleSignIn} />
-            </div>
+              <Button continue to="/tasks/list" />
+            </form>
           ) : (
             // Sign Up
-            <div className="flex flex-col items-center gap-5 w-full">
+            <form
+              onSubmit={handleSubmit(handleSignUpSubmit)}
+              className="flex flex-col items-center gap-5 w-full"
+            >
               <p className="text-3xl font-bold">Welcome</p>
               <p className="text-md text-gray-text">
                 Welcome. Start by filling the form.
@@ -95,24 +133,34 @@ const Home = () => {
               <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
               <BoldInput
                 title="Email"
-                onChange={(email) => setSignUpEmail(email)}
+                label="signup email"
+                error={errors["signup email"]?.message}
+                register={register}
+                required
                 className="w-6/12"
                 placeholder="Enter your Email"
               />
+              {/* エラー表示 */}
               <BoldInput
                 title="Password"
-                onChange={(password) => setSignUpPassword(password)}
+                label="signup password"
+                register={register}
+                error={errors["signup password"]?.message}
+                required
                 className="w-6/12"
                 placeholder="Enter your Password"
               />
               <BoldInput
                 title="Username"
-                onChange={(username) => setSignUpUsername(username)}
+                label="signup username"
+                register={register}
+                required
+                error={errors["signup username"]?.message}
                 className="w-6/12"
                 placeholder="Enter your Username"
               />
-              <Button continue to="/tasks/list" onClick={handleSignUp} />
-            </div>
+              <Button type="submit" continue to="/tasks/list" />
+            </form>
           )}
         </div>
       </div>

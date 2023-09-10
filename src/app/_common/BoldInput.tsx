@@ -1,42 +1,73 @@
 import React, { useState } from "react";
+import { Path, UseFormRegister } from "react-hook-form";
+import { text } from "stream/consumers";
 import Check from "./icons/Check";
 import Email from "./icons/Email";
 import Key from "./icons/Key";
 import User2 from "./icons/User2";
 
+interface IFormValues {
+  "signup email": string;
+  "signup password": string;
+  "signup username": string;
+  "signin password": string;
+  "signin username": string;
+}
+
 interface propTypes {
-  title: string;
+  title: "Username" | "Password" | "Email";
+  label:
+    | "signup email"
+    | "signup password"
+    | "signup username"
+    | "signin password"
+    | "signin username";
   onChange: (value: string) => void;
   className?: string;
   placeholder?: string;
+  register?: UseFormRegister<IFormValues>;
+  required?: boolean;
+  error: string;
 }
-const BoldInput = ({ ...props }: propTypes) => {
+const BoldInput = ({
+  title,
+  label,
+  className,
+  placeholder,
+  register,
+  error,
+  required,
+}: propTypes) => {
   const [isEntered, setIsEntered] = useState(false);
   const handleChange = (e) => {
     setIsEntered(true);
-    props.onChange(e.target.value);
   };
 
   return (
-    <div
-      className={`rounded-md border-2 border-gray-text text-white h-14 flex text-center items-center justify-between ${props.className}`}
-    >
-      <div className="px-5 border-r-2 border-gray-text">
-        {props.title === "Email" && <Email color="black" />}
-        {props.title === "Password" && <Key color="black" />}
-        {props.title === "Username" && <User2 color="black" />}
+    <>
+      <div
+        className={`rounded-md border-2 border-gray-text text-white h-14 flex text-center items-center justify-between ${className}`}
+      >
+        <div className="px-5 border-r-2 border-gray-text">
+          {title === "Email" && <Email color="black" />}
+          {title === "Password" && <Key color="black" />}
+          {title === "Username" && <User2 color="black" />}
+        </div>
+        <div className="flex flex-col items-start w-full mx-5 justify-start">
+          <label className="text-gray-text text-sm">{title}</label>
+          <input
+            {...register(label, {
+              required: `Please type ${label}`,
+            })}
+            type={label.includes("password") ? "password" : "text"}
+            className="text-black text-lg font-semibold w-full"
+            placeholder={placeholder}
+          />
+        </div>
+        <div className="mr-5">{isEntered && <Check />}</div>
       </div>
-      <div className="flex flex-col items-start w-full mx-5 justify-start">
-        <p className="text-gray-text text-sm">{props.title}</p>
-        <input
-          type={props.title === "Password" ? "password" : "text"}
-          className="text-black text-lg font-semibold w-full"
-          onChange={handleChange}
-          placeholder={props.placeholder}
-        />
-      </div>
-      <div className="mr-5">{isEntered && <Check />}</div>
-    </div>
+      <p className="text-red-500 font-semibold -mt-3">{error}</p>
+    </>
   );
 };
 
