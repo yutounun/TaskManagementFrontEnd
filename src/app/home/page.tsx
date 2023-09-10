@@ -40,7 +40,6 @@ const Home = () => {
    * @return {void}
    */
   async function handleSignInSubmit(data) {
-    console.log("handleSignInSubmit");
     const requestData = {
       username: data["signin username"],
       password: data["signin password"],

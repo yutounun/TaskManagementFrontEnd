@@ -3,7 +3,7 @@ import Modal from "@/_common/Modal";
 import Title from "@/_common/Title";
 import TaskTable from "./TaskTable";
 import TaskAddModal from "./TaskAddModal";
-import { getApi } from "@/_utils/api";
+import { deleteApi, getApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
 import { GetProject } from "@/_types/task";
 import { useSearchParams } from "next/navigation";
@@ -45,6 +45,17 @@ export default function Tasks({ searchParams }: propTypes) {
     getProjects(params);
   }
 
+  function onClickRemove(taskId) {
+    deleteProject(taskId);
+  }
+
+  async function deleteProject(taskId) {
+    setIsLoading(true);
+    await deleteApi(`tasks/${taskId}`);
+    await getProjects();
+    setIsLoading(false);
+  }
+
   return (
     <>
       {!showEditModal && !showAddModal && !showFilterModal && (
@@ -56,7 +67,11 @@ export default function Tasks({ searchParams }: propTypes) {
             page="tasks"
             setSearchKeyword={setSearchKeyword}
           />
-          <TaskTable isLoading={isLoading} projects={projects} />
+          <TaskTable
+            onClickRemove={onClickRemove}
+            isLoading={isLoading}
+            projects={projects}
+          />
         </>
       )}
       {showEditModal && (

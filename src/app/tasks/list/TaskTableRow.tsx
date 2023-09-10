@@ -6,10 +6,12 @@ import Link from "next/link";
 import { ThemeContext } from "@/_context/theme";
 import { useRouter } from "next/navigation";
 import { displayDate } from "@/_utils/date";
+import Bin from "@/_common/icons/Bin";
 
 type propTypes = {
   className?: string;
   task: Task;
+  onClickRemove: (id: string) => void;
 };
 
 const TaskTableRow = ({ ...props }: propTypes) => {
@@ -20,6 +22,7 @@ const TaskTableRow = ({ ...props }: propTypes) => {
     setSelectedTask(props.task);
     router.push(`/tasks/list?editModal=true`);
   }
+
   return (
     <div className="flex bg-white py-3 px-2 rounded-lg">
       <span className="w-[20%] font-bold">{props.task.title}</span>
@@ -31,8 +34,9 @@ const TaskTableRow = ({ ...props }: propTypes) => {
         <Timer />
         {/* <span>{props.task.manHour}</span> */}
       </div>
-      <div className="w-[10%]">
+      <div className="w-[10%] flex gap-2">
         <Edit color="#333333" onClick={handleEditModal} />
+        <Bin onClick={() => props.onClickRemove(props.task.id)} />
       </div>
     </div>
   );

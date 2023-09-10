@@ -7,9 +7,10 @@ import Loading from "../loading";
 type propTypes = {
   projects: GetProject[];
   isLoading: boolean;
+  onClickRemove: (id: string) => void;
 };
 
-const TaskTable = ({ projects, isLoading }: propTypes) => {
+const TaskTable = ({ projects, isLoading, onClickRemove }: propTypes) => {
   return (
     <div className="mx-10 mt-10">
       {isLoading && <Loading />}
@@ -28,7 +29,11 @@ const TaskTable = ({ projects, isLoading }: propTypes) => {
               <TaskTableHeader />
               <div className="flex flex-col gap-4">
                 {project.tasks.map((task) => (
-                  <TaskTableRow task={task} key={task.id} />
+                  <TaskTableRow
+                    task={task}
+                    key={task.id}
+                    onClickRemove={onClickRemove}
+                  />
                 ))}
               </div>
             </div>

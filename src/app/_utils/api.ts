@@ -137,10 +137,7 @@ export const putApi: UsePutType = async (url, body) => {
 
 type UseDeleteType = (url: string) => Promise<unknown>;
 
-export const deleteApi: UseDeleteType = async (
-  url,
-  headers = { "Content-Type": "application/json", Authorization: accessToken }
-) => {
+export const deleteApi: UseDeleteType = async (url) => {
   const accessToken =
     typeof window !== "undefined" &&
     "Bearer " + window.localStorage.getItem("accessToken");

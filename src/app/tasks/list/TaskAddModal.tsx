@@ -27,7 +27,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     status: "",
     type: "",
     priority: 0,
-    period: "",
     man_hour_min: "",
     from_date: new Date(),
     to_date: new Date(),
