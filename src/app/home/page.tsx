@@ -90,8 +90,6 @@ const Home = () => {
       });
   }
 
-  console.log(watch("example"));
-
   return (
     <div className="flex w-screen h-screen">
       {/* left */}

@@ -1,27 +1,50 @@
-import { GetProjectResponse } from "@/_types/taskList";
+import { GetProjectResponse, Options } from "@/_types/taskList";
 import React from "react";
 
 interface propTypes {
   title?: string;
   onChange: (e) => void;
   className?: string;
-  projects: GetProjectResponse[];
+  projects?: GetProjectResponse[];
+  options?: Options[];
+  selected?: string;
 }
 
-const SelectBox = ({ ...props }: propTypes) => {
+const SelectBox = ({
+  title,
+  onChange,
+  className,
+  projects,
+  options,
+  selected,
+}: propTypes) => {
   return (
-    <label className={`gap-1 flex flex-col ${props.className}`}>
-      {props.title && <p className="font-bold">{props.title}</p>}
+    <label className={`gap-1 flex flex-col ${className}`}>
+      {title && <p className="font-bold">{title}</p>}
       <select
         className={`input input-bordered w-full input-primary border-gray-text`}
-        onChange={props.onChange}
+        onChange={onChange}
       >
-        {props.projects.map((project) => (
+        {projects?.map((project) => (
           <>
-            <option key={project.id} value={project.id}>
+            <option
+              key={project.id}
+              value={project.id}
+              selected={project.id === selected}
+            >
               {project.title}
             </option>
           </>
+        ))}
+
+        {options?.map((option) => (
+          <option
+            key={option.value}
+            value={option.value}
+            selected={option.value === selected}
+          >
+            {option.label}
+          </option>
         ))}
       </select>
     </label>

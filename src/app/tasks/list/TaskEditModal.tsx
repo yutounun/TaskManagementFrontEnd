@@ -111,12 +111,17 @@ const TaskEditModal = ({ ...props }: propTypes) => {
           className="w-full"
           onChange={(e) => handleChange(e, "title")}
         />
-        <InputField
-          title="Status*"
-          value={formData.status}
-          type="text"
-          placeholder="Enter Status"
+        <SelectBox
+          title="Status"
           className="w-full"
+          options={[
+            { value: "Not Started", label: "Not Started" },
+            { value: "In Progress", label: "In Progress" },
+            { value: "On Hold", label: "On Hold" },
+            { value: "Under Review", label: "Under Review" },
+            { value: "Completed", label: "Completed" },
+          ]}
+          selected={formData.status}
           onChange={(e) => handleChange(e, "status")}
         />
         <InputField
@@ -127,12 +132,16 @@ const TaskEditModal = ({ ...props }: propTypes) => {
           className="w-full"
           onChange={(e) => handleChange(e, "type")}
         />
-        <InputField
+        <SelectBox
           title="Priority*"
-          value={formData.priority}
-          type="text"
-          placeholder="Enter Priority"
           className="w-full"
+          options={[
+            { value: "critical", label: "critical" },
+            { value: "urgent", label: "urgent" },
+            { value: "normal", label: "normal" },
+            { value: "optional", label: "optional" },
+          ]}
+          selected={formData.priority}
           onChange={(e) => handleChange(e, "priority")}
         />
         <InputField
@@ -155,12 +164,14 @@ const TaskEditModal = ({ ...props }: propTypes) => {
           title="Project"
           className="w-full"
           projects={props.projects}
+          selected={formData.project_id}
           onChange={(e) => handleChange(e, "project_id")}
         />
         <SelectBox
           title="Project"
           className="w-full"
           projects={props.projects}
+          selected={formData.project_id}
           onChange={(e) => handleChange(e, "user_id")}
         />
       </div>

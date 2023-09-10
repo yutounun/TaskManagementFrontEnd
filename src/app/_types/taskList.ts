@@ -1,3 +1,8 @@
+export class Options {
+  label: string = "";
+  value: string = "";
+}
+
 /**
  * Mainly used in Project Response
  */
@@ -6,8 +11,8 @@ export class GetTaskByIdResponse {
   title: string = "";
   status: string = "";
   man_hour_min: string = "";
-  from: string = "";
-  to: string = "";
+  from_date: string = "";
+  to_date: string = "";
   priority: string = "";
   created_at: string = "";
   updated_at: string = "";
@@ -32,7 +37,7 @@ export class CreateUpdateProjectResponse {
   title: string = "";
   status: string = "";
   type: string = "";
-  priority: number = 0;
+  priority: string = "";
   man_hour_min: string = "";
   from_date: string = "";
   to_date: string = "";

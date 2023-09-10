@@ -57,6 +57,13 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     if (finalFormData.user_id === "") {
       finalFormData.user_id = props.projects[0]?.id;
     }
+    if (finalFormData.status === "") {
+      finalFormData.status = !finalFormData.status && "Not Started";
+    }
+    if (finalFormData.priority === "") {
+      finalFormData.priority = !finalFormData.priority && "critical";
+    }
+
     if (finalFormData.man_hour_min === "") {
       finalFormData.man_hour_min = 0;
     }
@@ -64,10 +71,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     // Set Alert message when any of the field except for man hour is empty
     if (
       finalFormData.title === "" ||
-      finalFormData.status === "" ||
       finalFormData.type === "" ||
-      finalFormData.priority === 0 ||
-      finalFormData.period === "" ||
       finalFormData.from_date === "" ||
       finalFormData.to_date === ""
     ) {
@@ -142,11 +146,16 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           className="w-full"
           onChange={(e) => handleChange(e, "title")}
         />
-        <InputField
-          title="Status*"
-          type="text"
-          placeholder="Enter Status"
+        <SelectBox
+          title="Status"
           className="w-full"
+          options={[
+            { value: "Not Started", label: "Not Started" },
+            { value: "In Progress", label: "In Progress" },
+            { value: "On Hold", label: "On Hold" },
+            { value: "Under Review", label: "Under Review" },
+            { value: "Completed", label: "Completed" },
+          ]}
           onChange={(e) => handleChange(e, "status")}
         />
         <InputField
@@ -156,11 +165,15 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           className="w-full"
           onChange={(e) => handleChange(e, "type")}
         />
-        <InputField
+        <SelectBox
           title="Priority*"
-          type="text"
-          placeholder="Enter Priority"
           className="w-full"
+          options={[
+            { value: "critical", label: "critical" },
+            { value: "urgent", label: "urgent" },
+            { value: "normal", label: "normal" },
+            { value: "optional", label: "optional" },
+          ]}
           onChange={(e) => handleChange(e, "priority")}
         />
         <InputField

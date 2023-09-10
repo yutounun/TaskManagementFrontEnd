@@ -12,7 +12,7 @@ type propTypes = {
 
 const TaskTable = ({ projects, isLoading, onClickRemove }: propTypes) => {
   return (
-    <div className="mx-10 mt-10">
+    <div className="mx-3 mt-10">
       {isLoading && <Loading />}
       {/* No task added */}
       {!isLoading && projects?.length === 0 && (
