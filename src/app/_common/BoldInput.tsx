@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Path, UseFormRegister } from "react-hook-form";
-import { text } from "stream/consumers";
+import { UseFormRegister } from "react-hook-form";
 import Check from "./icons/Check";
 import Email from "./icons/Email";
 import Key from "./icons/Key";

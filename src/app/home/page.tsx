@@ -68,7 +68,6 @@ const Home = () => {
    * @return {type} description of return value
    */
   async function handleSignUpSubmit(data) {
-    console.log("handleSignUpSubmit");
     const requestData = {
       username: data["signup username"],
       password: data["signup password"],
@@ -90,6 +89,8 @@ const Home = () => {
         console.log(err);
       });
   }
+
+  console.log(watch("example"));
 
   return (
     <div className="flex w-screen h-screen">
