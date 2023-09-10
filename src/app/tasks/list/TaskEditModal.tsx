@@ -1,6 +1,6 @@
 "use client";
 
-import { GetProject } from "@/_types/task";
+import { GetProjectResponse } from "@/_types/taskList";
 import { putApi } from "@/_utils/api";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
@@ -16,7 +16,7 @@ import { minuteToHour, formatDate, hourToMinute } from "@/_utils/date";
 interface propTypes {
   title: string;
   className?: string;
-  projects: GetProject[];
+  projects: GetProjectResponse[];
   searchParams?: Record<string, string> | null | undefined;
 }
 

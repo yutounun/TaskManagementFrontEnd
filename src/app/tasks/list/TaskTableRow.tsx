@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Task } from "@/_types/task";
+import { GetTaskByIdResponse } from "@/_types/taskList";
 import Timer from "./Timer";
 import Edit from "@/_common/icons/Edit";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import Bin from "@/_common/icons/Bin";
 
 type propTypes = {
   className?: string;
-  task: Task;
+  task: GetTaskByIdResponse;
   onClickRemove: (id: string) => void;
 };
 

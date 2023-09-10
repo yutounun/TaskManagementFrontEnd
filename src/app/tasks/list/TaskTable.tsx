@@ -1,11 +1,11 @@
 import React from "react";
-import { GetProject } from "@/_types/task";
+import { GetProjectResponse } from "@/_types/taskList";
 import TaskTableHeader from "./TaskTableHeader";
 import TaskTableRow from "./TaskTableRow";
 import Loading from "../loading";
 
 type propTypes = {
-  projects: GetProject[];
+  projects: GetProjectResponse[];
   isLoading: boolean;
   onClickRemove: (id: string) => void;
 };

@@ -5,7 +5,7 @@ import TaskTable from "./TaskTable";
 import TaskAddModal from "./TaskAddModal";
 import { deleteApi, getApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
-import { GetProject } from "@/_types/task";
+import { GetProjectResponse } from "@/_types/taskList";
 import { useSearchParams } from "next/navigation";
 import TaskEditModal from "./TaskEditModal";
 
@@ -28,7 +28,7 @@ export default function Tasks({ searchParams }: propTypes) {
    */
   async function getProjects(params?: Object) {
     setIsLoading(true);
-    const res: GetProject[] = await getApi("projects", params);
+    const res: GetProjectResponse[] = await getApi("projects", params);
     setProjects(res);
     setIsLoading(false);
   }

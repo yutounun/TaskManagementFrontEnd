@@ -1,6 +1,9 @@
 "use client";
 
-import { GetProject } from "@/_types/task";
+import {
+  CreateUpdateProjectResponse,
+  GetProjectResponse,
+} from "@/_types/taskList";
 import { postApi } from "@/_utils/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -16,13 +19,13 @@ import { ThemeContext } from "@/_context/theme";
 interface propTypes {
   title: string;
   className?: string;
-  projects: GetProject[];
+  projects: GetProjectResponse[];
 }
 
 const TaskAddModal = ({ ...props }: propTypes) => {
   const [inputValue, setInputValue] = useState("");
   const router = useRouter();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<CreateUpdateProjectResponse>({
     title: "",
     status: "",
     type: "",

@@ -1,6 +1,6 @@
 "use client";
 
-import { TaskStore } from "@/_types/task";
+import { TaskStore } from "@/_types/taskList";
 import { createContext, useContext, useState } from "react";
 
 interface ThemeType {

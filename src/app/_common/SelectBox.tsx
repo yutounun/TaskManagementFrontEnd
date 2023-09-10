@@ -1,11 +1,11 @@
-import { GetProject } from "@/_types/task";
+import { GetProjectResponse } from "@/_types/taskList";
 import React from "react";
 
 interface propTypes {
   title?: string;
   onChange: (e) => void;
   className?: string;
-  projects: GetProject[];
+  projects: GetProjectResponse[];
 }
 
 const SelectBox = ({ ...props }: propTypes) => {
