@@ -22,7 +22,7 @@ interface propTypes {
     | "signup username"
     | "signin password"
     | "signin username";
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   className?: string;
   placeholder?: string;
   register?: UseFormRegister<IFormValues>;
@@ -39,9 +39,6 @@ const BoldInput = ({
   required,
 }: propTypes) => {
   const [isEntered, setIsEntered] = useState(false);
-  const handleChange = (e) => {
-    setIsEntered(true);
-  };
 
   return (
     <>
@@ -62,6 +59,7 @@ const BoldInput = ({
             type={label.includes("password") ? "password" : "text"}
             className="text-black text-lg font-semibold w-full"
             placeholder={placeholder}
+            onInput={() => setIsEntered(true)}
           />
         </div>
         <div className="mr-5">{isEntered && <Check />}</div>

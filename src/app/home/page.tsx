@@ -19,9 +19,17 @@ const Home = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onSubmit",
+    defaultValues: {
+      "signup email": "",
+      "signup password": "",
+      "signup username": "",
+      "signin username": "",
+      "signin password": "",
+    },
+  });
 
   const [signIn, setSignIn] = useState(true);
   const router = useRouter();
@@ -32,6 +40,7 @@ const Home = () => {
    * @return {void}
    */
   async function handleSignInSubmit(data) {
+    console.log("handleSignInSubmit");
     const requestData = {
       username: data["signin username"],
       password: data["signin password"],
@@ -60,6 +69,7 @@ const Home = () => {
    * @return {type} description of return value
    */
   async function handleSignUpSubmit(data) {
+    console.log("handleSignUpSubmit");
     const requestData = {
       username: data["signup username"],
       password: data["signup password"],
@@ -82,8 +92,6 @@ const Home = () => {
       });
   }
 
-  console.log(watch("example"));
-
   return (
     <div className="flex w-screen h-screen">
       {/* left */}
@@ -92,76 +100,79 @@ const Home = () => {
         <div className="flex justify-center items-center flex-col gap-5 w-full">
           <Logo color="#7BB147" />
           {/* Sign In */}
-          {signIn ? (
-            <form
-              onSubmit={handleSubmit(handleSignInSubmit)}
-              className="flex flex-col items-center gap-5 w-full"
-            >
-              <p className="text-3xl font-bold">Welcome Back</p>
-              <p className="text-md text-gray-text">
-                Welcome Back. Please Enter your details.
-              </p>
-              <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
-              <BoldInput
-                title="Username"
-                label="signin username"
-                register={register}
-                className="w-6/12"
-                error={errors["signin username"]?.message}
-                placeholder="Enter your Username"
-              />
-              <BoldInput
-                title="Password"
-                label="signin password"
-                register={register}
-                error={errors["signin password"]?.message}
-                className="w-6/12"
-                placeholder="Enter your Password"
-              />
-              <Button continue to="/tasks/list" />
-            </form>
-          ) : (
-            // Sign Up
-            <form
-              onSubmit={handleSubmit(handleSignUpSubmit)}
-              className="flex flex-col items-center gap-5 w-full"
-            >
-              <p className="text-3xl font-bold">Welcome</p>
-              <p className="text-md text-gray-text">
-                Welcome. Start by filling the form.
-              </p>
-              <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
-              <BoldInput
-                title="Email"
-                label="signup email"
-                error={errors["signup email"]?.message}
-                register={register}
-                required
-                className="w-6/12"
-                placeholder="Enter your Email"
-              />
-              {/* エラー表示 */}
-              <BoldInput
-                title="Password"
-                label="signup password"
-                register={register}
-                error={errors["signup password"]?.message}
-                required
-                className="w-6/12"
-                placeholder="Enter your Password"
-              />
-              <BoldInput
-                title="Username"
-                label="signup username"
-                register={register}
-                required
-                error={errors["signup username"]?.message}
-                className="w-6/12"
-                placeholder="Enter your Username"
-              />
-              <Button type="submit" continue to="/tasks/list" />
-            </form>
-          )}
+          <form
+            onSubmit={
+              signIn
+                ? handleSubmit(handleSignInSubmit)
+                : handleSubmit(handleSignUpSubmit)
+            }
+            className="flex flex-col items-center gap-5 w-full"
+          >
+            {signIn ? (
+              <>
+                <p className="text-3xl font-bold">Welcome Back</p>
+                <p className="text-md text-gray-text">
+                  Welcome Back. Please Enter your details.
+                </p>
+                <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
+                <BoldInput
+                  title="Username"
+                  label="signin username"
+                  register={register}
+                  className="w-6/12"
+                  error={errors["signin username"]?.message}
+                  placeholder="Enter your Username"
+                />
+                <BoldInput
+                  title="Password"
+                  label="signin password"
+                  register={register}
+                  error={errors["signin password"]?.message}
+                  className="w-6/12"
+                  placeholder="Enter your Password"
+                />
+                <Button continue to="/tasks/list" />
+              </>
+            ) : (
+              <>
+                {/* signup */}
+                <p className="text-3xl font-bold">Welcome</p>
+                <p className="text-md text-gray-text">
+                  Welcome. Start by filling the form.
+                </p>
+                <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
+                <BoldInput
+                  title="Username"
+                  label="signup username"
+                  register={register}
+                  required
+                  error={errors["signup username"]?.message}
+                  className="w-6/12"
+                  placeholder="Enter your Username"
+                />
+                {/* エラー表示 */}
+                <BoldInput
+                  title="Password"
+                  label="signup password"
+                  register={register}
+                  error={errors["signup password"]?.message}
+                  required
+                  className="w-6/12"
+                  placeholder="Enter your Password"
+                />
+                <BoldInput
+                  title="Email"
+                  label="signup email"
+                  error={errors["signup email"]?.message}
+                  register={register}
+                  required
+                  className="w-6/12"
+                  placeholder="Enter your Email"
+                />
+                <Button type="submit" continue to="/tasks/list" />
+              </>
+            )}
+          </form>
         </div>
       </div>
 
