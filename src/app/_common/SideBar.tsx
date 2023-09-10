@@ -8,7 +8,7 @@ interface PropsType {
 }
 export default function SideBar({ ...props }: PropsType) {
   return (
-    <div className="flex flex-col px-5 py-10 bg-bg-base gap-4 w-80 h-screen">
+    <div className="flex flex-col px-5 py-10 bg-bg-base gap-4 w-80 min-h-screen">
       {/* Menu */}
       <h1 className="mb-3 text-xxl text-white font-bold">Menu</h1>
 
