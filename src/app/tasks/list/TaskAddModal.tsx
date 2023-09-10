@@ -82,7 +82,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           router.back();
         })
         .catch((err) => {
-          setErrorMsg(err);
+          // setErrorMsg(err);
           console.log(err);
         });
     } else {
