@@ -4,13 +4,14 @@ import { GetProject } from "@/_types/task";
 import { postApi } from "@/_utils/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "@/_common/Button";
 import Smile from "@/_common/icons/Smile";
 import X from "@/_common/icons/X";
 import InputField from "@/_common/InputField";
 import SelectBox from "@/_common/SelectBox";
 import { hourToMinute } from "@/_utils/date";
+import { ThemeContext } from "@/_context/theme";
 
 interface propTypes {
   title: string;
@@ -33,14 +34,16 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     project_id: "",
     user_id: "",
   });
+  let localErrorMsg = "";
 
+  const { errorMsg, setErrorMsg } = useContext(ThemeContext);
   /**
    * Handles the submission of the form.
    *
    * @param {object} event - The event object.
    * @return {void} This function does not return anything.
    */
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // In case project id and user id is default value
@@ -56,14 +59,33 @@ const TaskAddModal = ({ ...props }: propTypes) => {
       finalFormData.man_hour_min = 0;
     }
 
-    postApi("tasks", finalFormData)
-      .then((res) => {
-        console.log(res);
-        router.back();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // Set Alert message when any of the field except for man hour is empty
+    if (
+      finalFormData.title === "" ||
+      finalFormData.status === "" ||
+      finalFormData.type === "" ||
+      finalFormData.priority === 0 ||
+      finalFormData.period === "" ||
+      finalFormData.from_date === "" ||
+      finalFormData.to_date === ""
+    ) {
+      localErrorMsg =
+        "Please ensure all fields are filled out, excluding the 'Man Hour' field.";
+    }
+
+    if (localErrorMsg === "") {
+      postApi("tasks", finalFormData)
+        .then((res) => {
+          console.log(res);
+          router.back();
+        })
+        .catch((err) => {
+          setErrorMsg(err);
+          console.log(err);
+        });
+    } else {
+      setErrorMsg(localErrorMsg);
+    }
   };
 
   /**
