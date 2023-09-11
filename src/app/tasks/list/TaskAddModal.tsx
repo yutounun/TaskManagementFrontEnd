@@ -29,7 +29,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     title: "",
     status: "",
     type: "",
-    priority: 0,
+    priority: "",
     man_hour_min: "",
     from_date: new Date(),
     to_date: new Date(),
@@ -58,10 +58,10 @@ const TaskAddModal = ({ ...props }: propTypes) => {
       finalFormData.user_id = props.projects[0]?.id;
     }
     if (finalFormData.status === "") {
-      finalFormData.status = !finalFormData.status && "Not Started";
+      finalFormData.status = "Not Started";
     }
     if (finalFormData.priority === "") {
-      finalFormData.priority = !finalFormData.priority && "critical";
+      finalFormData.priority = "critical";
     }
 
     if (finalFormData.man_hour_min === "") {
