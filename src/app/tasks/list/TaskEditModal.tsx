@@ -108,12 +108,12 @@ const TaskEditModal = ({ ...props }: propTypes) => {
           value={formData.title}
           placeholder="Enter Title"
           type="text"
-          className="w-full"
+          className="w-[40%]"
           onChange={(e) => handleChange(e, "title")}
         />
         <SelectBox
           title="Status"
-          className="w-full"
+          className="w-[40%]"
           options={[
             { value: "Not Started", label: "Not Started" },
             { value: "In Progress", label: "In Progress" },
@@ -129,12 +129,12 @@ const TaskEditModal = ({ ...props }: propTypes) => {
           value={formData.type}
           type="text"
           placeholder="Enter Type"
-          className="w-full"
+          className="w-[40%]"
           onChange={(e) => handleChange(e, "type")}
         />
         <SelectBox
           title="Priority*"
-          className="w-full"
+          className="w-[40%]"
           options={[
             { value: "critical", label: "critical" },
             { value: "urgent", label: "urgent" },
@@ -149,7 +149,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
           value={formData.from_date}
           value2={formData.to_date}
           type="fromTo"
-          className="w-full"
+          className="w-[84%]"
           onChange={(e) => handleDateChange(e, "from_date")}
           onChange2={(e) => handleDateChange(e, "to_date")}
         />
@@ -157,19 +157,19 @@ const TaskEditModal = ({ ...props }: propTypes) => {
           title="Man Hour"
           type="time"
           value={formData.man_hour_min}
-          className="w-full"
+          className="w-[40%]"
           onChange={(e) => handleManHourChange(e, "man_hour_min")}
         />
         <SelectBox
           title="Project"
-          className="w-full"
+          className="w-[40%]"
           projects={props.projects}
           selected={formData.project_id}
           onChange={(e) => handleChange(e, "project_id")}
         />
         <SelectBox
           title="Project"
-          className="w-full"
+          className="w-[40%]"
           projects={props.projects}
           selected={formData.project_id}
           onChange={(e) => handleChange(e, "user_id")}

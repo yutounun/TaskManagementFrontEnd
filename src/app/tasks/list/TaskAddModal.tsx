@@ -124,7 +124,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`bg-white relative px-20 py-5 rounded-lg border-2 w-1/2 border-gray-text flex flex-col items-center gap-10 ${props.className}`}
+      className={`bg-white relative px-20 w-[80%] py-5 rounded-lg border-2 border-gray-text flex flex-col items-center gap-10 ${props.className}`}
     >
       {/* open Button */}
       <Link className="absolute top-5 right-5" href={`/tasks/list`}>
@@ -143,12 +143,12 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           title="Title*"
           placeholder="Enter Title"
           type="text"
-          className="w-full"
+          className="w-[40%]"
           onChange={(e) => handleChange(e, "title")}
         />
         <SelectBox
           title="Status"
-          className="w-full"
+          className="w-[40%]"
           options={[
             { value: "Not Started", label: "Not Started" },
             { value: "In Progress", label: "In Progress" },
@@ -162,12 +162,12 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           title="Type*"
           type="text"
           placeholder="Enter Type"
-          className="w-full"
+          className="w-[40%]"
           onChange={(e) => handleChange(e, "type")}
         />
         <SelectBox
           title="Priority*"
-          className="w-full"
+          className="w-[40%]"
           options={[
             { value: "critical", label: "critical" },
             { value: "urgent", label: "urgent" },
@@ -179,25 +179,25 @@ const TaskAddModal = ({ ...props }: propTypes) => {
         <InputField
           title="Period*"
           type="fromTo"
-          className="w-full"
+          className="w-[84%]"
           onChange={(e) => formatDate(e, "from_date")}
           onChange2={(e) => formatDate(e, "to_date")}
         />
         <InputField
           title="Man Hour"
           type="time"
-          className="w-full"
+          className="w-[40%]"
           onChange={(e) => handleManHourChange(e, "man_hour_min")}
         />
         <SelectBox
           title="Project"
-          className="w-full"
+          className="w-[40%]"
           projects={props.projects}
           onChange={(e) => handleChange(e, "project_id")}
         />
         <SelectBox
           title="User"
-          className="w-full"
+          className="w-[40%]"
           projects={props.projects}
           onChange={(e) => handleChange(e, "user_id")}
         />

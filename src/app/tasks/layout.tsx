@@ -18,9 +18,9 @@ export default function TasksLayout({
 
   return (
     <>
-      <div className="flex bg-all-bg  h-full">
+      <div className="flex  h-full">
         <SideBar active="tasks" />
-        <div className="mx-20 w-full flex flex-col gap-5">
+        <div className="mx-20 w-full flex flex-col gap-5 ml-80">
           {errorMsg && (
             <div className="alert">
               <svg
