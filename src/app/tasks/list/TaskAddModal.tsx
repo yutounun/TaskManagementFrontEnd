@@ -23,7 +23,6 @@ interface propTypes {
 }
 
 const TaskAddModal = ({ ...props }: propTypes) => {
-  const [inputValue, setInputValue] = useState("");
   const router = useRouter();
   const [formData, setFormData] = useState<CreateUpdateProjectResponse>({
     title: "",

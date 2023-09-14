@@ -2,12 +2,35 @@
 
 import Pause from "@/_common/icons/Pause";
 import Play from "@/_common/icons/Play";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useStopwatch } from "react-timer-hook";
 
-const Timer = () => {
-  const { seconds, minutes, hours, days, isRunning, start, pause, reset } =
-    useStopwatch({ autoStart: true });
+const Timer = ({
+  initialMinutes,
+  setManHourMin,
+}: {
+  initialMinutes: number;
+  setManHourMin: (manHourMin: number) => void;
+}) => {
+  const { minutes, hours, days, isRunning, start, pause, reset } = useStopwatch(
+    { autoStart: false }
+  );
+  const prevMinutesRef = useRef(minutes);
+  const [localInitialMinutes, setLocalInitialMinutes] =
+    useState(initialMinutes);
+
+  // manHourMin is updated every mins
+  useEffect(() => {
+    if (prevMinutesRef.current !== minutes) {
+      setManHourMin(localInitialMinutes + minutes + hours * 60);
+      prevMinutesRef.current = minutes;
+    }
+  }, [localInitialMinutes, minutes, hours, setManHourMin]);
+
+  useEffect(() => {
+    setLocalInitialMinutes(initialMinutes);
+  }, []);
+
   return (
     <div className="w-full">
       <div className="flex w-full gap-1">
@@ -18,8 +41,8 @@ const Timer = () => {
         )}
         <span>{days}days </span>
         <div>
-          <span>{hours}H:</span>
-          <span>{minutes}M</span>
+          <span>{hours + Math.floor(localInitialMinutes / 60)}H:</span>
+          <span>{minutes + (localInitialMinutes % 60)}M</span>
         </div>
       </div>
     </div>

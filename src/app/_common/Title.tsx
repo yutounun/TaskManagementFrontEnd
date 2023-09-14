@@ -11,8 +11,18 @@ interface propTypes {
   page?: string;
   handleSearch?: () => void;
   setSearchKeyword?: (value: string) => void;
+  updateManHourMin: () => void;
 }
 const Title = ({ ...props }: propTypes) => {
+  /**
+   * Handles the save click event to save the timer
+   *
+   * @param {none} - No parameters.
+   * @return {void} - No return value.
+   */
+  function handleSaveClick() {
+    props.updateManHourMin();
+  }
   return (
     <div className="flex items-center gap-4 mt-10">
       {/* Page Title */}
@@ -38,6 +48,16 @@ const Title = ({ ...props }: propTypes) => {
         <Link href={`/${props.page}/list?addModal=true`}>
           <Button new />
         </Link>
+      )}
+
+      {/* Save Timer Button */}
+      {props.page === "tasks" && (
+        <Button
+          onClick={handleSaveClick}
+          others
+          className="bg-success"
+          text="Save"
+        />
       )}
     </div>
   );

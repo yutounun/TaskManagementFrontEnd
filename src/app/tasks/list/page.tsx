@@ -3,7 +3,7 @@ import Modal from "@/_common/Modal";
 import Title from "@/_common/Title";
 import TaskTable from "./TaskTable";
 import TaskAddModal from "./TaskAddModal";
-import { deleteApi, getApi } from "@/_utils/api";
+import { deleteApi, getApi, putApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
 import { GetProjectResponse } from "@/_types/taskList";
 import { useSearchParams } from "next/navigation";
@@ -14,7 +14,6 @@ type propTypes = {
 };
 
 export default function Tasks({ searchParams }: propTypes) {
-  // const [openEditModal, setOpenEditModal] = useState(false);
   const showEditModal = searchParams?.editModal;
   const showAddModal = searchParams?.addModal;
   const showFilterModal = searchParams?.filterModal;
@@ -56,6 +55,44 @@ export default function Tasks({ searchParams }: propTypes) {
     setIsLoading(false);
   }
 
+  /**
+   * Call updateTaskById only when save button is clicked
+   */
+  async function updateManHourMin() {
+    setIsLoading(true);
+    projects.forEach(async (project) => {
+      project.tasks.forEach((task) => {
+        putApi(`tasks/${task.id}`, task)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      });
+    });
+  }
+
+  /**
+   * Updates the row every minute
+   * @param updatedRow
+   */
+  function updateRow(updatedRow) {
+    console.log("updatedRow", updatedRow);
+    const updatedProjects = projects.map((project) => {
+      return {
+        ...project,
+        tasks: project.tasks.map((task) =>
+          task.id === updatedRow.id ? updatedRow : task
+        ),
+      };
+    });
+    setProjects(updatedProjects);
+  }
+
   return (
     <>
       {!showEditModal && !showAddModal && !showFilterModal && (
@@ -66,11 +103,13 @@ export default function Tasks({ searchParams }: propTypes) {
             newBtn
             page="tasks"
             setSearchKeyword={setSearchKeyword}
+            updateManHourMin={updateManHourMin}
           />
           <TaskTable
             onClickRemove={onClickRemove}
             isLoading={isLoading}
             projects={projects}
+            updateRow={updateRow}
           />
         </>
       )}

@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GetTaskByIdResponse } from "@/_types/taskList";
 import Timer from "./Timer";
 import Edit from "@/_common/icons/Edit";
-import Link from "next/link";
 import { ThemeContext } from "@/_context/theme";
 import { useRouter } from "next/navigation";
 import { displayDate } from "@/_utils/date";
@@ -12,14 +11,22 @@ type propTypes = {
   className?: string;
   task: GetTaskByIdResponse;
   onClickRemove: (id: string) => void;
+  updateRow: (updatedRow) => void;
 };
 
-const TaskTableRow = ({ ...props }: propTypes) => {
+const TaskTableRow = ({
+  className,
+  task,
+  onClickRemove,
+  updateRow,
+}: propTypes) => {
   const router = useRouter();
   const { setSelectedTask } = useContext(ThemeContext);
 
+  const [currentManHourMin, setCurrentManHourMin] = useState(task.man_hour_min);
+
   function handleEditModal() {
-    setSelectedTask(props.task);
+    setSelectedTask(task);
     router.push(`/tasks/list?editModal=true`);
   }
 
@@ -29,13 +36,13 @@ const TaskTableRow = ({ ...props }: propTypes) => {
    * @return {string} The CSS class name for the priority.
    */
   function priorityClass() {
-    if (props.task.priority === "critical") {
+    if (task.priority === "critical") {
       return "bg-red-500";
-    } else if (props.task.priority === "urgent") {
+    } else if (task.priority === "urgent") {
       return "bg-yellow-500";
-    } else if (props.task.priority === "normal") {
+    } else if (task.priority === "normal") {
       return "bg-green-500";
-    } else if (props.task.priority === "optional") {
+    } else if (task.priority === "optional") {
       return "bg-gray-500";
     }
   }
@@ -46,43 +53,50 @@ const TaskTableRow = ({ ...props }: propTypes) => {
    * @return {string} The CSS class name for the priority.
    */
   function statusClass() {
-    if (props.task.status === "Not Started") {
+    if (task.status === "Not Started") {
       return "bg-gray-500";
-    } else if (props.task.status === "In Progress") {
+    } else if (task.status === "In Progress") {
       return "bg-yellow-500";
-    } else if (props.task.status === "Completed") {
+    } else if (task.status === "Completed") {
       return "bg-green-500";
-    } else if (props.task.status === "On Hold") {
+    } else if (task.status === "On Hold") {
       return "bg-red-500";
-    } else if (props.task.status === "Under Review") {
+    } else if (task.status === "Under Review") {
       return "bg-gray-500";
+    }
+  }
+
+  /** Updates the row every minute */
+  function counter(manHourMin) {
+    if (currentManHourMin !== manHourMin) {
+      setCurrentManHourMin(manHourMin);
+      updateRow({ ...task, man_hour_min: manHourMin });
     }
   }
 
   return (
     <div className="flex bg-white py-3 px-2 rounded-lg">
-      <span className="w-[20%] font-bold">{props.task.title}</span>
-      <span className="w-[10%]">{props.task.type}</span>
-      <span className="w-[15%]">{displayDate(props.task.to_date)}</span>
+      <span className="w-[20%] font-bold">{task.title}</span>
+      <span className="w-[10%]">{task.type}</span>
+      <span className="w-[15%]">{displayDate(task.to_date)}</span>
       <div className="w-[15%]">
         <span className={`badge w-[80%] h-[100%] text-white ${statusClass()}`}>
-          {props.task.status}
+          {task.status}
         </span>
       </div>
       <div className="w-[15%]">
         <span
           className={`badge w-[80%] h-[100%] text-white ${priorityClass()}`}
         >
-          {props.task.priority}
+          {task.priority}
         </span>
       </div>
       <div className="w-[20%]">
-        <Timer />
-        {/* <span>{props.task.manHour}</span> */}
+        <Timer initialMinutes={task.man_hour_min} setManHourMin={counter} />
       </div>
       <div className="w-[5%] flex gap-2">
         <Edit color="#333333" onClick={handleEditModal} />
-        <Bin onClick={() => props.onClickRemove(props.task.id)} />
+        <Bin onClick={() => onClickRemove(task.id)} />
       </div>
     </div>
   );

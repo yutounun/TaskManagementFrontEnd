@@ -11,6 +11,7 @@ interface propTypes {
   text?: string;
   onClick: () => void;
   to?: string;
+  className?: string;
 }
 
 const Button = ({ ...props }, propTypes) => {
@@ -58,6 +59,16 @@ const Button = ({ ...props }, propTypes) => {
         <button
           onClick={props.onClick}
           className="rounded-md bg-bg-blue text-white w-40 h-8 flex text-center items-center justify-center"
+          type="submit"
+        >
+          {props.text}
+        </button>
+      )}
+
+      {props.others && (
+        <button
+          onClick={props.onClick}
+          className={`font-bold rounded-xl  text-white w-40 h-8 flex text-center items-center justify-center ${props.className} `}
           type="submit"
         >
           {props.text}

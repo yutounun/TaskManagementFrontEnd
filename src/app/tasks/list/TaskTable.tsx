@@ -1,5 +1,5 @@
-import React from "react";
-import { GetProjectResponse } from "@/_types/taskList";
+import React, { useEffect, useState } from "react";
+import { GetProjectResponse, GetTaskByIdResponse } from "@/_types/taskList";
 import TaskTableHeader from "./TaskTableHeader";
 import TaskTableRow from "./TaskTableRow";
 import Loading from "../loading";
@@ -8,9 +8,15 @@ type propTypes = {
   projects: GetProjectResponse[];
   isLoading: boolean;
   onClickRemove: (id: string) => void;
+  updateRow: (updatedRow) => void;
 };
 
-const TaskTable = ({ projects, isLoading, onClickRemove }: propTypes) => {
+const TaskTable = ({
+  projects,
+  isLoading,
+  onClickRemove,
+  updateRow,
+}: propTypes) => {
   return (
     <div className="mx-3 mt-10">
       {isLoading && <Loading />}
@@ -32,6 +38,7 @@ const TaskTable = ({ projects, isLoading, onClickRemove }: propTypes) => {
                   <TaskTableRow
                     task={task}
                     key={task.id}
+                    updateRow={updateRow}
                     onClickRemove={onClickRemove}
                   />
                 ))}

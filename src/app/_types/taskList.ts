@@ -10,7 +10,7 @@ export class GetTaskByIdResponse {
   id: string = "";
   title: string = "";
   status: string = "";
-  man_hour_min: string = "";
+  man_hour_min: number = 0;
   from_date: string = "";
   to_date: string = "";
   priority: string = "";
