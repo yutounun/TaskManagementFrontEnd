@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { GetProjectResponse } from "@/_types/taskList";
 import { useSearchParams } from "next/navigation";
 import TaskEditModal from "./TaskEditModal";
+import { getProjectParams } from "@/_types/projectList";
 
 type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
@@ -25,7 +26,7 @@ export default function Tasks({ searchParams }: propTypes) {
   /**
    * Get all projects when the page loads
    */
-  async function getProjects(params?: Object) {
+  async function getProjects(params?: getProjectParams) {
     setIsLoading(true);
     const res: GetProjectResponse[] = await getApi("projects", params);
     setProjects(res);
@@ -81,7 +82,6 @@ export default function Tasks({ searchParams }: propTypes) {
    * @param updatedRow
    */
   function updateRow(updatedRow) {
-    console.log("updatedRow", updatedRow);
     const updatedProjects = projects.map((project) => {
       return {
         ...project,

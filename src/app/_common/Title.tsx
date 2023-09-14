@@ -11,7 +11,7 @@ interface propTypes {
   page?: string;
   handleSearch?: () => void;
   setSearchKeyword?: (value: string) => void;
-  updateManHourMin: () => void;
+  updateManHourMin?: () => void;
 }
 const Title = ({ ...props }: propTypes) => {
   /**
