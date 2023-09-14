@@ -38,6 +38,7 @@ const BoldInput = ({
   required,
 }: propTypes) => {
   const [isEntered, setIsEntered] = useState(false);
+  const [isFocused, setIsFocused] = useState(true);
 
   return (
     <>
@@ -59,11 +60,14 @@ const BoldInput = ({
             className="text-black text-lg font-semibold w-full"
             placeholder={placeholder}
             onInput={() => setIsEntered(true)}
+            onBlur={() => setIsFocused(false)}
           />
         </div>
         <div className="mr-5">{isEntered && <Check />}</div>
       </div>
-      <p className="text-red-500 font-semibold -mt-3">{error}</p>
+      {/* {!isFocused && (
+        <p className="text-red-500 font-semibold -mt-3">{error}</p>
+      )} */}
     </>
   );
 };
