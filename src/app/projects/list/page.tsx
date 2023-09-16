@@ -5,6 +5,7 @@ import { getProjectParams } from "@/_types/projectList";
 import { GetProjectResponse } from "@/_types/taskList";
 import { deleteApi, getApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
+import ProjectAddModal from "./ProjectAddModal";
 import ProjectListTable from "./projectListTable";
 
 type propTypes = {
@@ -70,13 +71,13 @@ export default function Projects({ searchParams }: propTypes) {
         <div className="flex justify-center items-center h-screen">
           <TaskEditModal title="Edit Task" projects={projects} />
         </div>
-      )}
+      )} */}
       {showAddModal && (
         <div className="flex justify-center items-center h-screen">
-          <TaskAddModal title="Add Task" projects={projects} />
+          <ProjectAddModal title="Add Task" projects={projects} />
         </div>
       )}
-      {showFilterModal && (
+      {/* {showFilterModal && (
         <div className="flex justify-center items-center h-screen">
           <Modal title="Filter" page="tasks" type="filter" />
         </div>
