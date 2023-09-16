@@ -35,7 +35,6 @@ export default function Tasks({ searchParams }: propTypes) {
 
   useEffect(() => {
     getProjects();
-    console.log("projects");
   }, [searchPathParams]);
 
   function handleSearch() {
@@ -46,10 +45,10 @@ export default function Tasks({ searchParams }: propTypes) {
   }
 
   function onClickRemove(taskId) {
-    deleteProject(taskId);
+    deleteTask(taskId);
   }
 
-  async function deleteProject(taskId) {
+  async function deleteTask(taskId) {
     setIsLoading(true);
     await deleteApi(`tasks/${taskId}`);
     await getProjects();
