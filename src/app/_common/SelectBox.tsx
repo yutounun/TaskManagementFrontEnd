@@ -15,7 +15,6 @@ interface propTypes {
 
 const SelectBox = ({
   title,
-  onChange,
   className,
   projects,
   options,
@@ -28,27 +27,34 @@ const SelectBox = ({
   return (
     <label className={`gap-1 flex flex-col ${className}`}>
       {title && <p className="font-bold">{title}</p>}
-      <select
-        className={`input input-bordered w-full input-primary border-gray-text`}
-        {...register(label)}
-        defaultValue={
-          options ? options[0].value : projects.length !== 0 && projects[0].id
-        }
-      >
-        {projects?.map((project) => (
-          <>
+      {options && options.length > 0 && (
+        <select
+          className={`input input-bordered w-full input-primary border-gray-text`}
+          {...register(label, {
+            required: `Please type ${label}`,
+          })}
+        >
+          {options?.map((option) => (
+            <option key={option.label} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      )}
+      {projects && projects.length > 0 && (
+        <select
+          className={`input input-bordered w-full input-primary border-gray-text`}
+          {...register(label, {
+            required: `Please type ${label}`,
+          })}
+        >
+          {projects?.map((project) => (
             <option key={project.id} value={project.id}>
               {project.title}
             </option>
-          </>
-        ))}
-
-        {options?.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+          ))}
+        </select>
+      )}
       <p className="text-red-500">{error}</p>
     </label>
   );

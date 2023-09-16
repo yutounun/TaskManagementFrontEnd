@@ -8,6 +8,10 @@ interface IFormValues {
   from_date: string;
   to_date: string;
   user_id: string;
+  project_id: string;
+  priority: string;
+  type: string;
+  man_hour_min: string;
 }
 
 interface propTypes {
@@ -24,7 +28,9 @@ interface propTypes {
     | "title"
     | "status"
     | "total_man_hour_min"
+    | "man_hour_min"
     | "to_date"
+    | "type"
     | "user_id";
   error?: string;
   error2?: string;
@@ -33,8 +39,6 @@ interface propTypes {
 
 const NewInputField = ({
   title,
-  value,
-  value2,
   placeholder,
   type,
   className,
@@ -54,9 +58,9 @@ const NewInputField = ({
           {required ? (
             <input
               type={type}
+              name={label}
               placeholder={placeholder}
               className={`input input-bordered w-full input-primary border-gray-text`}
-              value={value}
               {...register(label, {
                 required: `Please type ${label}`,
               })}
@@ -66,7 +70,6 @@ const NewInputField = ({
               type={type}
               placeholder={placeholder}
               className={`input input-bordered w-full input-primary border-gray-text`}
-              value={value}
               {...register}
             />
           )}
@@ -79,8 +82,8 @@ const NewInputField = ({
         <>
           <div className="flex gap-3 items-center w-full">
             <input
+              name={label}
               type="date"
-              value={value}
               placeholder={placeholder}
               className={`input w-full input-bordered input-primary border-gray-text`}
               {...register(label, {
@@ -89,10 +92,9 @@ const NewInputField = ({
             />
 
             <span className="text-lg font-bold">~</span>
-
             <input
               type="date"
-              value={value2}
+              name={label2}
               placeholder={placeholder}
               className={`input w-full input-bordered input-primary border-gray-text`}
               {...register(label2, {
@@ -100,8 +102,8 @@ const NewInputField = ({
               })}
             />
           </div>
-          <p className="text-red-500">{error}</p>
           <p className="text-red-500">{error2}</p>
+          <p className="text-red-500">{error}</p>
         </>
       )}
     </label>
