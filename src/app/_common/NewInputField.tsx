@@ -27,7 +27,7 @@ interface propTypes {
     | "to_date"
     | "user_id";
   error?: string;
-  error2: string;
+  error2?: string;
   label2?: "to_date";
 }
 

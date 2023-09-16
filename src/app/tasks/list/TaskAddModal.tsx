@@ -15,6 +15,8 @@ import InputField from "@/_common/InputField";
 import SelectBox from "@/_common/SelectBox";
 import { hourToMinute } from "@/_utils/date";
 import { ThemeContext } from "@/_context/theme";
+import NewInputField from "@/_common/NewInputField";
+import { useForm } from "react-hook-form";
 
 interface propTypes {
   title: string;
@@ -24,85 +26,46 @@ interface propTypes {
 
 const TaskAddModal = ({ ...props }: propTypes) => {
   const router = useRouter();
-  const [formData, setFormData] = useState<CreateUpdateProjectResponse>({
-    title: "",
-    status: "",
-    type: "",
-    priority: "",
-    man_hour_min: "",
-    from_date: new Date(),
-    to_date: new Date(),
-    project_id: "",
-    user_id: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onSubmit",
+    defaultValues: {
+      title: "",
+      status: "",
+      from_date: new Date(),
+      to_date: new Date(),
+      man_hour_min: 0,
+      user_id: "",
+      project_id: "",
+      priority: "",
+      type: "",
+    },
   });
-  let localErrorMsg = "";
 
-  const { errorMsg, setErrorMsg } = useContext(ThemeContext);
   /**
    * Handles the submission of the form.
    *
    * @param {object} event - The event object.
    * @return {void} This function does not return anything.
    */
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // In case project id and user id is default value
-    let finalFormData = { ...formData };
-
-    if (finalFormData.project_id === "") {
-      finalFormData.project_id = props.projects[0]?.id;
-    }
-    if (finalFormData.user_id === "") {
-      finalFormData.user_id = props.projects[0]?.id;
-    }
-    if (finalFormData.status === "") {
-      finalFormData.status = "Not Started";
-    }
-    if (finalFormData.priority === "") {
-      finalFormData.priority = "critical";
-    }
-
-    if (finalFormData.man_hour_min === "") {
-      finalFormData.man_hour_min = 0;
-    }
-
-    // Set Alert message when any of the field except for man hour is empty
-    if (
-      finalFormData.title === "" ||
-      finalFormData.type === "" ||
-      finalFormData.from_date === "" ||
-      finalFormData.to_date === ""
-    ) {
-      localErrorMsg =
-        "Please ensure all fields are filled out, excluding the 'Man Hour' field.";
-    }
-
-    if (localErrorMsg === "") {
-      postApi("tasks", finalFormData)
-        .then((res) => {
-          console.log(res);
-          router.back();
-        })
-        .catch((err) => {
-          // setErrorMsg(err);
-          console.log(err);
-        });
-    } else {
-      setErrorMsg(localErrorMsg);
-    }
-  };
-
-  /**
-   * Handles the change event for a form field.
-   *
-   * @param {Event} e - the change event object
-   * @param {string} field - the name of the form field
-   * @return {void}
-   */
-  const handleChange = (e, field) => {
-    setFormData({ ...formData, [field]: e.target.value });
-  };
+  async function handleSubmitTask(data) {
+    const params = {
+      ...data,
+      to_date: new Date(data.to_date),
+      from_date: new Date(data.from_date),
+    };
+    postApi("tasks", params)
+      .then((res) => {
+        console.log(res);
+        router.back();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   /**
    * Handles the change event for the man hour input field.
@@ -113,16 +76,11 @@ const TaskAddModal = ({ ...props }: propTypes) => {
    */
   const handleManHourChange = (e, field) => {
     const min = hourToMinute(e.target.value);
-    setFormData({ ...formData, [field]: min });
-  };
-
-  const formatDate = (e, field) => {
-    setFormData({ ...formData, [field]: new Date(e.target.value) });
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(handleSubmitTask)}
       className={`bg-white relative px-20 w-[80%] py-5 rounded-lg border-2 border-gray-text flex flex-col items-center gap-10 ${props.className}`}
     >
       {/* open Button */}
@@ -138,16 +96,20 @@ const TaskAddModal = ({ ...props }: propTypes) => {
 
       {/* Input fields */}
       <div className="flex flex-wrap w-full gap-5 justify-center">
-        <InputField
+        <NewInputField
           title="Title*"
           placeholder="Enter Title"
           type="text"
           className="w-[40%]"
-          onChange={(e) => handleChange(e, "title")}
+          register={register}
+          label="title"
+          required
+          error={errors["title"]?.message}
         />
         <SelectBox
           title="Status"
           className="w-[40%]"
+          label="status"
           options={[
             { value: "Not Started", label: "Not Started" },
             { value: "In Progress", label: "In Progress" },
@@ -155,14 +117,18 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             { value: "Under Review", label: "Under Review" },
             { value: "Completed", label: "Completed" },
           ]}
-          onChange={(e) => handleChange(e, "status")}
+          register={register}
+          error={errors["status"]?.message}
         />
         <InputField
           title="Type*"
           type="text"
           placeholder="Enter Type"
           className="w-[40%]"
-          onChange={(e) => handleChange(e, "type")}
+          register={register}
+          label="type"
+          required
+          error={errors["type"]?.message}
         />
         <SelectBox
           title="Priority*"
@@ -173,32 +139,44 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             { value: "normal", label: "normal" },
             { value: "optional", label: "optional" },
           ]}
-          onChange={(e) => handleChange(e, "priority")}
+          label="priority"
+          register={register}
+          error={errors["priority"]?.message}
         />
-        <InputField
+        <NewInputField
           title="Period*"
           type="fromTo"
           className="w-[84%]"
-          onChange={(e) => formatDate(e, "from_date")}
-          onChange2={(e) => formatDate(e, "to_date")}
+          label="from_date"
+          label2="to_date"
+          register={register}
+          required
+          error={errors["from_date"]?.message}
+          error2={errors["to_date"]?.message}
         />
         <InputField
           title="Man Hour"
           type="time"
           className="w-[40%]"
-          onChange={(e) => handleManHourChange(e, "man_hour_min")}
+          label="man_hour_min"
+          register={register}
+          error={errors["man_hour_min"]?.message}
         />
         <SelectBox
           title="Project"
           className="w-[40%]"
           projects={props.projects}
-          onChange={(e) => handleChange(e, "project_id")}
+          label="project_id"
+          register={register}
+          error={errors["projects"]?.message}
         />
         <SelectBox
           title="User"
           className="w-[40%]"
           projects={props.projects}
-          onChange={(e) => handleChange(e, "user_id")}
+          label="users"
+          register={register}
+          error={errors["users"]?.message}
         />
       </div>
 

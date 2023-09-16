@@ -31,7 +31,9 @@ const SelectBox = ({
       <select
         className={`input input-bordered w-full input-primary border-gray-text`}
         {...register(label)}
-        defaultValue={options ? options[0].value : projects[0].id}
+        defaultValue={
+          options ? options[0].value : projects.length !== 0 && projects[0].id
+        }
       >
         {projects?.map((project) => (
           <>
