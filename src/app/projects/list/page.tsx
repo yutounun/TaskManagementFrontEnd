@@ -37,7 +37,7 @@ export default function Projects({ searchParams }: propTypes) {
 
   useEffect(() => {
     getProjects();
-  }, []);
+  }, [searchParams]);
 
   function onClickRemove(projectId) {
     deleteProject(projectId);

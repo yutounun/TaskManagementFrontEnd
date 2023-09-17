@@ -29,7 +29,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
     register,
     handleSubmit,
     control,
-    watch,
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
@@ -42,7 +41,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
       from_date: formatDate(selectedTask.from_date),
       to_date: formatDate(selectedTask.to_date),
       project_id: selectedTask.project_id,
-      user_id: selectedTask.user_id,
+      user_id: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657",
     },
   });
 
@@ -95,7 +94,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             placeholder="Enter Title"
             type="text"
             className="w-[40%]"
-            // @ts-ignore
             register={register}
             label="title"
             required
@@ -112,7 +110,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
               { value: "Under Review", label: "Under Review" },
               { value: "Completed", label: "Completed" },
             ]}
-            // @ts-ignore
             register={register}
             required
             error={errors["status"]?.message}
@@ -122,7 +119,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             type="text"
             placeholder="Enter Type"
             className="w-[40%]"
-            // @ts-ignore
             register={register}
             label="type"
             required
@@ -139,7 +135,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             ]}
             label="priority"
             required
-            // @ts-ignore
             register={register}
             error={errors["priority"]?.message}
           />
@@ -149,7 +144,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             className="w-[84%]"
             label="from_date"
             label2="to_date"
-            // @ts-ignore
             register={register}
             error={errors["from_date"]?.message}
             error2={errors["to_date"]?.message}
@@ -158,7 +152,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             title="Man Hour"
             type="time"
             className="w-[40%]"
-            // @ts-ignore
             register={register}
             required
             label="man_hour_min"
@@ -169,18 +162,19 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             className="w-[40%]"
             projects={props.projects}
             label="project_id"
-            // @ts-ignore
             register={register}
             error={errors["projects"]?.message}
           />
           <SelectBox
             title="User"
             className="w-[40%]"
-            projects={props.projects}
-            label="users"
-            // @ts-ignore
+            options={[
+              { value: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657", label: "User1" },
+              { value: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657", label: "User2" },
+            ]}
+            label="user_id"
             register={register}
-            error={errors["users"]?.message}
+            error={errors["user_id"]?.message}
           />
         </div>
 

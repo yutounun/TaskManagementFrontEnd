@@ -33,8 +33,8 @@ const TaskAddModal = ({ ...props }: propTypes) => {
       status: "Not Started",
       from_date: new Date(),
       to_date: new Date(),
-      user_id: "",
-      project_id: props.projects[0].id,
+      user_id: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657",
+      project_id: props.projects.length > 0 ? props.projects[0].id : "",
       priority: "critical",
       type: "",
     },
@@ -50,8 +50,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     console.log("data", data);
     const params = {
       ...data,
-      man_hour_min:
-        data.man_hour_min == "" ? 0 : hourToMinute(data.man_hour_min),
+      man_hour_min: !data.man_hour_min ? 0 : hourToMinute(data.man_hour_min),
       to_date: new Date(data.to_date),
       from_date: new Date(data.from_date),
     };
@@ -162,10 +161,13 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           <SelectBox
             title="User"
             className="w-[40%]"
-            projects={props.projects}
-            label="users"
+            options={[
+              { value: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657", label: "User1" },
+              { value: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657", label: "User2" },
+            ]}
+            label="user_id"
             register={register}
-            error={errors["users"]?.message}
+            error={errors["user_id"]?.message}
           />
         </div>
 
