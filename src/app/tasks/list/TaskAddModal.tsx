@@ -47,9 +47,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     },
   });
 
-  const watchManHourMin = watch("man_hour_min");
-  console.log(watchManHourMin); // フィールドの値の変更をリアルタイムで監視
-
   /**
    * Handles the submission of the form.
    *
