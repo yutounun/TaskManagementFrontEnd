@@ -6,6 +6,7 @@ import { GetProjectResponse } from "@/_types/taskList";
 import { deleteApi, getApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
 import ProjectAddModal from "./ProjectAddModal";
+import ProjectEditModal from "./ProjectEditModal";
 import ProjectListTable from "./projectListTable";
 
 type propTypes = {
@@ -67,11 +68,11 @@ export default function Projects({ searchParams }: propTypes) {
           />
         </>
       )}
-      {/* {showEditModal && (
+      {showEditModal && (
         <div className="flex justify-center items-center h-screen">
-          <TaskEditModal title="Edit Task" projects={projects} />
+          <ProjectEditModal title="Edit Task" projects={projects} />
         </div>
-      )} */}
+      )}
       {showAddModal && (
         <div className="flex justify-center items-center h-screen">
           <ProjectAddModal title="Add Task" projects={projects} />

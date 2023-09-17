@@ -18,10 +18,10 @@ const ProjectListTableRow = ({
   onClickRemove,
 }: propTypes) => {
   const router = useRouter();
-  const { setSelectedTask } = useContext(ThemeContext);
+  const { setSelectedProject } = useContext(ThemeContext);
 
   function handleEditModal() {
-    setSelectedTask(project);
+    setSelectedProject(project);
     router.push(`/projects/list?editModal=true`);
   }
 
