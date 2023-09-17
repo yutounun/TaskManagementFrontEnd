@@ -55,9 +55,22 @@ const Title = ({ ...props }: propTypes) => {
         <Button
           onClick={handleSaveClick}
           others
-          className="bg-success"
+          className="bg-[#D9534F]"
           text="Save"
-        />
+        >
+          <svg
+            width="12"
+            height="18"
+            viewBox="0 0 17 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.1667 0H5.66667L0 5.66667V19.8333C0 21.3961 1.27057 22.6667 2.83333 22.6667H14.1667C15.7294 22.6667 17 21.3961 17 19.8333V2.83333C17 1.27057 15.7294 0 14.1667 0ZM7.08333 7.08333H4.95833V2.83333H7.08333V7.08333ZM10.625 7.08333H8.5V2.83333H10.625V7.08333ZM14.1667 7.08333H12.0417V2.83333H14.1667V7.08333Z"
+              fill="white"
+            />
+          </svg>
+        </Button>
       )}
     </div>
   );

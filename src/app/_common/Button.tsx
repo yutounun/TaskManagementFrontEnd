@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { Children } from "react";
 import Plus from "./icons/Plus";
 
 interface propTypes {
@@ -12,6 +12,7 @@ interface propTypes {
   onClick: () => void;
   to?: string;
   className?: string;
+  children: React.ReactNode;
 }
 
 const Button = ({ ...props }, propTypes) => {
@@ -68,9 +69,10 @@ const Button = ({ ...props }, propTypes) => {
       {props.others && (
         <button
           onClick={props.onClick}
-          className={`font-bold rounded-xl  text-white w-40 h-8 flex text-center items-center justify-center ${props.className} `}
+          className={`font-bold rounded-xl  text-white w-40 h-8 flex text-center items-center justify-center gap-3 ${props.className} `}
           type="submit"
         >
+          {props.children}
           {props.text}
         </button>
       )}
