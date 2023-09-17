@@ -73,6 +73,7 @@ const ProjectEditModal = ({ ...props }: propTypes) => {
       <div className="flex flex-wrap w-full gap-5 justify-center">
         <InputField
           title="Title*"
+          // @ts-ignore
           register={register}
           label="title"
           placeholder="Enter Title"
@@ -92,6 +93,7 @@ const ProjectEditModal = ({ ...props }: propTypes) => {
             { value: "Under Review", label: "Under Review" },
             { value: "Completed", label: "Completed" },
           ]}
+          // @ts-ignore
           register={register}
           error={errors["status"]?.message}
         />
@@ -101,6 +103,7 @@ const ProjectEditModal = ({ ...props }: propTypes) => {
           className="w-[84%]"
           label="from_date"
           label2="to_date"
+          // @ts-ignore
           register={register}
           required
           error={errors["from_date"]?.message}

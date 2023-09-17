@@ -26,7 +26,20 @@ const TaskTableRow = ({
   const [currentManHourMin, setCurrentManHourMin] = useState(task.man_hour_min);
 
   function handleEditModal() {
-    setSelectedTask(task);
+    setSelectedTask({
+      id: task.id,
+      title: task.title,
+      status: task.status,
+      man_hour_min: task.man_hour_min,
+      from_date: task.from_date,
+      to_date: task.to_date,
+      priority: task.priority,
+      created_at: task.created_at,
+      updated_at: task.updated_at,
+      type: task.type,
+      project_id: task.id,
+      user_id: task.id,
+    });
     router.push(`/tasks/list?editModal=true`);
   }
 

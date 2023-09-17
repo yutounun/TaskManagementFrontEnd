@@ -21,7 +21,13 @@ const ProjectListTableRow = ({
   const { setSelectedProject } = useContext(ThemeContext);
 
   function handleEditModal() {
-    setSelectedProject(project);
+    setSelectedProject({
+      id: project.id,
+      title: project.title,
+      status: project.status,
+      from_date: project.from_date,
+      to_date: project.to_date,
+    });
     router.push(`/projects/list?editModal=true`);
   }
 

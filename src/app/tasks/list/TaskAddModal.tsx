@@ -1,14 +1,10 @@
 "use client";
 
-import {
-  CreateUpdateProjectResponse,
-  GetProjectResponse,
-} from "@/_types/taskList";
+import { GetProjectResponse } from "@/_types/taskList";
 import { DevTool } from "@hookform/devtools";
 import { postApi } from "@/_utils/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext, useState } from "react";
 import Button from "@/_common/Button";
 import Smile from "@/_common/icons/Smile";
 import X from "@/_common/icons/X";
@@ -29,7 +25,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     register,
     handleSubmit,
     control,
-    watch,
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
@@ -39,7 +34,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
       from_date: new Date(),
       to_date: new Date(),
       user_id: "",
-      project_id: props.projects[0],
+      project_id: props.projects[0].id,
       priority: "critical",
       type: "",
     },

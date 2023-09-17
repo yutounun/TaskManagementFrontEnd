@@ -7,14 +7,12 @@ import {
 import { postApi } from "@/_utils/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext, useState } from "react";
+import React from "react";
 import Button from "@/_common/Button";
 import Smile from "@/_common/icons/Smile";
 import X from "@/_common/icons/X";
 import InputField from "@/_common/InputField";
 import SelectBox from "@/_common/SelectBox";
-import { hourToMinute } from "@/_utils/date";
-import { ThemeContext } from "@/_context/theme";
 import { useForm } from "react-hook-form";
 
 interface propTypes {
@@ -72,6 +70,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
       <div className="flex flex-wrap w-full gap-5 justify-center">
         <InputField
           title="Title*"
+          // @ts-ignore
           register={register}
           label="title"
           placeholder="Enter Title"
@@ -91,6 +90,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
             { value: "Under Review", label: "Under Review" },
             { value: "Completed", label: "Completed" },
           ]}
+          // @ts-ignore
           register={register}
           error={errors["status"]?.message}
         />
@@ -100,6 +100,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
           className="w-[84%]"
           label="from_date"
           label2="to_date"
+          // @ts-ignore
           register={register}
           required
           error={errors["from_date"]?.message}

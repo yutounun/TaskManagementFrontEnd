@@ -7,7 +7,7 @@ import { deleteApi, getApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
 import ProjectAddModal from "./ProjectAddModal";
 import ProjectEditModal from "./ProjectEditModal";
-import ProjectListTable from "./projectListTable";
+import ProjectListTable from "./ProjectListTable";
 
 type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
@@ -28,9 +28,9 @@ export default function Projects({ searchParams }: propTypes) {
     getProjects(params);
   }
 
-  async function getProjects(params?: getProjectParams) {
+  async function getProjects(params?: any) {
     setIsLoading(true);
-    const res: GetProjectResponse[] = await getApi("projects", params);
+    const res: any = await getApi("projects", params);
     setProjects(res);
     setIsLoading(false);
   }

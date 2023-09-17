@@ -95,6 +95,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             placeholder="Enter Title"
             type="text"
             className="w-[40%]"
+            // @ts-ignore
             register={register}
             label="title"
             required
@@ -111,6 +112,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
               { value: "Under Review", label: "Under Review" },
               { value: "Completed", label: "Completed" },
             ]}
+            // @ts-ignore
             register={register}
             required
             error={errors["status"]?.message}
@@ -120,6 +122,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             type="text"
             placeholder="Enter Type"
             className="w-[40%]"
+            // @ts-ignore
             register={register}
             label="type"
             required
@@ -136,6 +139,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             ]}
             label="priority"
             required
+            // @ts-ignore
             register={register}
             error={errors["priority"]?.message}
           />
@@ -145,6 +149,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             className="w-[84%]"
             label="from_date"
             label2="to_date"
+            // @ts-ignore
             register={register}
             error={errors["from_date"]?.message}
             error2={errors["to_date"]?.message}
@@ -153,6 +158,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             title="Man Hour"
             type="time"
             className="w-[40%]"
+            // @ts-ignore
             register={register}
             required
             label="man_hour_min"
@@ -163,6 +169,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             className="w-[40%]"
             projects={props.projects}
             label="project_id"
+            // @ts-ignore
             register={register}
             error={errors["projects"]?.message}
           />
@@ -171,6 +178,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             className="w-[40%]"
             projects={props.projects}
             label="users"
+            // @ts-ignore
             register={register}
             error={errors["users"]?.message}
           />

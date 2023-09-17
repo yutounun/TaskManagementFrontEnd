@@ -10,7 +10,7 @@ interface ThemeType {
   selectedTask: TaskStore;
   setSelectedTask: React.Dispatch<React.SetStateAction<TaskStore | null>>;
   selectedProject: ProjectStore;
-  setSelectedProject: React.Dispatch<React.SetStateAction<TaskStore | null>>;
+  setSelectedProject: React.Dispatch<React.SetStateAction<ProjectStore | null>>;
   errorMsg: string;
   setErrorMsg: React.Dispatch<React.SetStateAction<string>>;
 }

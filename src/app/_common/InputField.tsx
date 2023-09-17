@@ -2,16 +2,16 @@ import React from "react";
 import { UseFormRegister } from "react-hook-form";
 
 interface IFormValues {
-  title: string;
-  status: string;
-  total_man_hour_min: string;
-  from_date: string;
-  to_date: string;
-  user_id: string;
-  project_id: string;
-  priority: string;
-  type: string;
-  man_hour_min: string;
+  title?: string;
+  status?: string;
+  total_man_hour_min?: string;
+  from_date?: Date;
+  to_date?: Date;
+  user_id?: string;
+  project_id?: string;
+  priority?: string;
+  type?: string;
+  man_hour_min?: string;
 }
 
 interface propTypes {
@@ -21,7 +21,7 @@ interface propTypes {
   placeholder?: string;
   type: "date" | "fromTo" | "text" | "time";
   className?: string;
-  register?: UseFormRegister<IFormValues>;
+  register?: UseFormRegister<any>;
   required?: boolean;
   label?:
     | "from_date"
@@ -35,6 +35,7 @@ interface propTypes {
   error?: string;
   error2?: string;
   label2?: "to_date";
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputField = ({
@@ -48,6 +49,7 @@ const InputField = ({
   error2,
   label2,
   required,
+  onChange,
 }: propTypes) => {
   return (
     <label className={`gap-1 flex flex-col ${className}`}>
@@ -61,16 +63,19 @@ const InputField = ({
               name={label}
               placeholder={placeholder}
               className={`input input-bordered w-full input-primary border-gray-text`}
-              {...register(label, {
+              {...register(label as keyof IFormValues, {
                 required: `Please type ${label}`,
               })}
+              onChange={onChange}
             />
           ) : (
             <input
               type={type}
+              name={label}
               placeholder={placeholder}
               className={`input input-bordered w-full input-primary border-gray-text`}
               {...register}
+              onChange={onChange}
             />
           )}
           <p className="text-red-500">{error}</p>
@@ -86,7 +91,7 @@ const InputField = ({
               type="date"
               placeholder={placeholder}
               className={`input w-full input-bordered input-primary border-gray-text`}
-              {...register(label, {
+              {...register(label as keyof IFormValues, {
                 required: `Please type ${label}`,
               })}
             />
@@ -97,7 +102,7 @@ const InputField = ({
               name={label2}
               placeholder={placeholder}
               className={`input w-full input-bordered input-primary border-gray-text`}
-              {...register(label2, {
+              {...register(label2 as keyof IFormValues, {
                 required: `Please type ${label}`,
               })}
             />

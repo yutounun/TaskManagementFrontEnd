@@ -1,5 +1,4 @@
 "use client";
-import Modal from "@/_common/Modal";
 import Title from "@/_common/Title";
 import TaskTable from "./TaskTable";
 import TaskAddModal from "./TaskAddModal";
@@ -26,9 +25,9 @@ export default function Tasks({ searchParams }: propTypes) {
   /**
    * Get all projects when the page loads
    */
-  async function getProjects(params?: getProjectParams) {
+  async function getProjects(params?: any) {
     setIsLoading(true);
-    const res: GetProjectResponse[] = await getApi("projects", params);
+    const res: any = await getApi("projects", params);
     setProjects(res);
     setIsLoading(false);
   }
@@ -122,11 +121,11 @@ export default function Tasks({ searchParams }: propTypes) {
           <TaskAddModal title="Add Task" projects={projects} />
         </div>
       )}
-      {showFilterModal && (
+      {/* {showFilterModal && (
         <div className="flex justify-center items-center h-screen">
           <Modal title="Filter" page="tasks" type="filter" />
         </div>
-      )}
+      )} */}
     </>
   );
 }

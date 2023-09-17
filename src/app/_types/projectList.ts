@@ -6,6 +6,6 @@ export class ProjectStore {
   id: string = "";
   title: string = "";
   status: string = "";
-  from_date: string = "";
-  to_date: string = "";
+  from_date: Date = new Date();
+  to_date: Date = new Date();
 }

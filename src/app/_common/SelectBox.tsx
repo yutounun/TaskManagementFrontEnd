@@ -1,5 +1,6 @@
 import { GetProjectResponse, Options } from "@/_types/taskList";
 import React from "react";
+import { UseFormRegister } from "react-hook-form";
 
 interface propTypes {
   title?: string;
@@ -7,9 +8,9 @@ interface propTypes {
   projects?: GetProjectResponse[];
   options?: Options[];
   selected?: string;
-  register?: UseFormRegister<IFormValues>;
+  register?: UseFormRegister<any>;
   required?: boolean;
-  label?: string;
+  label?: string | number;
   error?: string;
 }
 
@@ -18,7 +19,6 @@ const SelectBox = ({
   className,
   projects,
   options,
-  selected,
   register,
   label,
   error,
@@ -30,7 +30,7 @@ const SelectBox = ({
       {options && options.length > 0 && (
         <select
           className={`input input-bordered w-full input-primary border-gray-text`}
-          {...register(label, {
+          {...register(label as any, {
             required: `Please type ${label}`,
           })}
         >
@@ -44,7 +44,7 @@ const SelectBox = ({
       {projects && projects.length > 0 && (
         <select
           className={`input input-bordered w-full input-primary border-gray-text`}
-          {...register(label, {
+          {...register(label as any, {
             required: `Please type ${label}`,
           })}
         >
