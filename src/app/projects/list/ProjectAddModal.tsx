@@ -16,7 +16,6 @@ import SelectBox from "@/_common/SelectBox";
 import { hourToMinute } from "@/_utils/date";
 import { ThemeContext } from "@/_context/theme";
 import { useForm } from "react-hook-form";
-import NewInputField from "@/_common/NewInputField";
 
 interface propTypes {
   title: string;
@@ -71,7 +70,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
 
       {/* Input fields */}
       <div className="flex flex-wrap w-full gap-5 justify-center">
-        <NewInputField
+        <InputField
           title="Title*"
           register={register}
           label="title"
@@ -95,7 +94,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
           register={register}
           error={errors["status"]?.message}
         />
-        <NewInputField
+        <InputField
           title="Period*"
           type="fromTo"
           className="w-[84%]"

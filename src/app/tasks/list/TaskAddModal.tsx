@@ -15,8 +15,6 @@ import X from "@/_common/icons/X";
 import InputField from "@/_common/InputField";
 import SelectBox from "@/_common/SelectBox";
 import { hourToMinute } from "@/_utils/date";
-import { ThemeContext } from "@/_context/theme";
-import NewInputField from "@/_common/NewInputField";
 import { useForm } from "react-hook-form";
 
 interface propTypes {
@@ -91,7 +89,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
 
         {/* Input fields */}
         <div className="flex flex-wrap w-full gap-5 justify-center">
-          <NewInputField
+          <InputField
             title="Title*"
             placeholder="Enter Title"
             type="text"
@@ -116,7 +114,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             required
             error={errors["status"]?.message}
           />
-          <NewInputField
+          <InputField
             title="Type*"
             type="text"
             placeholder="Enter Type"
@@ -140,7 +138,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             register={register}
             error={errors["priority"]?.message}
           />
-          <NewInputField
+          <InputField
             title="Period*"
             type="fromTo"
             className="w-[84%]"
@@ -150,7 +148,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             error={errors["from_date"]?.message}
             error2={errors["to_date"]?.message}
           />
-          <NewInputField
+          <InputField
             title="Man Hour"
             type="time"
             className="w-[40%]"

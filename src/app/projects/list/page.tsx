@@ -38,13 +38,13 @@ export default function Projects({ searchParams }: propTypes) {
     getProjects();
   }, []);
 
-  function onClickRemove(taskId) {
-    deleteProject(taskId);
+  function onClickRemove(projectId) {
+    deleteProject(projectId);
   }
 
-  async function deleteProject(taskId) {
+  async function deleteProject(projectId) {
     setIsLoading(true);
-    await deleteApi(`projects/${taskId}`);
+    await deleteApi(`projects/${projectId}`);
     await getProjects();
     setIsLoading(false);
   }

@@ -14,7 +14,6 @@ import { useRouter } from "next/navigation";
 import { minuteToHour, formatDate, hourToMinute } from "@/_utils/date";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import NewInputField from "@/_common/NewInputField";
 
 interface propTypes {
   title: string;
@@ -91,7 +90,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
 
         {/* Input fields */}
         <div className="flex flex-wrap w-full gap-5 justify-center">
-          <NewInputField
+          <InputField
             title="Title*"
             placeholder="Enter Title"
             type="text"
@@ -116,7 +115,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             required
             error={errors["status"]?.message}
           />
-          <NewInputField
+          <InputField
             title="Type*"
             type="text"
             placeholder="Enter Type"
@@ -140,7 +139,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             register={register}
             error={errors["priority"]?.message}
           />
-          <NewInputField
+          <InputField
             title="Period*"
             type="fromTo"
             className="w-[84%]"
@@ -150,7 +149,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             error={errors["from_date"]?.message}
             error2={errors["to_date"]?.message}
           />
-          <NewInputField
+          <InputField
             title="Man Hour"
             type="time"
             className="w-[40%]"
