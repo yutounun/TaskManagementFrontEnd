@@ -26,23 +26,6 @@ const ProjectListTableRow = ({
   }
 
   /**
-   * Returns the CSS class name for the priority of a project.
-   *
-   * @return {string} The CSS class name for the priority.
-   */
-  function priorityClass() {
-    if (project.priority === "critical") {
-      return "bg-red-500";
-    } else if (project.priority === "urgent") {
-      return "bg-yellow-500";
-    } else if (project.priority === "normal") {
-      return "bg-green-500";
-    } else if (project.priority === "optional") {
-      return "bg-gray-500";
-    }
-  }
-
-  /**
    * Returns the CSS class name for the status of a project.
    *
    * @return {string} The CSS class name for the priority.
@@ -72,9 +55,9 @@ const ProjectListTableRow = ({
 
   return (
     <div className="flex bg-white py-3 px-2 rounded-lg">
-      <span className="w-[20%] font-bold">{project.title}</span>
-      <span className="w-[15%]">{displayDate(project.to_date)}</span>
-      <div className="w-[15%]">
+      <span className="w-[30%] font-bold">{project.title}</span>
+      <span className="w-[20%]">{displayDate(project.to_date)}</span>
+      <div className="w-[20%]">
         <span className={`badge w-[80%] h-[100%] text-white ${statusClass()}`}>
           {project.status}
         </span>

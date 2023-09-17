@@ -46,7 +46,7 @@ const ProjectEditModal = ({ ...props }: propTypes) => {
       to_date: new Date(data.to_date),
       from_date: new Date(data.from_date),
     };
-    await putApi("projects", params).then(
+    await putApi(`projects/${selectedProject.id}`, params).then(
       (res: CreateUpdateProjectResponse) => {
         router.push("/projects/list");
       }
