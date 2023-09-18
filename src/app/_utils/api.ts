@@ -80,6 +80,8 @@ export const postApi: postApiType = async (url, body) => {
       ? { "Content-Type": "application/json", Authorization: accessToken }
       : { "Content-Type": "application/json" };
 
+    console.log("API_URL :", API_URL + url);
+
     const response = await fetch(API_URL + url, {
       method: "POST",
       headers: headers,
