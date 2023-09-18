@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import Title from "@/_common/Title";
 import TaskTable from "./TaskTable";
 import TaskAddModal from "./TaskAddModal";
@@ -12,8 +14,6 @@ import { getProjectParams } from "@/_types/projectList";
 type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
 };
-
-export const dynamic = "force-dynamic";
 
 export default function Tasks({ searchParams }: propTypes) {
   const showEditModal = searchParams?.editModal;
