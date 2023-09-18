@@ -12,6 +12,7 @@ import ProjectListTable from "./ProjectListTable";
 type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
 };
+export const dynamic = "force-dynamic";
 
 export default function Projects({ searchParams }: propTypes) {
   const showEditModal = searchParams?.editModal;

@@ -13,6 +13,8 @@ type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
 };
 
+export const dynamic = "force-dynamic";
+
 export default function Tasks({ searchParams }: propTypes) {
   const showEditModal = searchParams?.editModal;
   const showAddModal = searchParams?.addModal;
@@ -23,6 +25,7 @@ export default function Tasks({ searchParams }: propTypes) {
   const [isLoading, setIsLoading] = useState(true);
 
   console.log("showAddModal value:", showAddModal, searchParams);
+  console.log("searchPathParams :", searchPathParams);
 
   /**
    * Get all projects when the page loads
