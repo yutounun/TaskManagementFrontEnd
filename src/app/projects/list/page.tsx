@@ -4,6 +4,7 @@ import Title from "@/_common/Title";
 import { getProjectParams } from "@/_types/projectList";
 import { GetProjectResponse } from "@/_types/taskList";
 import { deleteApi, getApi } from "@/_utils/api";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ProjectAddModal from "./ProjectAddModal";
 import ProjectEditModal from "./ProjectEditModal";
@@ -12,12 +13,12 @@ import ProjectListTable from "./ProjectListTable";
 type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
 };
-export const dynamic = "force-dynamic";
 
 export default function Projects({ searchParams }: propTypes) {
-  const showEditModal = searchParams?.editModal;
-  const showAddModal = searchParams?.addModal;
-  const showFilterModal = searchParams?.filterModal;
+  const searchPathParams = useSearchParams();
+  const showEditModal = searchPathParams?.get("editModal");
+  const showAddModal = searchPathParams?.get("addModal");
+  const showFilterModal = searchPathParams?.get("filterModal");
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -38,7 +39,7 @@ export default function Projects({ searchParams }: propTypes) {
 
   useEffect(() => {
     getProjects();
-  }, [searchParams]);
+  }, [searchPathParams]);
 
   function onClickRemove(projectId) {
     deleteProject(projectId);
