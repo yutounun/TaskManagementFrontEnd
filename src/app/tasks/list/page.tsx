@@ -1,31 +1,27 @@
 "use client";
-export const dynamic = "force-dynamic";
-
 import Title from "@/_common/Title";
 import TaskTable from "./TaskTable";
 import TaskAddModal from "./TaskAddModal";
 import { deleteApi, getApi, putApi } from "@/_utils/api";
 import { useEffect, useState } from "react";
-import { GetProjectResponse } from "@/_types/taskList";
 import { useSearchParams } from "next/navigation";
 import TaskEditModal from "./TaskEditModal";
-import { getProjectParams } from "@/_types/projectList";
 
 type propTypes = {
   searchParams?: Record<string, string> | null | undefined;
 };
 
 export default function Tasks({ searchParams }: propTypes) {
-  const showEditModal = searchParams?.editModal;
-  const showAddModal = searchParams?.addModal;
-  const showFilterModal = searchParams?.filterModal;
-  const [projects, setProjects] = useState([]);
   const searchPathParams = useSearchParams();
+  const showEditModal = searchPathParams?.get("editModal");
+  const showAddModal = searchPathParams?.get("addModal");
+  const showFilterModal = searchPathParams?.get("filterModal");
+  const [projects, setProjects] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   console.log("showAddModal value:", showAddModal, searchParams);
-  console.log("searchPathParams :", searchPathParams);
+  console.log("searchPathParams :", searchPathParams?.get("addModal"));
 
   /**
    * Get all projects when the page loads
