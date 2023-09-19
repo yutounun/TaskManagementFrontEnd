@@ -57,7 +57,7 @@ const BoldInput = ({
               required: `Please type ${label}`,
             })}
             type={label.includes("password") ? "password" : "text"}
-            className="text-black text-lg font-semibold w-full"
+            className="text-black text-lg font-semibold w-full border-none h-5"
             placeholder={placeholder}
             onInput={() => setIsEntered(true)}
             onBlur={() => setIsFocused(false)}
