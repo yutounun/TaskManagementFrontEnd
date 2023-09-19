@@ -42,7 +42,7 @@ export default function SideBar({ ...props }: PropsType) {
         </Link>
 
         {/* Users */}
-        <Link
+        {/* <Link
           href="/users/list"
           className={`flex items-center gap-2 text-xl font-bold ${
             props.active === "users" ? "text-white" : "text-inactive"
@@ -50,7 +50,7 @@ export default function SideBar({ ...props }: PropsType) {
         >
           <User1 color={`${props.active === "users" ? "white" : "#737272"}`} />
           <span>Users</span>
-        </Link>
+        </Link> */}
       </div>
 
       {/* Logout */}
