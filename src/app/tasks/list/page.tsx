@@ -28,7 +28,7 @@ export default function Tasks({ searchParams }: propTypes) {
    */
   async function getProjects(params?: any) {
     setIsLoading(true);
-    const res: any = await getApi("projects", params);
+    const res: any = await getApi("projects/tasks", params);
     setProjects(res);
     setIsLoading(false);
   }
