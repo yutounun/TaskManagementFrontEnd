@@ -41,7 +41,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
       from_date: formatDate(selectedTask.from_date),
       to_date: formatDate(selectedTask.to_date),
       project_id: selectedTask.project_id,
-      user_id: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657",
     },
   });
 
@@ -164,17 +163,6 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             label="project_id"
             register={register}
             error={errors["projects"]?.message}
-          />
-          <SelectBox
-            title="User"
-            className="w-[40%]"
-            options={[
-              { value: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657", label: "User1" },
-              { value: "e32b9c1e-fe27-4f5a-88d8-827c31ab0657", label: "User2" },
-            ]}
-            label="user_id"
-            register={register}
-            error={errors["user_id"]?.message}
           />
         </div>
 
