@@ -110,7 +110,7 @@ const Home = () => {
               <>
                 <p className="text-3xl font-bold">Welcome Back</p>
                 <p className="text-md text-gray-text">
-                  Welcome Back. Please Enter your details.
+                  Welcome Back! Please Enter your details.
                 </p>
                 <Tabs left={signIn} setLeft={setSignIn} className="w-6/12" />
                 <BoldInput
