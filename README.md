@@ -13,6 +13,9 @@ https://github.com/yutounun/TaskManagementFrontEnd/assets/96335290/c1fd79e9-4bf8
 - Next13
 - React
 - Tailwind.css
+- AWS
+  - Route53
+  - Amplify Hosting
 
 ## ✈️Getting Started
 ### Install dependencies
