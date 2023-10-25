@@ -1,4 +1,4 @@
-name: frontend style check
+name: frontend test
 
 on:
   workflow_call:
