@@ -69,9 +69,6 @@ const BoldInput = ({
         </div>
         <div className="mr-5">{isEntered && <Check />}</div>
       </div>
-      {/* {!isFocused && (
-        <p className="text-red-500 font-semibold -mt-3">{error}</p>
-      )} */}
     </>
   );
 };
