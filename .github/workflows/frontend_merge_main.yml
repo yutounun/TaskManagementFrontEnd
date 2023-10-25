@@ -11,5 +11,7 @@ on:
 jobs:
   style_check:
     uses: ./.github/workflows/frontend_style_check.yml
+  test:
+    uses: ./.github/workflows/frontend_test.yml
   generate_check:
     uses: ./.github/workflows/frontend_build_check.yml
