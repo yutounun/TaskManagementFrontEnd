@@ -51,11 +51,15 @@ const BoldInput = ({
           {title === "Username" && <User2 color="black" />}
         </div>
         <div className="flex flex-col items-start w-full mx-5 justify-start">
-          <label className="text-gray-text text-sm">{title}</label>
+          <label htmlFor={label} className="text-gray-text text-sm">
+            {title}
+          </label>
           <input
+            id={label}
             {...register(label, {
               required: `Please type ${label}`,
             })}
+            name={label}
             type={label.includes("password") ? "password" : "text"}
             className="text-black text-lg font-semibold w-full border-none h-5"
             placeholder={placeholder}
