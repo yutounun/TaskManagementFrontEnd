@@ -33,6 +33,55 @@ export class GetProjectResponse {
   tasks: GetTaskByIdResponse[] = [];
 }
 
+export const MockGetProjectResponse = [
+  {
+    id: "1",
+    title: "Project1",
+    status: "Not Started",
+    total_man_hour_min: "0",
+    from_date: new Date(),
+    to_date: new Date(),
+    priority: "critical",
+    created_at: "",
+    updated_at: "",
+    type: "",
+    tasks: [
+      {
+        id: "1",
+        title: "Task 1",
+        status: "Not Started",
+        man_hour_min: 0,
+        from_date: new Date(),
+        to_date: new Date(),
+        priority: "critical",
+      },
+    ],
+  },
+  {
+    id: "2",
+    title: "Project2",
+    status: "Not Started",
+    total_man_hour_min: "0",
+    from_date: new Date(),
+    to_date: new Date(),
+    priority: "critical",
+    created_at: "",
+    updated_at: "",
+    type: "",
+    tasks: [
+      {
+        id: "1",
+        title: "Task 1",
+        status: "Not Started",
+        man_hour_min: 0,
+        from_date: new Date(),
+        to_date: new Date(),
+        priority: "critical",
+      },
+    ],
+  },
+];
+
 export class CreateUpdateProjectResponse {
   title: string = "";
   status: string = "";

@@ -25,10 +25,16 @@ const SelectBox = ({
   required,
 }: propTypes) => {
   return (
-    <label className={`gap-1 flex flex-col ${className}`}>
-      {title && <p className="font-bold">{title}</p>}
+    <div className={`gap-1 flex flex-col ${className}`}>
+      {title && (
+        <label htmlFor={title} className="font-bold">
+          {title}
+        </label>
+      )}
       {options && options.length > 0 && (
         <select
+          name={title}
+          id={title}
           className={`input input-bordered w-full input-primary border-gray-text`}
           {...register(label as any, {
             required: `Please type ${label}`,
@@ -43,6 +49,8 @@ const SelectBox = ({
       )}
       {projects && projects.length > 0 && (
         <select
+          name={title}
+          id={title}
           className={`input input-bordered w-full input-primary border-gray-text`}
           {...register(label as any, {
             required: `Please type ${label}`,
@@ -56,7 +64,7 @@ const SelectBox = ({
         </select>
       )}
       <p className="text-red-500">{error}</p>
-    </label>
+    </div>
   );
 };
 
