@@ -52,8 +52,12 @@ const InputField = ({
   onChange,
 }: propTypes) => {
   return (
-    <label className={`gap-1 flex flex-col ${className}`}>
-      {title && <p className="font-bold">{title}</p>}
+    <div className={`gap-1 flex flex-col ${className}`}>
+      {title && (
+        <label htmlFor={label} className="font-bold">
+          {title}
+        </label>
+      )}
       {/* Normal */}
       {type !== "fromTo" && (
         <>
@@ -61,6 +65,7 @@ const InputField = ({
             <input
               type={type}
               name={label}
+              id={label}
               placeholder={placeholder}
               className={`input input-bordered w-full input-primary border-gray-text`}
               {...register(label as keyof IFormValues, {
@@ -72,6 +77,7 @@ const InputField = ({
             <input
               type={type}
               name={label}
+              id={label}
               placeholder={placeholder}
               className={`input input-bordered w-full input-primary border-gray-text`}
               {...register}
@@ -88,8 +94,8 @@ const InputField = ({
           <div className="flex gap-3 items-center w-full">
             <input
               name={label}
+              data-testid={label}
               type="date"
-              placeholder={placeholder}
               className={`input w-full input-bordered input-primary border-gray-text`}
               {...register(label as keyof IFormValues, {
                 required: `Please type ${label}`,
@@ -100,7 +106,7 @@ const InputField = ({
             <input
               type="date"
               name={label2}
-              placeholder={placeholder}
+              data-testid={label2}
               className={`input w-full input-bordered input-primary border-gray-text`}
               {...register(label2 as keyof IFormValues, {
                 required: `Please type ${label}`,
@@ -111,7 +117,7 @@ const InputField = ({
           <p className="text-red-500">{error}</p>
         </>
       )}
-    </label>
+    </div>
   );
 };
 
