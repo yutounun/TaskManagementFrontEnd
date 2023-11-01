@@ -6,7 +6,7 @@ interface propTypes {
 
 const Bin = ({ onClick }: propTypes) => {
   return (
-    <div onClick={onClick}>
+    <div data-testid="delete-btn" onClick={onClick}>
       <svg
         width="22"
         height="22"
