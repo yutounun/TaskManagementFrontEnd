@@ -33,6 +33,20 @@ export class GetProjectResponse {
   tasks: GetTaskByIdResponse[] = [];
 }
 
+export const MockGetTasksResponse = [
+  {
+    id: "1",
+    title: "Task1",
+    status: "Not Started",
+    man_hour_min: 10,
+    from_date: new Date().toISOString(),
+    to_date: new Date().toISOString(),
+    priority: "urgent",
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    type: "mtg",
+  },
+];
 export const MockGetProjectResponse = [
   {
     id: "1",

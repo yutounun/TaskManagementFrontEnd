@@ -109,7 +109,7 @@ const TaskTableRow = ({
       </div>
       <div className="w-[5%] flex gap-2">
         <Edit color="#333333" onClick={handleEditModal} />
-        <Bin onClick={() => onClickRemove(task.id)} />
+        <Bin data-testid="delete-btn" onClick={() => onClickRemove(task.id)} />
       </div>
     </div>
   );
