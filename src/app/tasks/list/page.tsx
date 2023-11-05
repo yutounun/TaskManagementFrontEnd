@@ -20,9 +20,6 @@ export default function Tasks({ searchParams }: propTypes) {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("showAddModal value:", showAddModal, searchParams);
-  console.log("searchPathParams :", searchPathParams?.get("addModal"));
-
   /**
    * Get all projects when the page loads
    */
