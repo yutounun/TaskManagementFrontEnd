@@ -12,6 +12,8 @@ import InputField from "@/_common/InputField";
 import SelectBox from "@/_common/SelectBox";
 import { hourToMinute } from "@/_utils/date";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { ThemeContext } from "@/_context/theme";
 
 interface propTypes {
   title: string;
@@ -38,6 +40,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
       type: "",
     },
   });
+  const { showToaster } = useContext(ThemeContext);
 
   /**
    * Handles the submission of the form.
@@ -56,6 +59,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     postApi("tasks", params)
       .then((res) => {
         console.log(res);
+        showToaster("Task added successfully");
         router.back();
       })
       .catch((err) => {
