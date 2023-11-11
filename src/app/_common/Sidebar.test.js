@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Sidebar from "./Sidebar";
+import SideBar from "./SideBar";
 
 function runSidebarTest(title, type) {
   test(title, async () => {
-    render(<Sidebar active={type} />);
+    render(<SideBar active={type} />);
     const taskLink = screen.getByRole("link", {
       name: "Tasks",
     });
