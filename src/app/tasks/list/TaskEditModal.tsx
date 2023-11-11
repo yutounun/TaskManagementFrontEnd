@@ -138,15 +138,23 @@ const TaskEditModal = ({ ...props }: propTypes) => {
             error={errors["priority"]?.message}
           />
           <InputField
-            title="Period*"
-            type="fromTo"
-            className="w-[84%]"
+            title="From Date"
+            type="date"
+            className="w-[40%]"
             label="from_date"
-            label2="to_date"
             register={register}
             error={errors["from_date"]?.message}
-            error2={errors["to_date"]?.message}
           />
+
+          <InputField
+            title="To Date"
+            type="date"
+            className="w-[40%]"
+            label="to_date"
+            register={register}
+            error={errors["to_date"]?.message}
+          />
+
           <InputField
             title="Man Hour"
             type="time"
