@@ -12,7 +12,7 @@ import InputField from "@/_common/InputField";
 import SelectBox from "@/_common/SelectBox";
 import { hourToMinute } from "@/_utils/date";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/_context/theme";
 
 interface propTypes {
@@ -23,24 +23,37 @@ interface propTypes {
 
 const TaskAddModal = ({ ...props }: propTypes) => {
   const router = useRouter();
+  const [initialDates, setInitialDates] = useState({
+    fromDate: null,
+    toDate: null,
+  });
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting, isDirty, isValid },
   } = useForm({
     mode: "onSubmit",
     defaultValues: {
       title: "",
       status: "Not Started",
-      from_date: new Date(),
-      to_date: new Date(),
+      from_date: initialDates,
+      to_date: initialDates,
       project_id: props.projects.length > 0 ? props.projects[0].id : "",
       priority: "critical",
       type: "",
     },
   });
   const { showToaster } = useContext(ThemeContext);
+
+  useEffect(() => {
+    // コンポーネントがマウントされた後に日付を設定
+    const now = new Date();
+    setInitialDates({
+      fromDate: now.toISOString().substring(0, 10), // YYYY-MM-DD 形式
+      toDate: now.toISOString().substring(0, 10),
+    });
+  }, []);
 
   /**
    * Handles the submission of the form.
@@ -179,7 +192,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           </Link>
 
           {/* submit */}
-          <Button text="Add" modal />
+          <Button text="Add" modal disabled={!isDirty || !isValid} />
         </div>
       </form>
       <DevTool control={control} />

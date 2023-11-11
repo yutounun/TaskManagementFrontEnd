@@ -7,7 +7,7 @@ import {
 import { postApi } from "@/_utils/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@/_common/Button";
 import Smile from "@/_common/icons/Smile";
 import X from "@/_common/icons/X";
@@ -23,6 +23,10 @@ interface propTypes {
 
 const ProjectAddModal = ({ ...props }: propTypes) => {
   const router = useRouter();
+  const [initialDates, setInitialDates] = useState({
+    fromDate: null,
+    toDate: null,
+  });
   const {
     register,
     handleSubmit,
@@ -32,10 +36,19 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
     defaultValues: {
       title: "",
       status: "",
-      from_date: new Date(),
-      to_date: new Date(),
+      from_date: initialDates,
+      to_date: initialDates,
     },
   });
+
+  useEffect(() => {
+    // コンポーネントがマウントされた後に日付を設定
+    const now = new Date();
+    setInitialDates({
+      fromDate: now.toISOString().substring(0, 10), // YYYY-MM-DD 形式
+      toDate: now.toISOString().substring(0, 10),
+    });
+  }, []);
 
   async function handleSubmitProject(data) {
     let params = {
@@ -116,7 +129,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
       {/* Buttons */}
       <div className="flex gap-4">
         {/* cancel */}
-        <Link href={`/tasks/list`}>
+        <Link href={`/projects/list`}>
           <Button cancel />
         </Link>
 

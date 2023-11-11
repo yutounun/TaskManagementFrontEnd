@@ -1,4 +1,4 @@
-"client";
+"use client";
 
 import React from "react";
 import { UseFormRegister } from "react-hook-form";
@@ -56,6 +56,7 @@ const InputField = ({
     } else if (label) {
       return { ...register(label) };
     } else {
+      // Used for other fields not on the form
       return null;
     }
   };
