@@ -20,7 +20,7 @@ const ProjectListTable = ({
       {isLoading && <Loading />}
       {/* No task added */}
       {!isLoading && projects?.length === 0 ? (
-        <h3>Unfortunately no project founded. Please add new task.</h3>
+        <h3>Unfortunately no project founded. Please add a new project.</h3>
       ) : (
         <ProjectListTableHeader />
       )}

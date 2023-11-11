@@ -22,7 +22,7 @@ const TaskTable = ({
       {isLoading && <Loading />}
       {/* No task added */}
       {!isLoading && projects?.length === 0 && (
-        <h3>Unfortunately there are no tasks. Please add new task.</h3>
+        <h3>Unfortunately there are no tasks. Please add a new task.</h3>
       )}
 
       {/* Task List */}
