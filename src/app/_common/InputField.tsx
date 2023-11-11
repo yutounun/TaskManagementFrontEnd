@@ -14,7 +14,6 @@ interface IFormValues {
   priority?: string;
   type?: string;
   man_hour_min?: string;
-  onChange: () => void;
 }
 
 interface propTypes {
@@ -23,9 +22,9 @@ interface propTypes {
   placeholder?: string;
   type: "date" | "text" | "time";
   className?: string;
-  register: any;
+  register?: any;
   required?: boolean;
-  label:
+  label?:
     | "from_date"
     | "title"
     | "status"
@@ -35,7 +34,7 @@ interface propTypes {
     | "type"
     | "user_id";
   error?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputField = ({

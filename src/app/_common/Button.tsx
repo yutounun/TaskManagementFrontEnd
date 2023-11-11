@@ -22,7 +22,6 @@ const Button = ({ ...props }: propTypes) => {
     <>
       {props.continue && (
         <button
-          disabled={props.disabled}
           type="submit"
           onClick={props.onClick}
           className="rounded-md bg-bg-blue text-white w-80 h-12 flex text-center items-center justify-center"
@@ -33,7 +32,6 @@ const Button = ({ ...props }: propTypes) => {
 
       {props.modal && (
         <button
-          disabled={props.disabled}
           onClick={props.onClick}
           className="rounded-md bg-bg-blue text-white w-60 h-12 flex text-center items-center justify-center"
           type="submit"
@@ -44,7 +42,6 @@ const Button = ({ ...props }: propTypes) => {
 
       {props.cancel && (
         <button
-          disabled={props.disabled}
           onClick={props.onClick}
           className="rounded-md bg-bg-gray text-inactive w-60 h-12 flex text-center items-center justify-center"
         >
@@ -54,7 +51,6 @@ const Button = ({ ...props }: propTypes) => {
 
       {props.new && (
         <button
-          disabled={props.disabled}
           onClick={props.onClick}
           className={`rounded-xl font-bold bg-accent text-white w-40 h-8 flex text-center items-center justify-center gap-3 ${
             props.disabled ? "cursor-not-allowed bg-gray-600 text-white" : ""
@@ -66,7 +62,6 @@ const Button = ({ ...props }: propTypes) => {
 
       {props.normal && (
         <button
-          disabled={props.disabled}
           onClick={props.onClick}
           className="rounded-md bg-bg-blue text-white w-40 h-8 flex text-center items-center justify-center"
           type="submit"
@@ -77,7 +72,6 @@ const Button = ({ ...props }: propTypes) => {
 
       {props.others && (
         <button
-          disabled={props.disabled}
           onClick={props.onClick}
           className={`font-bold rounded-xl  text-white w-40 h-8 flex text-center items-center justify-center gap-3 ${props.className} `}
           type="submit"
