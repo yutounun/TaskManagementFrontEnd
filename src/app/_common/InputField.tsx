@@ -35,6 +35,7 @@ interface propTypes {
     | "type"
     | "user_id";
   error?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputField = ({
