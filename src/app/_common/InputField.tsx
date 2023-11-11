@@ -14,6 +14,7 @@ interface IFormValues {
   priority?: string;
   type?: string;
   man_hour_min?: string;
+  onChange: () => void;
 }
 
 interface propTypes {
@@ -45,6 +46,7 @@ const InputField = ({
   label,
   error,
   required,
+  onChange,
 }: propTypes) => {
   const conditionalRegister = () => {
     if (required && label) {
@@ -75,6 +77,7 @@ const InputField = ({
         placeholder={placeholder}
         className={`input input-bordered w-full input-primary border-gray-text`}
         {...conditionalRegister()}
+        onChange={onChange}
       />
       <p className="text-red-500">{error}</p>
     </div>
