@@ -56,7 +56,7 @@ export default function SideBar({ ...props }: PropsType) {
       {/* Logout */}
       <Link
         onClick={logout}
-        href="/home"
+        href="/"
         className="flex items-center gap-3 text-xl font-bold text-white"
       >
         <BiLogOut size={22} />

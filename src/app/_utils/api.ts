@@ -13,7 +13,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 function errorCheck(response) {
   if (!response.ok) {
     if (response.status === 401) {
-      window.location.href = "/home";
+      window.location.href = "/";
       throw new Error("Unauthorized");
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
