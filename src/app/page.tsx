@@ -167,7 +167,7 @@ const Home = () => {
                   className="w-6/12"
                   placeholder="Enter your Email"
                 />
-                <Button type="submit" continue to="/tasks/list" />
+                <Button continue to="/tasks/list" />
               </>
             )}
           </form>
