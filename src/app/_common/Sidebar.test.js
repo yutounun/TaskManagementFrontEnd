@@ -7,10 +7,10 @@ function runSidebarTest(title, type) {
   test(title, async () => {
     render(<Sidebar active={type} />);
     const taskLink = screen.getByRole("link", {
-      name: /tasks/i,
+      name: "Tasks",
     });
     const projectLink = screen.getByRole("link", {
-      name: /projects/i,
+      name: "Projects",
     });
 
     if (type === "tasks") {
