@@ -33,7 +33,12 @@ const Button = ({ ...props }: propTypes) => {
       {props.modal && (
         <button
           onClick={props.onClick}
-          className="rounded-md bg-bg-blue text-white w-60 h-12 flex text-center items-center justify-center"
+          disabled={props.disabled}
+          className={`rounded-md w-60 h-12 flex text-center items-center justify-center ${
+            props.disabled
+              ? "cursor-not-allowed bg-[#9bbef9] text-white"
+              : "bg-bg-blue text-white"
+          }`}
           type="submit"
         >
           {props.text}
@@ -52,9 +57,7 @@ const Button = ({ ...props }: propTypes) => {
       {props.new && (
         <button
           onClick={props.onClick}
-          className={`rounded-xl font-bold bg-accent text-white w-40 h-8 flex text-center items-center justify-center gap-3 ${
-            props.disabled ? "cursor-not-allowed bg-gray-600 text-white" : ""
-          }`}
+          className={`rounded-xl font-bold bg-accent text-white w-40 h-8 flex text-center items-center justify-center gap-3`}
         >
           <Plus color="white" /> Add New
         </button>

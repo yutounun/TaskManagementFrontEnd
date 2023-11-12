@@ -31,17 +31,15 @@ const TaskAddModal = ({ ...props }: propTypes) => {
     register,
     handleSubmit,
     control,
-    formState: { errors, isSubmitting, isDirty, isValid },
+    formState: { errors, isDirty, isValid },
   } = useForm({
-    mode: "onSubmit",
+    mode: "onChange",
     defaultValues: {
-      title: "",
       status: "Not Started",
-      from_date: initialDates,
-      to_date: initialDates,
+      from_date: initialDates.fromDate,
+      to_date: initialDates.toDate,
       project_id: props.projects.length > 0 ? props.projects[0].id : "",
       priority: "critical",
-      type: "",
     },
   });
   const { showToaster } = useContext(ThemeContext);
@@ -121,8 +119,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
               { value: "Completed", label: "Completed" },
             ]}
             register={register}
-            required
-            error={errors["status"]?.message}
           />
           <InputField
             title="Type*"
@@ -135,7 +131,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             error={errors["type"]?.message}
           />
           <SelectBox
-            title="Priority*"
+            title="Priority"
             className="w-[40%]"
             options={[
               { value: "critical", label: "critical" },
@@ -144,9 +140,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
               { value: "optional", label: "optional" },
             ]}
             label="priority"
-            required
             register={register}
-            error={errors["priority"]?.message}
           />
           <InputField
             title="From Date"
@@ -154,7 +148,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             className="w-[40%]"
             label="from_date"
             register={register}
-            error={errors["from_date"]?.message}
           />
 
           <InputField
@@ -163,7 +156,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             className="w-[40%]"
             label="to_date"
             register={register}
-            error={errors["to_date"]?.message}
           />
 
           <InputField
@@ -172,7 +164,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             className="w-[40%]"
             register={register}
             label="man_hour_min"
-            error={errors["man_hour_min"]?.message}
           />
           <SelectBox
             title="Project"
@@ -180,7 +171,6 @@ const TaskAddModal = ({ ...props }: propTypes) => {
             projects={props.projects}
             label="project_id"
             register={register}
-            error={errors["projects"]?.message}
           />
         </div>
 

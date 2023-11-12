@@ -52,7 +52,7 @@ const InputField = ({
     if (required && label) {
       return {
         ...register(label, {
-          required: `Please type ${label}`,
+          required: `${label} is required`,
         }),
       };
     } else if (label) {
@@ -70,16 +70,44 @@ const InputField = ({
         </label>
       )}
 
-      <input
-        type={type}
-        name={label}
-        id={label}
-        placeholder={placeholder}
-        className={`input input-bordered w-full input-primary border-gray-text`}
-        {...conditionalRegister()}
-        onChange={onChange}
-      />
-      <p className="text-red-500">{error}</p>
+      {required && label && (
+        <>
+          <input
+            type={type}
+            id={label}
+            placeholder={placeholder}
+            className={`input input-bordered w-full input-primary border-gray-text`}
+            {...register(label, {
+              required: `${label} is required`,
+            })}
+          />
+          <p className="text-red-500">{error}</p>
+        </>
+      )}
+      {!required && label && (
+        <>
+          <input
+            type={type}
+            id={label}
+            placeholder={placeholder}
+            className={`input input-bordered w-full input-primary border-gray-text`}
+            {...register(label)}
+          />
+          <p className="text-red-500">{error}</p>
+        </>
+      )}
+      {!required && !label && (
+        <>
+          <input
+            type={type}
+            id={label}
+            placeholder={placeholder}
+            className={`input input-bordered w-full input-primary border-gray-text`}
+            onChange={onChange}
+          />
+          <p className="text-red-500">{error}</p>
+        </>
+      )}
     </div>
   );
 };

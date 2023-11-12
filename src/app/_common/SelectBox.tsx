@@ -35,10 +35,8 @@ const SelectBox = ({
         <select
           name={title}
           id={title}
-          className={`input input-bordered w-full input-primary border-gray-text`}
-          {...register(label as any, {
-            required: `Please type ${label}`,
-          })}
+          className={`select select-bordered w-full input-primary border-gray-text`}
+          {...register(label)}
         >
           {options?.map((option) => (
             <option key={option.label} value={option.value}>
@@ -51,10 +49,8 @@ const SelectBox = ({
         <select
           name={title}
           id={title}
-          className={`input input-bordered w-full input-primary border-gray-text`}
-          {...register(label as any, {
-            required: `Please type ${label}`,
-          })}
+          className={`select select-bordered w-full input-primary border-gray-text`}
+          {...register(label)}
         >
           {projects?.map((project) => (
             <option key={project.id} value={project.id}>

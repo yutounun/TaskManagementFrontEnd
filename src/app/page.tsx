@@ -21,7 +21,7 @@ const Home = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: "onSubmit",
+    mode: "onChange",
     defaultValues: {
       "signup email": "",
       "signup password": "",

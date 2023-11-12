@@ -31,7 +31,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
     control,
     formState: { errors },
   } = useForm({
-    mode: "onSubmit",
+    mode: "onChange",
     defaultValues: {
       title: selectedTask.title,
       status: selectedTask.status,

@@ -32,7 +32,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: "onSubmit",
+    mode: "onChange",
     defaultValues: {
       title: "",
       status: "",
