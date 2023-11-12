@@ -20,6 +20,7 @@ https://github.com/yutounun/TaskManagementFrontEnd/assets/96335290/c1fd79e9-4bf8
 - React Testing Library
 - CI / CD
 - ESLint
+- onamae.com
 - AWS
   - Route53
   - Amplify Hosting
