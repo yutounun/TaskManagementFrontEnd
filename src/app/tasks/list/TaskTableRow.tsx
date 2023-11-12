@@ -37,7 +37,7 @@ const TaskTableRow = ({
       created_at: task.created_at,
       updated_at: task.updated_at,
       type: task.type,
-      project_id: task.id,
+      project_id: task.project_id,
       user_id: task.id,
     });
     router.push(`/tasks/list?editModal=true`);

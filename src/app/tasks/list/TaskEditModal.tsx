@@ -33,14 +33,14 @@ const TaskEditModal = ({ ...props }: propTypes) => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      title: selectedTask.title,
-      status: selectedTask.status,
-      type: selectedTask.type,
-      priority: selectedTask.priority,
-      man_hour_min: minuteToHour(selectedTask.man_hour_min),
-      from_date: formatDate(selectedTask.from_date),
-      to_date: formatDate(selectedTask.to_date),
-      project_id: selectedTask.project_id,
+      title: selectedTask?.title,
+      status: selectedTask?.status,
+      type: selectedTask?.type,
+      priority: selectedTask?.priority,
+      man_hour_min: minuteToHour(selectedTask?.man_hour_min),
+      from_date: formatDate(selectedTask?.from_date),
+      to_date: formatDate(selectedTask?.to_date),
+      project_id: selectedTask?.project_id,
     },
   });
 

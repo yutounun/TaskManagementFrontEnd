@@ -17,6 +17,7 @@ export class GetTaskByIdResponse {
   created_at: string = "";
   updated_at: string = "";
   type: string = "";
+  project_id: string = "";
 }
 
 export class GetProjectResponse {
