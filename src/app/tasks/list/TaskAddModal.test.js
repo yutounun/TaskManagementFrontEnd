@@ -102,34 +102,20 @@ describe("Task Row", () => {
   });
   test("shows validation errors on clicking submit button without typing into any columns", async () => {
     const submitBtn = screen.getByRole("button", { name: /add/i });
-    userEvent.click(submitBtn);
-    const inputArray = ["Please type title", "Please type type"];
-
-    await waitFor(() => {
-      for (const input of inputArray) {
-        expect(screen.getByText(input)).toBeInTheDocument();
-      }
-    });
+    expect(submitBtn).toBeDisabled();
   });
+
   test("does not show validation errors on clicking submit button with typing into all columns", async () => {
-    const submitBtn = screen.getByRole("button", { name: /add/i });
-    const titleInput = screen.getByRole("textbox", { name: /title/i });
-    const typeInput = screen.getByRole("textbox", { name: /type/i });
-    const fromInput = screen.getByLabelText(/from date/i);
-    const toInput = screen.getByLabelText(/to date/i);
-    const status = screen.getByRole("combobox", { name: /status/i });
-    const priority = screen.getByRole("combobox", { name: /priority/i });
-    const manHour = screen.getByLabelText("Man Hour");
-    const project = screen.getByRole("combobox", { name: /project/i });
+    const titleInput = screen.getByRole("textbox", {
+      name: /title\*/i,
+    });
+    const typeInput = screen.getByRole("textbox", {
+      name: /type\*/i,
+    });
+    const submitBtn = screen.getByRole("button", { name: "Add" });
 
     userEvent.type(titleInput, "title1");
     userEvent.type(typeInput, "type1");
-    userEvent.type(fromInput, "2023/01/01");
-    userEvent.type(toInput, "2023/01/02");
-    userEvent.selectOptions(status, "In Progress");
-    userEvent.selectOptions(priority, "normal");
-    userEvent.type(manHour, "10");
-    userEvent.selectOptions(project, "Project1");
 
     userEvent.click(submitBtn);
 

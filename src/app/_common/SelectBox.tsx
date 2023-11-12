@@ -10,7 +10,7 @@ interface propTypes {
   selected?: string;
   register?: UseFormRegister<any>;
   required?: boolean;
-  label?: string | number;
+  label?: string;
   error?: string;
 }
 
