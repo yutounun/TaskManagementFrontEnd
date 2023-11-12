@@ -30,7 +30,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -134,7 +134,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
         </Link>
 
         {/* submit */}
-        <Button text="Add" modal />
+        <Button text="Add" modal disabled={!isDirty || !isValid} />
       </div>
     </form>
   );

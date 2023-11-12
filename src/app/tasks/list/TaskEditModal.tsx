@@ -29,7 +29,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -182,7 +182,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
           </Link>
 
           {/* submit */}
-          <Button text="Add" modal />
+          <Button text="Add" modal disabled={!isDirty || !isValid} />
         </div>
       </form>
       <DevTool control={control} />
