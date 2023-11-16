@@ -48,7 +48,7 @@ const Button = ({ ...props }: propTypes) => {
       {props.cancel && (
         <button
           onClick={props.onClick}
-          className="rounded-md bg-bg-gray text-inactive w-60 h-12 flex text-center items-center justify-center"
+          className="rounded-md bg-white border-inactive border text-inactive w-60 h-12 flex text-center items-center justify-center"
         >
           Cancel
         </button>
