@@ -55,7 +55,7 @@ const Title = ({ ...props }: propTypes) => {
         <Button
           onClick={handleSaveClick}
           others
-          className="bg-[#D9534F]"
+          className="bg-[#588033]"
           text="Save"
         >
           <svg
