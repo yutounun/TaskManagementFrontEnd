@@ -38,15 +38,15 @@ const ProjectListTableRow = ({
    */
   function statusClass() {
     if (project.status === "Not Started") {
-      return "bg-gray-500";
+      return "bg-gray-700";
     } else if (project.status === "In Progress") {
-      return "bg-yellow-500";
+      return "bg-yellow-700";
     } else if (project.status === "Completed") {
-      return "bg-green-500";
+      return "bg-green-700";
     } else if (project.status === "On Hold") {
-      return "bg-red-500";
+      return "bg-red-700";
     } else if (project.status === "Under Review") {
-      return "bg-gray-500";
+      return "bg-gray-700";
     }
   }
 

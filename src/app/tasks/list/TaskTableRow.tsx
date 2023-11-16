@@ -50,13 +50,13 @@ const TaskTableRow = ({
    */
   function priorityClass() {
     if (task.priority === "critical") {
-      return "bg-red-500";
+      return "bg-red-700";
     } else if (task.priority === "urgent") {
-      return "bg-yellow-500";
+      return "bg-yellow-700";
     } else if (task.priority === "normal") {
-      return "bg-green-500";
+      return "bg-green-700";
     } else if (task.priority === "optional") {
-      return "bg-gray-500";
+      return "bg-gray-700";
     }
   }
 
@@ -67,15 +67,15 @@ const TaskTableRow = ({
    */
   function statusClass() {
     if (task.status === "Not Started") {
-      return "bg-gray-500";
+      return "bg-gray-700";
     } else if (task.status === "In Progress") {
-      return "bg-yellow-500";
+      return "bg-yellow-700";
     } else if (task.status === "Completed") {
-      return "bg-green-500";
+      return "bg-green-700";
     } else if (task.status === "On Hold") {
-      return "bg-red-500";
+      return "bg-red-700";
     } else if (task.status === "Under Review") {
-      return "bg-gray-500";
+      return "bg-gray-700";
     }
   }
 
