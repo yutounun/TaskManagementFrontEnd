@@ -39,15 +39,15 @@ const ProjectListTableRow = ({
    */
   function statusClass() {
     if (project.status === "Not Started") {
-      return "bg-[#FFBC1F]";
+      return "bg-[#B0B0B0]";
     } else if (project.status === "In Progress") {
-      return "bg-[#21C7E8]";
+      return "bg-[#4B9CD3]";
     } else if (project.status === "Completed") {
-      return "bg-[#FF7E8D]";
+      return "bg-[#4CAF50]";
     } else if (project.status === "On Hold") {
-      return "bg-[#29C769]";
+      return "bg-[#9C27B0]";
     } else if (project.status === "Under Review") {
-      return "bg-[#6A5ACD]";
+      return "bg-[#F9D835]";
     }
   }
 
@@ -71,7 +71,9 @@ const ProjectListTableRow = ({
         {displayDate(project.to_date)}
       </span>
       <div className="flex items-center w-[20%]">
-        <Badge bgColor={statusClass()}>{project.status}</Badge>
+        <Badge className="w-[60%]" bgColor={statusClass()}>
+          {project.status}
+        </Badge>
       </div>
       <div className="flex items-center w-[15%] text-gray-on-gray">
         {totalManHour()}

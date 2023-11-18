@@ -51,13 +51,13 @@ const TaskTableRow = ({
    */
   function priorityClass() {
     if (task.priority === "critical") {
-      return "bg-[#29C769]";
+      return "bg-[#D32F2F]";
     } else if (task.priority === "urgent") {
-      return "bg-[#FF7E8D]";
+      return "bg-[#F57C00]";
     } else if (task.priority === "normal") {
-      return "bg-[#21C7E8]";
+      return "bg-[#1976D2]";
     } else if (task.priority === "optional") {
-      return "bg-[#FFBC1F]";
+      return "bg-[#FBC02D]";
     }
   }
 
@@ -68,15 +68,15 @@ const TaskTableRow = ({
    */
   function statusClass() {
     if (task.status === "Not Started") {
-      return "bg-[#FFBC1F]";
+      return "bg-[#B0B0B0]";
     } else if (task.status === "In Progress") {
-      return "bg-[#21C7E8]";
+      return "bg-[#4B9CD3]";
     } else if (task.status === "Completed") {
-      return "bg-[#FF7E8D]";
+      return "bg-[#4CAF50]";
     } else if (task.status === "On Hold") {
-      return "bg-[#29C769]";
+      return "bg-[#9C27B0]";
     } else if (task.status === "Under Review") {
-      return "bg-[#6A5ACD]";
+      return "bg-[#F9D835]";
     }
   }
 
@@ -98,10 +98,14 @@ const TaskTableRow = ({
         {displayDate(task.to_date)}
       </span>
       <div className="flex items-center w-[15%]">
-        <Badge bgColor={statusClass()}>{task.status}</Badge>
+        <Badge className="w-[80%]" bgColor={statusClass()}>
+          {task.status}
+        </Badge>
       </div>
       <div className="flex items-center w-[15%]">
-        <Badge bgColor={priorityClass()}>{task.priority}</Badge>
+        <Badge className="w-[80%]" bgColor={priorityClass()}>
+          {task.priority}
+        </Badge>
       </div>
       <div className="flex items-center w-[20%]">
         <Timer initialMinutes={task.man_hour_min} setManHourMin={counter} />

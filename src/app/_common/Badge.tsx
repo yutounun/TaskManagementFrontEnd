@@ -3,12 +3,13 @@ import React from "react";
 type propTypes = {
   children: string;
   bgColor: string;
+  className: string;
 };
 
-const Badge = ({ children, bgColor }: propTypes) => {
+const Badge = ({ className, children, bgColor }: propTypes) => {
   return (
     <div
-      className={`w-[80%] h-[100%] rounded-full text-white flex justify-center items-center ${bgColor}`}
+      className={`h-[100%] rounded-full text-white flex justify-center items-center ${bgColor} ${className}`}
     >
       {children}
     </div>
