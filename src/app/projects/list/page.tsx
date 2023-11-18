@@ -39,7 +39,7 @@ export default function Projects({ searchParams }: propTypes) {
 
   useEffect(() => {
     getProjects();
-  }, [searchPathParams]);
+  }, []);
 
   function onClickRemove(projectId) {
     deleteProject(projectId);

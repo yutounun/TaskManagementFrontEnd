@@ -32,7 +32,7 @@ export default function Tasks({ searchParams }: propTypes) {
 
   useEffect(() => {
     getProjects();
-  }, [searchPathParams]);
+  }, []);
 
   function handleSearch() {
     const params = {
