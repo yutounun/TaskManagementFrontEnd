@@ -54,14 +54,7 @@ const Button = ({ ...props }: propTypes) => {
         </button>
       )}
 
-      {props.new && (
-        <button
-          onClick={props.onClick}
-          className={`rounded-xl font-bold bg-rose-700 text-white w-40 h-8 flex text-center items-center justify-center gap-3`}
-        >
-          <Plus color="white" /> Add New
-        </button>
-      )}
+      {props.new && <Plus onClick={props.onClick} color="#593D72" />}
 
       {props.normal && (
         <button

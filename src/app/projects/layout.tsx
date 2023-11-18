@@ -20,7 +20,7 @@ export default function ProjectsLayout({
     <>
       <div className="flex  h-full">
         <SideBar active="projects" />
-        <div className="mx-20 w-full flex flex-col gap-5 ml-80">
+        <div className="w-full flex flex-col gap-5 ml-80">
           {errorMsg && (
             <div className="alert">
               <svg

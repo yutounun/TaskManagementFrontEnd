@@ -5,6 +5,7 @@ import { ThemeContext } from "@/_context/theme";
 import { useRouter } from "next/navigation";
 import { displayDate } from "@/_utils/date";
 import Bin from "@/_common/icons/Bin";
+import Badge from "@/_common/Badge";
 
 type propTypes = {
   className?: string;
@@ -38,15 +39,15 @@ const ProjectListTableRow = ({
    */
   function statusClass() {
     if (project.status === "Not Started") {
-      return "bg-gray-700";
+      return "bg-[#FFBC1F]";
     } else if (project.status === "In Progress") {
-      return "bg-yellow-700";
+      return "bg-[#21C7E8]";
     } else if (project.status === "Completed") {
-      return "bg-green-700";
+      return "bg-[#FF7E8D]";
     } else if (project.status === "On Hold") {
-      return "bg-red-700";
+      return "bg-[#29C769]";
     } else if (project.status === "Under Review") {
-      return "bg-gray-700";
+      return "bg-[#6A5ACD]";
     }
   }
 
@@ -60,15 +61,17 @@ const ProjectListTableRow = ({
   }
 
   return (
-    <div className="flex bg-white py-3 px-2 rounded-lg">
-      <span className="w-[30%] font-bold">{project.title}</span>
-      <span className="w-[20%]">{displayDate(project.to_date)}</span>
+    <div className="flex bg-white h-8 my-3 rounded-lg">
+      <span className="w-[20%] font-bold text-gray-stronger">
+        {project.title}
+      </span>
+      <span className="w-[20%] text-gray-on-gray">
+        {displayDate(project.to_date)}
+      </span>
       <div className="w-[20%]">
-        <span className={`badge w-[80%] h-[100%] text-white ${statusClass()}`}>
-          {project.status}
-        </span>
+        <Badge bgColor={statusClass()}>{project.status}</Badge>
       </div>
-      <div className="w-[20%]">{totalManHour()}</div>
+      <div className="w-[15%] text-gray-on-gray">{totalManHour()}</div>
       <div className="w-[5%] flex gap-2">
         <Edit color="#333333" onClick={handleEditModal} />
         <Bin onClick={() => onClickRemove(project.id)} />

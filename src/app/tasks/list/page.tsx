@@ -92,7 +92,7 @@ export default function Tasks({ searchParams }: propTypes) {
   return (
     <>
       {!showEditModal && !showAddModal && !showFilterModal && (
-        <>
+        <div className="ml-24">
           <Title
             handleSearch={handleSearch}
             title="Tasks"
@@ -107,7 +107,7 @@ export default function Tasks({ searchParams }: propTypes) {
             projects={projects}
             updateRow={updateRow}
           />
-        </>
+        </div>
       )}
       {showEditModal && (
         <div className="flex justify-center items-center h-screen">

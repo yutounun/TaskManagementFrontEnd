@@ -6,6 +6,7 @@ import { ThemeContext } from "@/_context/theme";
 import { useRouter } from "next/navigation";
 import { displayDate } from "@/_utils/date";
 import Bin from "@/_common/icons/Bin";
+import Badge from "@/_common/Badge";
 
 type propTypes = {
   className?: string;
@@ -50,13 +51,13 @@ const TaskTableRow = ({
    */
   function priorityClass() {
     if (task.priority === "critical") {
-      return "bg-red-700";
+      return "bg-[#29C769]";
     } else if (task.priority === "urgent") {
-      return "bg-yellow-700";
+      return "bg-[#FF7E8D]";
     } else if (task.priority === "normal") {
-      return "bg-green-700";
+      return "bg-[#21C7E8]";
     } else if (task.priority === "optional") {
-      return "bg-gray-700";
+      return "bg-[#FFBC1F]";
     }
   }
 
@@ -67,15 +68,15 @@ const TaskTableRow = ({
    */
   function statusClass() {
     if (task.status === "Not Started") {
-      return "bg-gray-700";
+      return "bg-[#FFBC1F]";
     } else if (task.status === "In Progress") {
-      return "bg-yellow-700";
+      return "bg-[#21C7E8]";
     } else if (task.status === "Completed") {
-      return "bg-green-700";
+      return "bg-[#FF7E8D]";
     } else if (task.status === "On Hold") {
-      return "bg-red-700";
+      return "bg-[#29C769]";
     } else if (task.status === "Under Review") {
-      return "bg-gray-700";
+      return "bg-[#6A5ACD]";
     }
   }
 
@@ -88,21 +89,17 @@ const TaskTableRow = ({
   }
 
   return (
-    <div className="flex bg-white py-3 px-2 rounded-lg">
-      <span className="w-[20%] font-bold">{task.title}</span>
-      <span className="w-[10%]">{task.type}</span>
-      <span className="w-[15%]">{displayDate(task.to_date)}</span>
+    <div className="flex bg-white h-8 px-2 rounded-lg">
+      <span className="w-[20%] text-gray-stronger font-bold">{task.title}</span>
+      {/* <span className="w-[10%]">{task.type}</span> */}
+      <span className="w-[15%] text-gray-on-gray">
+        {displayDate(task.to_date)}
+      </span>
       <div className="w-[15%]">
-        <span className={`badge w-[80%] h-[100%] text-white ${statusClass()}`}>
-          {task.status}
-        </span>
+        <Badge bgColor={statusClass()}>{task.status}</Badge>
       </div>
       <div className="w-[15%]">
-        <span
-          className={`badge w-[80%] h-[100%] text-white ${priorityClass()}`}
-        >
-          {task.priority}
-        </span>
+        <Badge bgColor={priorityClass()}>{task.status}</Badge>
       </div>
       <div className="w-[20%]">
         <Timer initialMinutes={task.man_hour_min} setManHourMin={counter} />

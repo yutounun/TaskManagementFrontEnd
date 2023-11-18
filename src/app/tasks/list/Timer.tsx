@@ -39,8 +39,8 @@ const Timer = ({
         ) : (
           <Play color="#333333" onClick={start} />
         )}
-        <span>{days}days </span>
-        <div>
+        <span className="text-gray-on-gray">{days}days </span>
+        <div className="text-gray-on-gray">
           <span>{hours + Math.floor(localInitialMinutes / 60)}H:</span>
           <span>{minutes + (localInitialMinutes % 60)}M</span>
         </div>

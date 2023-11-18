@@ -18,7 +18,7 @@ const TaskTable = ({
   updateRow,
 }: propTypes) => {
   return (
-    <div className="mx-3">
+    <div>
       {isLoading && <Loading />}
       {/* No task added */}
       {!isLoading && projects?.length === 0 && (
