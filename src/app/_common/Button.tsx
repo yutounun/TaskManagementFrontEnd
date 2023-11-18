@@ -24,7 +24,7 @@ const Button = ({ ...props }: propTypes) => {
         <button
           type="submit"
           onClick={props.onClick}
-          className="rounded-md bg-bg-blue text-white w-80 h-12 flex text-center items-center justify-center"
+          className="rounded-md bg-bg-base text-white w-80 h-12 flex text-center items-center justify-center"
         >
           Continue
         </button>

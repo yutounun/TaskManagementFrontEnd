@@ -177,8 +177,8 @@ const Home = () => {
       {/* right */}
       <div className="w-1/2 relative">
         <Image
-          src="/watch.jpeg"
-          alt="watch"
+          src="/login.png"
+          alt="login"
           layout="fill"
           objectFit="cover"
           loading="eager"
