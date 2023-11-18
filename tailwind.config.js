@@ -31,7 +31,7 @@ module.exports = {
         infoLight: "#d9e7ff",
         error: "#f4511e",
         errorLight: "#ffefeb",
-        warning: "#f2a200",
+        warning: "#EC5252",
         warningLight: "#fff2d9",
         opacity: "0.6",
       },
