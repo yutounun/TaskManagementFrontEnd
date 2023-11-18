@@ -77,7 +77,7 @@ const Timer = ({
         </svg>
         <p className="text-center text-gray-on-gray">
           Please click the save icon <br />
-          to save the tracking man hour
+          to save theman hour
         </p>
         <Button
           className="bg-warning"
