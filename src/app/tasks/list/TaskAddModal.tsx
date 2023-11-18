@@ -71,7 +71,7 @@ const TaskAddModal = ({ ...props }: propTypes) => {
       .then((res) => {
         console.log(res);
         showToaster("Task added successfully");
-        router.back();
+        backToList()
       })
       .catch((err) => {
         console.log(err);

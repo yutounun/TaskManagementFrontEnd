@@ -62,7 +62,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
     putApi(`tasks/${selectedTask.id}`, params)
       .then((res) => {
         console.log(res);
-        router.back();
+        backToList();
       })
       .catch((err) => {
         console.log(err);
