@@ -90,21 +90,23 @@ const TaskTableRow = ({
 
   return (
     <div className="flex bg-white h-8 px-2 rounded-lg">
-      <span className="w-[20%] text-gray-stronger font-bold">{task.title}</span>
-      {/* <span className="w-[10%]">{task.type}</span> */}
-      <span className="w-[15%] text-gray-on-gray">
+      <span className="flex items-center w-[20%] text-gray-stronger font-bold">
+        {task.title}
+      </span>
+      {/* <span className="flex items-center w-[10%]">{task.type}</span> */}
+      <span className="flex items-center w-[15%] text-gray-on-gray">
         {displayDate(task.to_date)}
       </span>
-      <div className="w-[15%]">
+      <div className="flex items-center w-[15%]">
         <Badge bgColor={statusClass()}>{task.status}</Badge>
       </div>
-      <div className="w-[15%]">
+      <div className="flex items-center w-[15%]">
         <Badge bgColor={priorityClass()}>{task.status}</Badge>
       </div>
-      <div className="w-[20%]">
+      <div className="flex items-center w-[20%]">
         <Timer initialMinutes={task.man_hour_min} setManHourMin={counter} />
       </div>
-      <div className="w-[5%] flex gap-2">
+      <div className="flex items-center w-[5%] gap-2">
         <Edit color="#333333" onClick={handleEditModal} />
         <Bin data-testid="delete-btn" onClick={() => onClickRemove(task.id)} />
       </div>

@@ -62,17 +62,19 @@ const ProjectListTableRow = ({
 
   return (
     <div className="flex bg-white h-8 my-3 rounded-lg">
-      <span className="w-[20%] font-bold text-gray-stronger">
+      <span className="flex items-center w-[20%] font-bold text-gray-stronger">
         {project.title}
       </span>
-      <span className="w-[20%] text-gray-on-gray">
+      <span className="flex items-center w-[20%] text-gray-on-gray">
         {displayDate(project.to_date)}
       </span>
-      <div className="w-[20%]">
+      <div className="flex items-center w-[20%]">
         <Badge bgColor={statusClass()}>{project.status}</Badge>
       </div>
-      <div className="w-[15%] text-gray-on-gray">{totalManHour()}</div>
-      <div className="w-[5%] flex gap-2">
+      <div className="flex items-center w-[15%] text-gray-on-gray">
+        {totalManHour()}
+      </div>
+      <div className="flex items-center w-[5%] gap-2">
         <Edit color="#333333" onClick={handleEditModal} />
         <Bin onClick={() => onClickRemove(project.id)} />
       </div>
