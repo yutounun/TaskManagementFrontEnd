@@ -24,7 +24,7 @@ const Title = ({ ...props }: propTypes) => {
     props.updateManHourMin();
   }
   return (
-    <div className="flex items-center gap-4 mt-10">
+    <div className="flex items-center gap-4 mt-10 ml-24">
       {/* Page Title */}
       <h1 className="text-3xl font-bold">{props.title} Board</h1>
 

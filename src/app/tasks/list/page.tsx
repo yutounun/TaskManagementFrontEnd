@@ -91,24 +91,22 @@ export default function Tasks({ searchParams }: propTypes) {
 
   return (
     <>
-      {!showEditModal && !showAddModal && !showFilterModal && (
-        <div className="ml-24">
-          <Title
-            handleSearch={handleSearch}
-            title="Tasks"
-            newBtn
-            page="tasks"
-            setSearchKeyword={setSearchKeyword}
-            updateManHourMin={updateManHourMin}
-          />
-          <TaskTable
-            onClickRemove={onClickRemove}
-            isLoading={isLoading}
-            projects={projects}
-            updateRow={updateRow}
-          />
-        </div>
-      )}
+      <div>
+        <Title
+          handleSearch={handleSearch}
+          title="Tasks"
+          newBtn
+          page="tasks"
+          setSearchKeyword={setSearchKeyword}
+          updateManHourMin={updateManHourMin}
+        />
+        <TaskTable
+          onClickRemove={onClickRemove}
+          isLoading={isLoading}
+          projects={projects}
+          updateRow={updateRow}
+        />
+      </div>
       {showEditModal && (
         <div className="flex justify-center items-center h-screen">
           <TaskEditModal title="Edit Task" projects={projects} />

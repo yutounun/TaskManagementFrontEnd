@@ -54,22 +54,20 @@ export default function Projects({ searchParams }: propTypes) {
 
   return (
     <>
-      {!showEditModal && !showAddModal && !showFilterModal && (
-        <div className="ml-24">
-          <Title
-            handleSearch={handleSearch}
-            title="Projects"
-            newBtn
-            page="projects"
-            setSearchKeyword={setSearchKeyword}
-          />
-          <ProjectListTable
-            onClickRemove={onClickRemove}
-            isLoading={isLoading}
-            projects={projects}
-          />
-        </div>
-      )}
+      <div>
+        <Title
+          handleSearch={handleSearch}
+          title="Projects"
+          newBtn
+          page="projects"
+          setSearchKeyword={setSearchKeyword}
+        />
+        <ProjectListTable
+          onClickRemove={onClickRemove}
+          isLoading={isLoading}
+          projects={projects}
+        />
+      </div>
       {showEditModal && (
         <div className="flex justify-center items-center h-screen">
           <ProjectEditModal title="Edit Task" projects={projects} />

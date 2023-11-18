@@ -63,7 +63,7 @@ const ProjectListTableRow = ({
   }
 
   return (
-    <div className="flex bg-white h-8 my-3 rounded-lg">
+    <div className="flex bg-white h-8 my-3 rounded-lg ml-24">
       <span className="flex items-center w-[20%] font-bold text-gray-stronger">
         {project.title}
       </span>

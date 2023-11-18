@@ -30,7 +30,7 @@ const TaskTable = ({
         (project) =>
           // show projects that have tasks
           project.tasks.length > 0 && (
-            <div className="my-10" key={project.id}>
+            <div className="my-10 ml-24" key={project.id}>
               <h2 className="text-2xl font-bold mb-5">{project.title}</h2>
               <TaskTableHeader />
               <div className="flex flex-col gap-4">

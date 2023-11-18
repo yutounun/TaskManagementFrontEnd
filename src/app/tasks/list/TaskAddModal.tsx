@@ -77,12 +77,21 @@ const TaskAddModal = ({ ...props }: propTypes) => {
         console.log(err);
       });
   }
+  function backToList() {
+    router.push("list");
+  }
 
   return (
-    <>
+    <div
+      onClick={backToList}
+      className={`fixed inset-0 flex justify-center items-center transition-colors
+        visible bg-black/20`}
+    >
       <form
         onSubmit={handleSubmit(handleSubmitTask)}
-        className={`bg-white relative px-20 w-[80%] py-5 rounded-lg border-2 border-gray-text flex flex-col items-center gap-10 ${props.className}`}
+        className={`bg-white relative px-20 w-[80%] py-5 rounded-lg border-2 border-gray-text flex flex-col items-center gap-10 ${props.className} bg-white rounded-xl shadow p-6 transition-all
+          scale-100 opacity-100
+        `}
       >
         {/* open Button */}
         <Link className="absolute top-5 right-5" href={`/tasks/list`}>
@@ -185,8 +194,8 @@ const TaskAddModal = ({ ...props }: propTypes) => {
           <Button text="Add" modal disabled={!isDirty || !isValid} />
         </div>
       </form>
-      <DevTool control={control} />
-    </>
+      {/* <DevTool control={control} /> */}
+    </div>
   );
 };
 
