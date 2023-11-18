@@ -58,7 +58,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
     };
     await postApi("projects", params).then(
       (res: CreateUpdateProjectResponse) => {
-        router.push("/projects/list");
+        backToList();
       }
     );
   }

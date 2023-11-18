@@ -48,7 +48,7 @@ const ProjectEditModal = ({ ...props }: propTypes) => {
     };
     await putApi(`projects/${selectedProject.id}`, params).then(
       (res: CreateUpdateProjectResponse) => {
-        router.push("/projects/list");
+        backToList();
       }
     );
   }
