@@ -54,10 +54,12 @@ const ProjectListTableRow = ({
   function totalManHour() {
     let totalMin = 0;
     project.tasks.forEach((task) => {
-      console.log(task.man_hour_min, totalMin);
       totalMin += task.man_hour_min;
     });
-    return `${Math.floor(totalMin / 60)}H : ${totalMin % 60} M`;
+    const days = Math.floor(totalMin / 60 / 24);
+    const hours = Math.floor((totalMin / 60) % 24);
+    const min = Math.floor(totalMin % 60);
+    return `${days}Days : ${hours}H : ${min} M`;
   }
 
   return (
