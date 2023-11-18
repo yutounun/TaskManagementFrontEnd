@@ -26,7 +26,7 @@ const Title = ({ ...props }: propTypes) => {
   return (
     <div className="flex items-center gap-4 mt-10 ml-24">
       {/* Page Title */}
-      <h1 className="text-3xl font-bold">{props.title} Board</h1>
+      <h1 className="text-3xl font-bold mr-8">{props.title} Board</h1>
 
       {/* Search Window */}
       <InputField
@@ -45,7 +45,7 @@ const Title = ({ ...props }: propTypes) => {
 
       {/* Add New Task Button that opens add modal */}
       {props.newBtn && (
-        <Link href={`/${props.page}/list?addModal=true`}>
+        <Link href={`/${props.page}/list?addModal=true`} className="ml-8">
           <Button new />
         </Link>
       )}

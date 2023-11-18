@@ -75,7 +75,7 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
     >
       <form
         onSubmit={handleSubmit(handleSubmitProject)}
-        className={`bg-white relative px-20 w-[80%] py-5 rounded-lg border-2 border-gray-text flex flex-col items-center gap-10 ${props.className} bg-white rounded-xl shadow p-6 transition-all
+        className={`bg-white relative px-20 w-[80%] py-5 rounded-lg flex flex-col items-center gap-10 ${props.className} bg-white rounded-xl shadow p-6 transition-all
           scale-100 opacity-100
         `}
       >
