@@ -101,7 +101,7 @@ const TaskTableRow = ({
         <Badge bgColor={statusClass()}>{task.status}</Badge>
       </div>
       <div className="flex items-center w-[15%]">
-        <Badge bgColor={priorityClass()}>{task.status}</Badge>
+        <Badge bgColor={priorityClass()}>{task.priority}</Badge>
       </div>
       <div className="flex items-center w-[20%]">
         <Timer initialMinutes={task.man_hour_min} setManHourMin={counter} />

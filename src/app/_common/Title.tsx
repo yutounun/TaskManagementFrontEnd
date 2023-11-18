@@ -26,7 +26,7 @@ const Title = ({ ...props }: propTypes) => {
   return (
     <div className="flex items-center gap-4 mt-10">
       {/* Page Title */}
-      <h1 className="text-2xl font-bold">{props.title} Board</h1>
+      <h1 className="text-3xl font-bold">{props.title} Board</h1>
 
       {/* Search Window */}
       <InputField
