@@ -31,8 +31,17 @@ export function minuteToHour(min) {
  */
 export function formatDate(date) {
   const dateObj = new Date(date);
-  const formattedDate = dateObj.toISOString().split("T")[0];
-  return formattedDate;
+
+  // Get local timezone
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1; // 月は0から始まるので1を足す
+  const day = dateObj.getDate();
+
+  // In case month and date is single digit
+  const formattedMonth = month < 10 ? `0${month}` : month;
+  const formattedDay = day < 10 ? `0${day}` : day;
+
+  return `${year}-${formattedMonth}-${formattedDay}`;
 }
 
 /**
