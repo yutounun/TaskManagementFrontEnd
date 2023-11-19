@@ -8,12 +8,14 @@ type propTypes = {
   projects: GetProjectResponse[];
   isLoading: boolean;
   onClickRemove: (id: string) => void;
+  getProjects?: () => void;
 };
 
 const ProjectListTable = ({
   projects = [],
   isLoading,
   onClickRemove,
+  getProjects,
 }: propTypes) => {
   return (
     <div className="mx-3 mt-10">
@@ -30,6 +32,7 @@ const ProjectListTable = ({
           <ProjectListTableRow
             project={project}
             onClickRemove={onClickRemove}
+            getProjects={getProjects}
           />
         </div>
       ))}

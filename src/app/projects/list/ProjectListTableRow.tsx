@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GetProjectResponse } from "@/_types/taskList";
 import Edit from "@/_common/icons/Edit";
 import { ThemeContext } from "@/_context/theme";
@@ -6,20 +6,23 @@ import { useRouter } from "next/navigation";
 import { displayDate } from "@/_utils/date";
 import Bin from "@/_common/icons/Bin";
 import Badge from "@/_common/Badge";
+import ProjectEditModal from "./ProjectEditModal";
 
 type propTypes = {
   className?: string;
   project: GetProjectResponse;
   onClickRemove: (id: string) => void;
+  getProjects?: () => void;
 };
 
 const ProjectListTableRow = ({
   className,
   project,
   onClickRemove,
+  getProjects,
 }: propTypes) => {
-  const router = useRouter();
   const { setSelectedProject } = useContext(ThemeContext);
+  const [projectEditModal, setProjectEditModal] = useState(false);
 
   function handleEditModal() {
     setSelectedProject({
@@ -29,7 +32,7 @@ const ProjectListTableRow = ({
       from_date: project.from_date,
       to_date: project.to_date,
     });
-    router.push(`/projects/list?editModal=true`);
+    setProjectEditModal(true);
   }
 
   /**
@@ -63,26 +66,38 @@ const ProjectListTableRow = ({
   }
 
   return (
-    <div className="flex bg-white h-8 my-3 rounded-lg ml-24">
-      <span className="flex items-center w-[20%] font-bold text-gray-stronger">
-        {project.title}
-      </span>
-      <span className="flex items-center w-[20%] text-gray-on-gray">
-        {displayDate(project.to_date)}
-      </span>
-      <div className="flex items-center w-[20%]">
-        <Badge className="w-[60%]" bgColor={statusClass()}>
-          {project.status}
-        </Badge>
+    <>
+      <div className="flex bg-white h-8 my-3 rounded-lg ml-24">
+        <span className="flex items-center w-[20%] font-bold text-gray-stronger">
+          {project.title}
+        </span>
+        <span className="flex items-center w-[20%] text-gray-on-gray">
+          {displayDate(project.to_date)}
+        </span>
+        <div className="flex items-center w-[20%]">
+          <Badge className="w-[60%]" bgColor={statusClass()}>
+            {project.status}
+          </Badge>
+        </div>
+        <div className="flex items-center w-[15%] text-gray-on-gray">
+          {totalManHour()}
+        </div>
+        <div className="flex items-center w-[5%] gap-2">
+          <Edit color="#333333" onClick={handleEditModal} />
+          <Bin onClick={() => onClickRemove(project.id)} />
+        </div>
       </div>
-      <div className="flex items-center w-[15%] text-gray-on-gray">
-        {totalManHour()}
-      </div>
-      <div className="flex items-center w-[5%] gap-2">
-        <Edit color="#333333" onClick={handleEditModal} />
-        <Bin onClick={() => onClickRemove(project.id)} />
-      </div>
-    </div>
+      {/* Edit Project Modal */}
+      {projectEditModal && (
+        <div className="flex justify-center items-center h-screen">
+          <ProjectEditModal
+            onClose={() => setProjectEditModal(false)}
+            title="Edit Project"
+            getProjects={getProjects}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

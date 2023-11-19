@@ -20,10 +20,11 @@ interface propTypes {
   className?: string;
   projects: GetProjectResponse[];
   searchParams?: Record<string, string> | null | undefined;
+  getProjects: () => void;
+  onClose: () => void;
 }
 
 const TaskEditModal = ({ ...props }: propTypes) => {
-  const router = useRouter();
   const { selectedTask } = useContext(ThemeContext);
   const {
     register,
@@ -63,6 +64,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
       .then((res) => {
         console.log(res);
         backToList();
+        props.getProjects();
       })
       .catch((err) => {
         console.log(err);
@@ -70,7 +72,7 @@ const TaskEditModal = ({ ...props }: propTypes) => {
   }
 
   function backToList() {
-    router.push("list");
+    props.onClose();
   }
 
   return (

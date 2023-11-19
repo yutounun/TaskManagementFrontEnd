@@ -19,6 +19,8 @@ interface propTypes {
   title: string;
   className?: string;
   projects: GetProjectResponse[];
+  onClose: () => void;
+  getProjects?: () => void;
 }
 
 const ProjectAddModal = ({ ...props }: propTypes) => {
@@ -59,12 +61,13 @@ const ProjectAddModal = ({ ...props }: propTypes) => {
     await postApi("projects", params).then(
       (res: CreateUpdateProjectResponse) => {
         backToList();
+        props.getProjects();
       }
     );
   }
 
   function backToList() {
-    router.push("list");
+    props.onClose();
   }
 
   return (

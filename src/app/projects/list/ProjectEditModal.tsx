@@ -20,11 +20,11 @@ import { formatDate } from "@/_utils/date";
 interface propTypes {
   title: string;
   className?: string;
-  projects: GetProjectResponse[];
+  getProjects?: () => void;
+  onClose: () => void;
 }
 
 const ProjectEditModal = ({ ...props }: propTypes) => {
-  const router = useRouter();
   const { selectedProject } = useContext(ThemeContext);
   const {
     register,
@@ -48,13 +48,14 @@ const ProjectEditModal = ({ ...props }: propTypes) => {
     };
     await putApi(`projects/${selectedProject.id}`, params).then(
       (res: CreateUpdateProjectResponse) => {
+        props.getProjects();
         backToList();
       }
     );
   }
 
   function backToList() {
-    router.push("list");
+    props.onClose();
   }
 
   return (

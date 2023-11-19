@@ -14,7 +14,6 @@ type propTypes = {
 export default function Tasks({ searchParams }: propTypes) {
   const searchPathParams = useSearchParams();
   const showEditModal = searchPathParams?.get("editModal");
-  const showAddModal = searchPathParams?.get("addModal");
   const showFilterModal = searchPathParams?.get("filterModal");
   const [projects, setProjects] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -99,24 +98,17 @@ export default function Tasks({ searchParams }: propTypes) {
           page="tasks"
           setSearchKeyword={setSearchKeyword}
           updateManHourMin={updateManHourMin}
+          projects={projects}
+          getProjects={getProjects}
         />
         <TaskTable
           onClickRemove={onClickRemove}
           isLoading={isLoading}
           projects={projects}
           updateRow={updateRow}
+          getProjects={getProjects}
         />
       </div>
-      {showEditModal && (
-        <div className="flex justify-center items-center h-screen">
-          <TaskEditModal title="Edit Task" projects={projects} />
-        </div>
-      )}
-      {showAddModal && (
-        <div className="flex justify-center items-center h-screen">
-          <TaskAddModal title="Add Task" projects={projects} />
-        </div>
-      )}
       {/* {showFilterModal && (
         <div className="flex justify-center items-center h-screen">
           <Modal title="Filter" page="tasks" type="filter" />

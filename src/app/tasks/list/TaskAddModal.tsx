@@ -19,6 +19,8 @@ interface propTypes {
   title: string;
   className?: string;
   projects: GetProjectResponse[];
+  onClose: () => void;
+  getProjects?: () => void;
 }
 
 const TaskAddModal = ({ ...props }: propTypes) => {
@@ -71,14 +73,15 @@ const TaskAddModal = ({ ...props }: propTypes) => {
       .then((res) => {
         console.log(res);
         showToaster("Task added successfully");
-        backToList()
+        backToList();
+        props.getProjects();
       })
       .catch((err) => {
         console.log(err);
       });
   }
   function backToList() {
-    router.push("list");
+    props.onClose();
   }
 
   return (
@@ -187,9 +190,8 @@ const TaskAddModal = ({ ...props }: propTypes) => {
         {/* Buttons */}
         <div className="flex gap-4">
           {/* cancel */}
-          <Link href={`/tasks/list`}>
-            <Button cancel />
-          </Link>
+
+          <Button onClick={backToList} cancel />
 
           {/* submit */}
           <Button text="Add" modal disabled={!isDirty || !isValid} />

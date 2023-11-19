@@ -9,6 +9,7 @@ type propTypes = {
   isLoading: boolean;
   onClickRemove: (id: string) => void;
   updateRow: (updatedRow) => void;
+  getProjects: () => void;
 };
 
 const TaskTable = ({
@@ -16,6 +17,7 @@ const TaskTable = ({
   isLoading,
   onClickRemove,
   updateRow,
+  getProjects,
 }: propTypes) => {
   return (
     <div>
@@ -36,6 +38,8 @@ const TaskTable = ({
               <div className="flex flex-col gap-4">
                 {project.tasks.map((task) => (
                   <TaskTableRow
+                    getProjects={getProjects}
+                    projects={projects}
                     task={task}
                     key={task.id}
                     updateRow={updateRow}

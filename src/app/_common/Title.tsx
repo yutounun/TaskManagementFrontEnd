@@ -1,4 +1,5 @@
-import Link from "next/link";
+import ProjectAddModal from "@/projects/list/ProjectAddModal";
+import TaskAddModal from "@/tasks/list/TaskAddModal";
 import React, { useState } from "react";
 import Button from "./Button";
 import Filter from "./icons/Filter";
@@ -9,11 +10,15 @@ interface propTypes {
   title: string;
   newBtn?: boolean;
   page?: string;
+  projects?: any;
   handleSearch?: () => void;
   setSearchKeyword?: (value: string) => void;
   updateManHourMin?: () => void;
+  getProjects?: () => void;
 }
 const Title = ({ ...props }: propTypes) => {
+  const [openTaskAddModal, setOpenTaskAddModal] = useState(false);
+  const [openProjectAddModal, setOpenProjectAddModal] = useState(false);
   /**
    * Handles the save click event to save the timer
    *
@@ -22,6 +27,14 @@ const Title = ({ ...props }: propTypes) => {
    */
   function handleSaveClick() {
     props.updateManHourMin();
+  }
+
+  function handleModal() {
+    if (props.page === "tasks") {
+      setOpenTaskAddModal(true);
+    } else {
+      setOpenProjectAddModal(true);
+    }
   }
   return (
     <div className="flex items-center gap-4 mt-10 ml-24">
@@ -45,9 +58,9 @@ const Title = ({ ...props }: propTypes) => {
 
       {/* Add New Task Button that opens add modal */}
       {props.newBtn && (
-        <Link href={`/${props.page}/list?addModal=true`} className="ml-8">
-          <Button new />
-        </Link>
+        <div className="ml-8">
+          <Button onClick={handleModal} new />
+        </div>
       )}
 
       {/* Save Timer Button */}
@@ -65,6 +78,30 @@ const Title = ({ ...props }: propTypes) => {
               fill="black"
             />
           </svg>
+        </div>
+      )}
+
+      {/* Task Add Modal */}
+      {openTaskAddModal && (
+        <div className="flex justify-center items-center h-screen">
+          <TaskAddModal
+            onClose={() => setOpenTaskAddModal(false)}
+            title="Add Task"
+            projects={props.projects}
+            getProjects={props.getProjects}
+          />
+        </div>
+      )}
+
+      {/* Project Add Modal */}
+      {openProjectAddModal && (
+        <div className="flex justify-center items-center h-screen">
+          <ProjectAddModal
+            onClose={() => setOpenProjectAddModal(false)}
+            title="Add Task"
+            projects={props.projects}
+            getProjects={props.getProjects}
+          />
         </div>
       )}
     </div>
