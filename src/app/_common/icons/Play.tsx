@@ -1,11 +1,12 @@
 const Play = ({ color, onClick }: { color: string; onClick: () => void }) => (
   <svg
-    width="25"
-    height="24"
+    width="35"
+    height="35"
     viewBox="0 0 25 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     onClick={onClick}
+    className="cursor-pointer"
   >
     <path
       d="M15.552 11.1679L12.3547 9.03647C11.6902 8.59343 10.8 9.06982 10.8 9.86852V14.1315C10.8 14.9302 11.6902 15.4066 12.3547 14.9635L15.552 12.8321C16.1457 12.4362 16.1457 11.5638 15.552 11.1679Z"

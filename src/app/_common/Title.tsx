@@ -5,6 +5,7 @@ import Button from "./Button";
 import Filter from "./icons/Filter";
 import Search from "./icons/Search";
 import InputField from "./InputField";
+import Tooltip from "./Tooltip";
 
 interface propTypes {
   title: string;
@@ -36,6 +37,14 @@ const Title = ({ ...props }: propTypes) => {
       setOpenProjectAddModal(true);
     }
   }
+
+  function addButtonTooltip() {
+    if (props.page === "tasks") {
+      return "Add New Task";
+    } else {
+      return "Add New Project";
+    }
+  }
   return (
     <div className="flex items-center gap-4 mt-10 ml-24">
       {/* Page Title */}
@@ -49,7 +58,9 @@ const Title = ({ ...props }: propTypes) => {
       />
 
       {/* Search Run Button */}
-      <Search color="#333333" onClick={props.handleSearch} />
+      <Tooltip dataTip="Filter tasks by task title">
+        <Search color="#333333" onClick={props.handleSearch} />
+      </Tooltip>
 
       {/* Filter Icon that opens filter modal */}
       {/* <Link href={`/${props.page}/list?filterModal=true`}>
@@ -58,14 +69,16 @@ const Title = ({ ...props }: propTypes) => {
 
       {/* Add New Task Button that opens add modal */}
       {props.newBtn && (
-        <div className="ml-8">
-          <Button onClick={handleModal} new />
+        <div className="ml-8 mt-2">
+          <Tooltip dataTip={addButtonTooltip()}>
+            <Button onClick={handleModal} new />
+          </Tooltip>
         </div>
       )}
 
       {/* Save Timer Button */}
       {props.page === "tasks" && (
-        <div onClick={handleSaveClick}>
+        <Tooltip onClick={handleSaveClick} dataTip="Save man-hour tracking">
           <svg
             width="20"
             height="20"
@@ -78,7 +91,7 @@ const Title = ({ ...props }: propTypes) => {
               fill="black"
             />
           </svg>
-        </div>
+        </Tooltip>
       )}
 
       {/* Task Add Modal */}

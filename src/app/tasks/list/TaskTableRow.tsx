@@ -8,6 +8,7 @@ import { displayDate } from "@/_utils/date";
 import Bin from "@/_common/icons/Bin";
 import Badge from "@/_common/Badge";
 import TaskEditModal from "./TaskEditModal";
+import Tooltip from "@/_common/Tooltip";
 
 type propTypes = {
   className?: string;
@@ -117,11 +118,15 @@ const TaskTableRow = ({
           <Timer initialMinutes={task.man_hour_min} setManHourMin={counter} />
         </div>
         <div className="flex items-center w-[5%] gap-2">
-          <Edit color="#333333" onClick={handleEditModal} />
-          <Bin
-            data-testid="delete-btn"
-            onClick={() => onClickRemove(task.id)}
-          />
+          <Tooltip dataTip="Edit task">
+            <Edit color="#333333" onClick={handleEditModal} />
+          </Tooltip>
+          <Tooltip dataTip="Delete task">
+            <Bin
+              data-testid="delete-btn"
+              onClick={() => onClickRemove(task.id)}
+            />
+          </Tooltip>
         </div>
       </div>
       {/* Edit Task Modal */}

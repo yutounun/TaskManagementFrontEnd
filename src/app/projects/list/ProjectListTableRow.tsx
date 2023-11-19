@@ -7,6 +7,7 @@ import { displayDate } from "@/_utils/date";
 import Bin from "@/_common/icons/Bin";
 import Badge from "@/_common/Badge";
 import ProjectEditModal from "./ProjectEditModal";
+import Tooltip from "@/_common/Tooltip";
 
 type propTypes = {
   className?: string;
@@ -83,8 +84,15 @@ const ProjectListTableRow = ({
           {totalManHour()}
         </div>
         <div className="flex items-center w-[5%] gap-2">
-          <Edit color="#333333" onClick={handleEditModal} />
-          <Bin onClick={() => onClickRemove(project.id)} />
+          <Tooltip dataTip="Edit task">
+            <Edit color="#333333" onClick={handleEditModal} />
+          </Tooltip>
+          <Tooltip dataTip="Delete task">
+            <Bin
+              data-testid="delete-btn"
+              onClick={() => onClickRemove(project.id)}
+            />
+          </Tooltip>
         </div>
       </div>
       {/* Edit Project Modal */}

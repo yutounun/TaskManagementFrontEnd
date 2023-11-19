@@ -4,6 +4,7 @@ import Button from "@/_common/Button";
 import Pause from "@/_common/icons/Pause";
 import Play from "@/_common/icons/Play";
 import Modal from "@/_common/Modal";
+import Tooltip from "@/_common/Tooltip";
 import React, { useRef, useEffect, useState } from "react";
 import { useStopwatch } from "react-timer-hook";
 
@@ -47,14 +48,21 @@ const Timer = ({
 
   return (
     <div className="w-full">
-      <div className="flex w-full gap-1">
+      <div className="flex w-full gap-1 items-center">
         {isRunning ? (
-          <Pause color="#333333" onClick={handlePause} />
+          <Tooltip dataTip="Pause tracking man-hour">
+            <Pause color="#333333" onClick={handlePause} />
+          </Tooltip>
         ) : (
-          <Play color="#333333" onClick={handleStart} />
+          <Tooltip dataTip="Start tracking man-hour">
+            <Play color="#333333" onClick={handleStart} />
+          </Tooltip>
         )}
-        <span className="text-gray-on-gray">{days}Days </span>
-        <div className="text-gray-on-gray">
+        <div
+          className="text-gray-on-gray cursor-pointer"
+          onClick={isRunning ? handlePause : handleStart}
+        >
+          <span>{days}Days:</span>
           <span>{hours + Math.floor(localInitialMinutes / 60)}H:</span>
           <span>{minutes + (localInitialMinutes % 60)}M</span>
         </div>
@@ -77,7 +85,7 @@ const Timer = ({
         </svg>
         <p className="text-center text-gray-on-gray">
           Please click the save icon <br />
-          to save theman hour
+          to save the man hour
         </p>
         <Button
           className="bg-warning"
