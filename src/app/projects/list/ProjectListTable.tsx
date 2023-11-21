@@ -18,25 +18,27 @@ const ProjectListTable = ({
   getProjects,
 }: propTypes) => {
   return (
-    <div className="mx-3 mt-10">
+    <>
       {isLoading && <Loading />}
-      {/* No task added */}
-      {!isLoading && projects?.length === 0 ? (
-        <h3>Unfortunately no project founded. Please add a new project.</h3>
-      ) : (
-        <ProjectListTableHeader />
-      )}
-      {/* Project List */}
-      {projects.map((project) => (
-        <div className="flex flex-col gap-4" key={project.id}>
-          <ProjectListTableRow
-            project={project}
-            onClickRemove={onClickRemove}
-            getProjects={getProjects}
-          />
-        </div>
-      ))}
-    </div>
+      <div className="mx-3 mt-10">
+        {/* No task added */}
+        {!isLoading && projects?.length === 0 ? (
+          <h3>Unfortunately no project founded. Please add a new project.</h3>
+        ) : (
+          <ProjectListTableHeader />
+        )}
+        {/* Project List */}
+        {projects.map((project) => (
+          <div className="flex flex-col gap-4" key={project.id}>
+            <ProjectListTableRow
+              project={project}
+              onClickRemove={onClickRemove}
+              getProjects={getProjects}
+            />
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
