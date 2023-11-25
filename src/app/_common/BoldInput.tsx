@@ -6,11 +6,11 @@ import Key from "./icons/Key";
 import User2 from "./icons/User2";
 
 interface IFormValues {
-  "signup email": string;
-  "signup password": string;
-  "signup username": string;
-  "signin password": string;
-  "signin username": string;
+  "signup email"?: string;
+  "signup password"?: string;
+  "signup username"?: string;
+  "signin password"?: string;
+  "signin username"?: string;
 }
 
 interface propTypes {

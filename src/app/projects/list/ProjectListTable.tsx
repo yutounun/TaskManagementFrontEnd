@@ -20,7 +20,7 @@ const ProjectListTable = ({
   return (
     <>
       {isLoading && <Loading />}
-      <div className="mx-3 mt-10">
+      <div className="mx-3 mt-80 ml-[550px]">
         {/* No task added */}
         {!isLoading && projects?.length === 0 ? (
           <h3>Unfortunately no project founded. Please add a new project.</h3>
