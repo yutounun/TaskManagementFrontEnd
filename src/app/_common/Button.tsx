@@ -1,5 +1,4 @@
-import Link from "next/link";
-import React, { Children } from "react";
+import React, { Children, memo } from "react";
 import Plus from "./icons/Plus";
 
 interface propTypes {
@@ -17,7 +16,7 @@ interface propTypes {
   others?: boolean;
 }
 
-const Button = ({ ...props }: propTypes) => {
+const Button = memo(function button({ ...props }: propTypes) {
   return (
     <>
       {props.continue && (
@@ -78,6 +77,6 @@ const Button = ({ ...props }: propTypes) => {
       )}
     </>
   );
-};
+});
 
 export default Button;
