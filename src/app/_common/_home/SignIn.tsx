@@ -33,7 +33,6 @@ const SignIn = ({ children }: propTypes) => {
     const url = "auth/login";
     await postApi(url, requestData)
       .then((res: signInResponse) => {
-        console.log("🚀 ~ file: page.tsx:55 ~ .then ~ localStorage");
         localStorage.setItem("accessToken", res.access_token);
       })
       .then(() => {
